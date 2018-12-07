@@ -10,6 +10,7 @@ import java.net.URL;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -20,6 +21,9 @@ import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
+
+import com.loganalyzer.dao.LogAnalyzerDaoImpl;
+import com.loganalyzer.model.Log;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.rule.ExpressionRule;
@@ -718,13 +722,26 @@ public class LogEventsGenerator extends LogFilePatternReceiver {
     }
 
     public void doPost(LoggingEvent event) {
-        System.out.println("TIMESTAMP:" + new Timestamp(event.getTimeStamp()));
-        System.out.println("LEVEL:" + event.getLevel());
-        System.out.println("CLASS:" + event.getLocationInformation().getClassName().trim());
-        System.out.println("METHOD: " + event.getLocationInformation().getMethodName().trim());
-        System.out.println("FILE:" + event.getLocationInformation().getFileName().trim());
-        System.out.println("LINE:" + event.getLocationInformation().getLineNumber().trim());
-        System.out.println("MESSAGE:" + event.getMessage().toString().trim());
+        String path = event.getMDC("application").toString();
+        String filename = path.substring(path.lastIndexOf("/") + 1, path.lastIndexOf("."));
+
+        List<Log> list = null;
+        if ( LogAnalyzerDaoImpl.logs.get(filename) == null){
+            list = new ArrayList<Log>();
+            LogAnalyzerDaoImpl.logs.put(filename, list);
+        }else {
+            list = LogAnalyzerDaoImpl.logs.get(filename);
+        }
+        Log log = new Log();
+        log.setTimestamp(new Timestamp(event.getTimeStamp()));
+        log.setLevel(event.getLevel().toString());
+        log.setClassName(event.getLocationInformation().getClassName().trim());
+        log.setMethodName(event.getLocationInformation().getMethodName().trim());
+        log.setFileName(event.getLocationInformation().getFileName().trim());
+        log.setLine(event.getLocationInformation().getLineNumber().trim());
+        log.setMessage(event.getMessage().toString().trim());
+        list.add(log);
+        System.out.println(log);
         System.out.println("=======================================================================================");
     }
 }
