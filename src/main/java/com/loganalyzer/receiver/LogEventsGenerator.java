@@ -355,7 +355,7 @@ public class LogEventsGenerator extends LogFilePatternReceiver {
     protected void initialize() {
 
         String path = this.getFileURL();
-        mapKey = Utility.getFileName(path);
+        mapKey = Utility.shortFileName(Utility.getFileName(path));
 
         List<Log> list = null;
         if ( logs.get(mapKey) == null){
