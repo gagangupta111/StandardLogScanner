@@ -2,9 +2,10 @@ package com.loganalyzer.model;
 
 import java.sql.Timestamp;
 
-public class Log {
+public class SearchCriteria {
 
-    private Timestamp timestamp;
+    private Timestamp starting;
+    private Timestamp ending;
     private String level;
     private String className;
     private String methodName;
@@ -12,25 +13,23 @@ public class Log {
     private String line;
     private String message;
 
-    public Log() {
+    public SearchCriteria() {
     }
 
-    public Log(Timestamp timestamp, String level, String className, String methodName, String fileName, String line, String message) {
-        this.timestamp = timestamp;
-        this.level = level;
-        this.className = className;
-        this.methodName = methodName;
-        this.fileName = fileName;
-        this.line = line;
-        this.message = message;
+    public Timestamp getStarting() {
+        return starting;
     }
 
-    public Timestamp getTimestamp() {
-        return timestamp;
+    public void setStarting(Timestamp starting) {
+        this.starting = starting;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
+    public Timestamp getEnding() {
+        return ending;
+    }
+
+    public void setEnding(Timestamp ending) {
+        this.ending = ending;
     }
 
     public String getLevel() {
@@ -80,18 +79,4 @@ public class Log {
     public void setMessage(String message) {
         this.message = message;
     }
-
-    @Override
-    public String toString() {
-        return "Log{" +
-                "timestamp=" + timestamp +
-                ", level='" + level + '\'' +
-                ", className='" + className + '\'' +
-                ", methodName='" + methodName + '\'' +
-                ", fileName='" + fileName + '\'' +
-                ", line='" + line + '\'' +
-                ", message='" + message + '\'' +
-                '}';
-    }
-
 }

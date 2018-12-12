@@ -1,6 +1,7 @@
 package com.loganalyzer.dao;
 
 import com.loganalyzer.model.Log;
+import com.loganalyzer.model.SearchCriteria;
 import com.loganalyzer.receiver.LogEventsGenerator;
 import com.loganalyzer.util.Utility;
 import org.apache.commons.io.FileUtils;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -20,6 +23,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 @Repository
 @Qualifier("InitializedLogs")
@@ -91,10 +95,77 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
         return logs;
     }
 
-    public Map<String, List<Log>> getLogsWithCriteria(Log searchCriteria){
+    @Override
+    public Map<String, List<Log>> getLogsWithCriteria(SearchCriteria searchCriteria){
 
+        Map<String, List<Log>> newMap = logs;
+        if (searchCriteria.getFileName()!= null){
+            newMap = getLogsFilteredByFileName(newMap, searchCriteria.getFileName());
+        }
 
-        return null;
+        if (searchCriteria.getLevel()!= null){
+            newMap =  getLogsFilteredByLogLevel(newMap, searchCriteria.getLevel());
+        }
+
+        if (searchCriteria.getStarting()!= null && searchCriteria.getEnding() != null){
+            newMap = getLogsFilteredByTimeStamp(newMap, searchCriteria.getStarting(), searchCriteria.getEnding());
+        }
+
+        if (searchCriteria.getMessage() != null){
+            newMap = getLogsFilteredByMessage(newMap, searchCriteria.getMessage());
+        }
+
+        return newMap;
+    }
+
+    public Map<String, List<Log>> getLogsFilteredByTimeStamp(Map<String, List<Log>> map, Timestamp starting, Timestamp ending){
+
+        Map<String, List<Log>> newMap = new HashMap<>();
+
+        for (String key : map.keySet()){
+
+            List<Log> list = map.get(key)
+                    .stream()
+                    .filter((log) -> starting.compareTo(log.getTimestamp()) <= 0 && ending.compareTo(log.getTimestamp()) >= 0).collect(Collectors.toList());
+            newMap.put(key, list);
+        }
+        return newMap;
+    }
+
+    public Map<String, List<Log>> getLogsFilteredByMessage(Map<String, List<Log>> map, String message){
+
+        Map<String, List<Log>> newMap = new HashMap<>();
+
+        for (String key : map.keySet()){
+
+            List<Log> list = map.get(key)
+                    .stream()
+                    .filter((log) -> log.getMessage().contains(message)).collect(Collectors.toList());
+            newMap.put(key, list);
+        }
+        return newMap;
+    }
+
+    public Map<String, List<Log>> getLogsFilteredByLogLevel(Map<String, List<Log>> map, String logLevel){
+
+        Map<String, List<Log>> newMap = new HashMap<>();
+
+        for (String key : map.keySet()){
+
+            List<Log> list = map.get(key)
+                            .stream()
+                            .filter((log) -> logLevel.equals(log.getLevel())).collect(Collectors.toList());
+            newMap.put(key, list);
+        }
+        return newMap;
+    }
+
+    public Map<String, List<Log>> getLogsFilteredByFileName(Map<String, List<Log>> map, String fileName){
+
+        Map<String, List<Log>> newMap = new HashMap<>();
+        newMap.put(fileName, map.get(fileName));
+        return newMap;
+
     }
 
     public String getWhiteListedFileName(String fileName){

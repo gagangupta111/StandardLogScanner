@@ -742,7 +742,7 @@ public class LogEventsGenerator extends LogFilePatternReceiver {
 
         List<Log> list = logs.get(mapKey);
         Log log = new Log();
-        log.setTimestamp( new Date((long)event.getTimeStamp()*1000));
+        log.setTimestamp(new Timestamp(event.getTimeStamp()));
         log.setLevel(event.getLevel().toString());
         log.setClassName(event.getLocationInformation().getClassName().trim());
         log.setMethodName(event.getLocationInformation().getMethodName().trim());

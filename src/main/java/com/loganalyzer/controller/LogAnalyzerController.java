@@ -1,8 +1,11 @@
 package com.loganalyzer.controller;
 
 import com.loganalyzer.model.Log;
+import com.loganalyzer.model.SearchCriteria;
 import com.loganalyzer.service.LogAnalyzerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +23,11 @@ public class LogAnalyzerController {
     @RequestMapping(method = RequestMethod.GET)
     public Map<String, List<Log>> getAllLogs() {
         return logAnalyzerService.getAllLogs();
+    }
+
+    @RequestMapping(value = "/filter", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Map<String, List<Log>> getLogsWithCriteria(@RequestBody SearchCriteria searchCriteria){
+        return logAnalyzerService.getLogsWithCriteria(searchCriteria);
     }
 
 }
