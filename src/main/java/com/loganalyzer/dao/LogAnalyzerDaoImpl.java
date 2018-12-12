@@ -6,8 +6,10 @@ import com.loganalyzer.receiver.LogEventsGenerator;
 import com.loganalyzer.util.Utility;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.ApplicationArguments;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Repository;
 
@@ -38,7 +40,9 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     private Map<String, List<Log>> logs = new HashMap<String, List<Log>>();
 
-    @Value("${logs.path}")
+    @Autowired
+    ApplicationArguments appArgs;
+
     private String logsPath;
 
     @Value("${formatPattern}")
@@ -63,6 +67,8 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     @PostConstruct
     public void initialize() {
+
+        logsPath = appArgs.getNonOptionArgs().get(0);
 
         List<File> list = new ArrayList<File>();
         String[] compressedList = new String[] {"zip", "gz"};
