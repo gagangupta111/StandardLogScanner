@@ -89,7 +89,10 @@ public class LogEventsGenerator extends LogFilePatternReceiver {
     private final Map customLevelDefinitionMap = new HashMap();
     private int lineCount = 1;
 
-    public LogEventsGenerator() {
+    private Map<String, List<Log>> logs;
+    private String mapKey;
+
+    public LogEventsGenerator(Map<String, List<Log>> logs) {
         this.keywords.add("TIMESTAMP");
         this.keywords.add("LOGGER");
         this.keywords.add("LEVEL");
@@ -100,6 +103,8 @@ public class LogEventsGenerator extends LogFilePatternReceiver {
         this.keywords.add("METHOD");
         this.keywords.add("MESSAGE");
         this.keywords.add("NDC");
+
+        this.logs = logs;
 
         try {
             this.exceptionPattern = Pattern.compile("^\\s+at.*");
@@ -346,6 +351,16 @@ public class LogEventsGenerator extends LogFilePatternReceiver {
     }
 
     protected void initialize() {
+
+        String path = this.getFileURL();
+        mapKey = path.substring(path.lastIndexOf("/") + 1, path.lastIndexOf("."));
+
+        List<Log> list = null;
+        if ( logs.get(mapKey) == null){
+            list = new ArrayList<Log>();
+            logs.put(mapKey, list);
+        }
+
         if (this.host == null && this.path == null) {
             try {
                 URL url = new URL(this.fileURL);
@@ -722,16 +737,8 @@ public class LogEventsGenerator extends LogFilePatternReceiver {
     }
 
     public void doPost(LoggingEvent event) {
-        String path = event.getMDC("application").toString();
-        String filename = path.substring(path.lastIndexOf("/") + 1, path.lastIndexOf("."));
 
-        List<Log> list = null;
-        if ( LogAnalyzerDaoImpl.logs.get(filename) == null){
-            list = new ArrayList<Log>();
-            LogAnalyzerDaoImpl.logs.put(filename, list);
-        }else {
-            list = LogAnalyzerDaoImpl.logs.get(filename);
-        }
+        List<Log> list = logs.get(mapKey);
         Log log = new Log();
         log.setTimestamp(new Timestamp(event.getTimeStamp()));
         log.setLevel(event.getLevel().toString());

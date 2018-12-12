@@ -1,10 +1,12 @@
 package com.loganalyzer.main;
 
-import com.loganalyzer.receiver.LogEventsGenerator;
+import com.loganalyzer.dao.LogAnalyzerDaoImpl;
 
 import java.io.File;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Main {
 
@@ -22,12 +24,21 @@ public class Main {
         String logFormat = "%d{yyyy-MMM-dd EEE HH:mm:ss.SSS} %-5level - %c - %method(%file:%line) -" +
                 "            %msg%xEx%n";
         String adLogFormat = "TIMESTAMP LEVEL - CLASS - METHOD(FILE:LINE) -";
-        LogEventsGenerator receiver = new LogEventsGenerator();
+
+        List<File> list = new ArrayList<File>();
+        File[] array = LogAnalyzerDaoImpl.listf("C:\\\\ProgramData\\\\AutomationAnywhere\\\\CustomLogs", list);
+
+        for (File file1 : array){
+            System.out.println(file1);
+        }
+
+        /*LogEventsGenerator receiver = new LogEventsGenerator();
         receiver.setTimestampFormat("yyyy-MMM-dd EEE HH:mm:ss.SSS");
         receiver.setLogFormat(adLogFormat);
         receiver.setFileURL("file:///" + file.getAbsolutePath());
         receiver.setTailing(false);
         receiver.activateOptions();
+        */
 
     }
 

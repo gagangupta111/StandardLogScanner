@@ -3,12 +3,16 @@ package com.loganalyzer.dao;
 import com.loganalyzer.main.Main;
 import com.loganalyzer.model.Log;
 import com.loganalyzer.receiver.LogEventsGenerator;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -16,9 +20,28 @@ import java.util.Map;
 
 @Repository
 @Qualifier("InitializedLogs")
+@PropertySource("classpath:application.properties")
 public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
-    public static Map<String, List<Log>> logs = new HashMap<String, List<Log>>();
+    private Map<String, List<Log>> logs = new HashMap<String, List<Log>>();
+
+    @Value("${logs.path}")
+    private String logsPath;
+
+    @Value("${formatPattern}")
+    private String formatPattern;
+
+    @Value("${formatPatternNoLocation}")
+    private String formatPatternNoLocation;
+
+    @Value("${timestamp}")
+    private String timestamp;
+
+    @Value("#{'${filesWithFormatPattern}'.split(',')}")
+    private List<String> filesWithFormatPattern;
+
+    @Value("#{'${filesWithFormatPatternNoLocation}'.split(',')}")
+    private List<String> filesWithFormatPatternNoLocation;
 
     private File getFile(String fileName) {
         ClassLoader classLoader = getClass().getClassLoader();
@@ -27,24 +50,52 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     @PostConstruct
     public void initialize() {
-        Date date = new Date();
-        long dateGetTime = date.getTime();
-        System.out.println(date);
-        System.out.println(new Timestamp(dateGetTime));
-        // WebCR_Ignite.log WebCR-2018-Nov-23-1.log
-        String fileName = "WebCRLessData.log";
-        Main main = new Main();
-        File file = getFile(fileName);
 
-        String logFormat = "%d{yyyy-MMM-dd EEE HH:mm:ss.SSS} %-5level - %c - %method(%file:%line) -" +
-                "            %msg%xEx%n";
-        String adLogFormat = "TIMESTAMP LEVEL - CLASS - METHOD(FILE:LINE) -";
-        LogEventsGenerator receiver = new LogEventsGenerator();
-        receiver.setTimestampFormat("yyyy-MMM-dd EEE HH:mm:ss.SSS");
-        receiver.setLogFormat(adLogFormat);
-        receiver.setFileURL("file:///" + file.getAbsolutePath());
-        receiver.setTailing(false);
-        receiver.activateOptions();
+        List<File> list = new ArrayList<File>();
+        File[] array = LogAnalyzerDaoImpl.listf(logsPath, list);
+
+        String format;
+        for (File file1 : array){
+
+            String ext = FilenameUtils.getExtension(file1.getPath());
+            String fileName = file1.getPath().substring(file1.getPath().lastIndexOf("/") + 1, file1.getPath().lastIndexOf("."));
+
+            boolean found = filesWithFormatPatternNoLocation
+                    .stream()
+                    .filter((string) -> fileName.contains(string)).findFirst().isPresent();
+            if (found){
+                format = formatPatternNoLocation;
+            }else {
+                format = formatPattern;
+            }
+
+            if ("log".equals(ext)){
+
+                LogEventsGenerator receiver = new LogEventsGenerator(logs);
+                receiver.setTimestampFormat(timestamp);
+                receiver.setLogFormat(format);
+                receiver.setFileURL("file:///" + file1.getAbsolutePath());
+                receiver.setTailing(false);
+                receiver.activateOptions();
+            }
+        }
+
+    }
+
+    public static File[] listf(String directoryName, List<File> files) {
+        File directory = new File(directoryName);
+
+        // Get all files from a directory.
+        File[] fList = directory.listFiles();
+        if(fList != null)
+            for (File file : fList) {
+                if (file.isFile()) {
+                    files.add(file);
+                } else if (file.isDirectory()) {
+                    listf(file.getAbsolutePath(), files);
+                }
+            }
+            return fList;
     }
 
     @Override
