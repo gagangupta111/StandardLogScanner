@@ -2,10 +2,9 @@ package com.loganalyzer.dao;
 
 import com.loganalyzer.model.Log;
 import com.loganalyzer.receiver.LogEventsGenerator;
+import com.loganalyzer.util.Utility;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.io.filefilter.DirectoryFileFilter;
-import org.apache.commons.io.filefilter.RegexFileFilter;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -13,13 +12,14 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Repository
 @Qualifier("InitializedLogs")
@@ -62,8 +62,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
         for (File file1 : array){
 
             String ext = FilenameUtils.getExtension(file1.getPath());
-            String fileName = file1.getPath().substring(file1.getPath().lastIndexOf("/") + 1, file1.getPath().lastIndexOf("."));
-
+            String fileName = Utility.getFileName(file1.getPath());
             boolean found = filesWithFormatPatternNoLocation
                     .stream()
                     .filter((string) -> fileName.contains(string)).findFirst().isPresent();
@@ -81,6 +80,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
                 receiver.setFileURL("file:///" + file1.getAbsolutePath());
                 receiver.setTailing(false);
                 receiver.activateOptions();
+
             }
         }
 
@@ -90,4 +90,30 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
     public Map<String, List<Log>> getAllLogs() {
         return logs;
     }
+
+    public Map<String, List<Log>> getLogsWithCriteria(Log searchCriteria){
+
+
+        return null;
+    }
+
+    public String getWhiteListedFileName(String fileName){
+
+        Optional<String> name = filesWithFormatPatternNoLocation
+                .stream()
+                .filter((string) -> fileName.contains(string)).findFirst();
+        if (name.isPresent()){
+            return name.get();
+        }else {
+            name = filesWithFormatPattern
+                    .stream()
+                    .filter((string) -> fileName.contains(string)).findFirst();
+            if (name.isPresent()){
+                return name.get();
+            }else {
+                return fileName.substring(0, Utility.indexOf(Pattern.compile("-"), fileName));
+            }
+        }
+    }
+
 }

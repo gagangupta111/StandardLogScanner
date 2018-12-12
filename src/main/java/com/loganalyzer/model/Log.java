@@ -1,10 +1,15 @@
 package com.loganalyzer.model;
 
-import java.sql.Timestamp;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.loganalyzer.util.JsonDateSerializer;
 
+import java.util.Date;
+
+@JsonAutoDetect
 public class Log {
 
-    private Timestamp timestamp;
+    private Date timestamp;
     private String level;
     private String className;
     private String methodName;
@@ -15,7 +20,7 @@ public class Log {
     public Log() {
     }
 
-    public Log(Timestamp timestamp, String level, String className, String methodName, String fileName, String line, String message) {
+    public Log(Date timestamp, String level, String className, String methodName, String fileName, String line, String message) {
         this.timestamp = timestamp;
         this.level = level;
         this.className = className;
@@ -25,11 +30,12 @@ public class Log {
         this.message = message;
     }
 
-    public Timestamp getTimestamp() {
+    @JsonSerialize(using=JsonDateSerializer.class)
+    public Date getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
+    public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }
 

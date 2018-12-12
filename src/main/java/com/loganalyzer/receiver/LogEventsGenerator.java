@@ -11,6 +11,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -24,6 +25,7 @@ import java.util.regex.PatternSyntaxException;
 
 import com.loganalyzer.dao.LogAnalyzerDaoImpl;
 import com.loganalyzer.model.Log;
+import com.loganalyzer.util.Utility;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.rule.ExpressionRule;
@@ -353,7 +355,7 @@ public class LogEventsGenerator extends LogFilePatternReceiver {
     protected void initialize() {
 
         String path = this.getFileURL();
-        mapKey = path.substring(path.lastIndexOf("/") + 1, path.lastIndexOf("."));
+        mapKey = Utility.getFileName(path);
 
         List<Log> list = null;
         if ( logs.get(mapKey) == null){
@@ -740,7 +742,7 @@ public class LogEventsGenerator extends LogFilePatternReceiver {
 
         List<Log> list = logs.get(mapKey);
         Log log = new Log();
-        log.setTimestamp(new Timestamp(event.getTimeStamp()));
+        log.setTimestamp( new Date((long)event.getTimeStamp()*1000));
         log.setLevel(event.getLevel().toString());
         log.setClassName(event.getLocationInformation().getClassName().trim());
         log.setMethodName(event.getLocationInformation().getMethodName().trim());
