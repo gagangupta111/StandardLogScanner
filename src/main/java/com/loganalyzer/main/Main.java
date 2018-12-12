@@ -1,3 +1,4 @@
+/*
 package com.loganalyzer.main;
 
 import com.loganalyzer.dao.LogAnalyzerDaoImpl;
@@ -32,13 +33,15 @@ public class Main {
             System.out.println(file1);
         }
 
-        /*LogEventsGenerator receiver = new LogEventsGenerator();
+        */
+/*LogEventsGenerator receiver = new LogEventsGenerator();
         receiver.setTimestampFormat("yyyy-MMM-dd EEE HH:mm:ss.SSS");
         receiver.setLogFormat(adLogFormat);
         receiver.setFileURL("file:///" + file.getAbsolutePath());
         receiver.setTailing(false);
         receiver.activateOptions();
-        */
+        *//*
+
 
     }
 
@@ -48,3 +51,4 @@ public class Main {
     }
 
 }
+*/

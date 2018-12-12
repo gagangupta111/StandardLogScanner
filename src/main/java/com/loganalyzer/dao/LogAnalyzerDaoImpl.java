@@ -1,9 +1,11 @@
 package com.loganalyzer.dao;
 
-import com.loganalyzer.main.Main;
 import com.loganalyzer.model.Log;
 import com.loganalyzer.receiver.LogEventsGenerator;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.filefilter.DirectoryFileFilter;
+import org.apache.commons.io.filefilter.RegexFileFilter;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -13,6 +15,7 @@ import javax.annotation.PostConstruct;
 import java.io.File;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -52,7 +55,8 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
     public void initialize() {
 
         List<File> list = new ArrayList<File>();
-        File[] array = LogAnalyzerDaoImpl.listf(logsPath, list);
+        String[] extensions = new String[] { "log" };
+        Collection<File> array = FileUtils.listFiles(new File(logsPath), extensions, true);
 
         String format;
         for (File file1 : array){
@@ -80,22 +84,6 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
             }
         }
 
-    }
-
-    public static File[] listf(String directoryName, List<File> files) {
-        File directory = new File(directoryName);
-
-        // Get all files from a directory.
-        File[] fList = directory.listFiles();
-        if(fList != null)
-            for (File file : fList) {
-                if (file.isFile()) {
-                    files.add(file);
-                } else if (file.isDirectory()) {
-                    listf(file.getAbsolutePath(), files);
-                }
-            }
-            return fList;
     }
 
     @Override
