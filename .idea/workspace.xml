@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="291878ab-300c-4ed3-beab-86695b24fbbb" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/loganalyzer/dao/LogAnalyzerDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/loganalyzer/dao/LogAnalyzerDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/loganalyzer/model/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/loganalyzer/model/Log.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/loganalyzer/util/JsonDateSerializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/loganalyzer/util/JsonDateSerializer.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -19,8 +19,8 @@
       <file leaf-file-name="LogAnalyzerDaoImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/dao/LogAnalyzerDaoImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="100" column="17" selection-start-line="100" selection-start-column="17" selection-end-line="100" selection-end-column="17" />
+            <state relative-caret-position="154">
+              <caret line="105" lean-forward="true" selection-start-line="105" selection-end-line="105" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#4173#4174#0" expanded="true" />
@@ -30,7 +30,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.properties" pinned="false" current-in-tab="true">
+      <file leaf-file-name="application.properties" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
@@ -39,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LogAnalyzerDao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/dao/LogAnalyzerDao.java">
+      <file leaf-file-name="Log.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/model/Log.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="12" />
+            <state relative-caret-position="153">
+              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -51,23 +51,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LogAnalyzerService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/service/LogAnalyzerService.java">
+      <file leaf-file-name="JsonDateSerializer.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/util/JsonDateSerializer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="25" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="119">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LogAnalyzerController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/controller/LogAnalyzerController.java">
+      <file leaf-file-name="LogEventsGenerator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/receiver/LogEventsGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="61">
-              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+            <state relative-caret-position="244">
+              <caret line="611" lean-forward="true" selection-start-line="611" selection-end-line="611" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -102,6 +99,8 @@
       <find>LogEventsGenerator</find>
       <find>jackson</find>
       <find>json</find>
+      <find>TIMESTAMP</find>
+      <find>dateFormat</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -128,18 +127,18 @@
         <option value="$PROJECT_DIR$/src/main/resources/appplication.properties" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/loganalyzer/main/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/loganalyzer/util/JsonDateSerializer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/loganalyzer/LogAnalyzerMain.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/loganalyzer/util/Utility.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/main/java/com/loganalyzer/model/Log.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/loganalyzer/receiver/LogEventsGenerator.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/loganalyzer/model/SearchCriteria.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/loganalyzer/dao/LogAnalyzerDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/loganalyzer/service/LogAnalyzerService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/loganalyzer/controller/LogAnalyzerController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/loganalyzer/dao/LogAnalyzerDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/loganalyzer/receiver/LogEventsGenerator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/loganalyzer/model/Log.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/loganalyzer/util/JsonDateSerializer.java" />
       </list>
     </option>
   </component>
@@ -413,14 +412,14 @@
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.4991511" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="0" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.2549168" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.2549168" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.47368422" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
       <window_info id="UI Designer" order="1" />
       <window_info anchor="right" id="Theme Preview" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="7" visible="true" weight="0.56196946" />
+      <window_info active="true" anchor="bottom" id="Debug" order="7" visible="true" weight="0.33955857" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="5" type="SLIDING" weight="0.4" />
@@ -451,53 +450,53 @@
           <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="64" />
+      <option name="time" value="66" />
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
       <expression>
-        <expression-string>starting.compareTo(starting)</expression-string>
+        <expression-string>this.dateFormat.parse((String)fieldMap.get(&quot;TIMESTAMP&quot;)).getTime();</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>starting.compareTo(log.getTimestamp())</expression-string>
+        <expression-string>this.dateFormat.((String)fieldMap.get(&quot;TIMESTAMP&quot;)).getTime();</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>ending.compareTo(log.getTimestamp())</expression-string>
+        <expression-string>this.quoteTimeStampChars(this.timestampFormat)</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>starting.compareTo(log.getTimestamp()) / ending.compareTo(log.getTimestamp())</expression-string>
+        <expression-string>this.dateFormat.parse((String)fieldMap.get(&quot;TIMESTAMP&quot;))</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>starting.compareTo(log.getTimestamp()) * ending.compareTo(log.getTimestamp())</expression-string>
+        <expression-string>((String)fieldMap.get(&quot;TIMESTAMP&quot;))</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>(log) -&gt; starting.compareTo(log.getTimestamp()) * ending.compareTo(log.getTimestamp())</expression-string>
+        <expression-string>timeStamp = this.dateFormat.parse((String)fieldMap.get(&quot;TIMESTAMP&quot;)).getTime();</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>log.getTimestamp()</expression-string>
+        <expression-string>this.dateFormat.parse((String)fieldMap.remove(&quot;TIMESTAMP&quot;))</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>list</expression-string>
+        <expression-string>this.dateFormat.parse((String)fieldMap.remove(&quot;TIMESTAMP&quot;)).getTime();</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>file.getAbsolutePath()</expression-string>
+        <expression-string>timeStamp = this</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
@@ -747,16 +746,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/util/JsonDateSerializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/LogAnalyzerMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -781,23 +770,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/receiver/LogEventsGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="744" selection-start-line="744" selection-end-line="744" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/model/Log.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" selection-start-line="5" selection-end-line="12" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -842,20 +814,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/service/LogAnalyzerService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/controller/LogAnalyzerController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="25" selection-end-column="5" />
+        <state relative-caret-position="408">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/controller/LogAnalyzerController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/service/LogAnalyzerService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="61">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+        <state relative-caret-position="238">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -864,8 +836,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/dao/LogAnalyzerDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="12" />
+        <state relative-caret-position="153">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/receiver/LogEventsGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="611" lean-forward="true" selection-start-line="611" selection-end-line="611" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -874,8 +856,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/dao/LogAnalyzerDaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="100" column="17" selection-start-line="100" selection-start-column="17" selection-end-line="100" selection-end-column="17" />
+        <state relative-caret-position="154">
+          <caret line="105" lean-forward="true" selection-start-line="105" selection-end-line="105" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#4173#4174#0" expanded="true" />
@@ -888,6 +870,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/model/Log.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/util/JsonDateSerializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>

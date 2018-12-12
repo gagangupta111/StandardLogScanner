@@ -1,8 +1,10 @@
 package com.loganalyzer.util;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -11,38 +13,22 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-
-/**
- * Used to serialize Java.util.Date, which is not a common JSON
- * type, so we have to create a custom serialize method;.
- *
- * @author Loiane Groner
- * http://loianegroner.com (English)
- * http://loiane.com (Portuguese)
- */
-
 @Component
-public class JsonDateSerializer extends JsonSerializer<Date> {
-
-    private static SimpleDateFormat dateFormat;
+public class JsonDateSerializer extends JsonSerializer<Timestamp> {
 
     @Value("${timestamp}")
     private String timestamp;
 
-    @PostConstruct
-    public void initialize() {
-
-        dateFormat = new SimpleDateFormat(timestamp);
-
-    }
-
     @Override
-    public void serialize(Date date, JsonGenerator gen, SerializerProvider provider)
+    public void serialize(Timestamp timestamp, JsonGenerator gen, SerializerProvider provider)
             throws IOException, JsonProcessingException {
 
+        Instant instance = Instant.ofEpochMilli(timestamp.getTime());
+        ZonedDateTime zonedDateTime = ZonedDateTime.ofInstant(instance,java.time.ZoneId.of("Asia/Kolkata"));
 
-        String formattedDate = dateFormat.format(date);
-        gen.writeString(formattedDate);
+        DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("yyyy-MMM-dd EEE HH:mm:ss.SSS");
+        String string = zonedDateTime.format(formatter);
+        gen.writeString(string);
+
     }
 }

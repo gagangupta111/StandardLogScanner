@@ -1,7 +1,12 @@
 package com.loganalyzer.model;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.loganalyzer.util.JsonDateSerializer;
+
 import java.sql.Timestamp;
 
+@JsonAutoDetect
 public class Log {
 
     private Timestamp timestamp;
@@ -25,6 +30,7 @@ public class Log {
         this.message = message;
     }
 
+    @JsonSerialize(using=JsonDateSerializer.class)
     public Timestamp getTimestamp() {
         return timestamp;
     }
