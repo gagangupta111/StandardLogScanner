@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="291878ab-300c-4ed3-beab-86695b24fbbb" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/loganalyzer/util/JsonDateSerializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/loganalyzer/util/Utility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/loganalyzer/LogAnalyzerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/loganalyzer/LogAnalyzerMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/loganalyzer/dao/LogAnalyzerDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/loganalyzer/dao/LogAnalyzerDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/loganalyzer/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/loganalyzer/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/loganalyzer/model/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/loganalyzer/model/Log.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/loganalyzer/receiver/LogEventsGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/loganalyzer/receiver/LogEventsGenerator.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -36,7 +30,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LogEventsGenerator.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LogEventsGenerator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/receiver/LogEventsGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="84">
@@ -56,6 +50,15 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
             </state>
           </provider>
         </entry>
@@ -132,7 +135,6 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/java/main/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/loganalyzer/builder/LogFilePatternLayoutBuilder.java" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/java/com/loganalyzer/receiver/LogFilePatternReceiverAndListGenerator.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/loganalyzer/controller/LogAnalyzer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/loganalyzer/dao/LogAnalyzerDao.java" />
@@ -148,6 +150,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/loganalyzer/dao/LogAnalyzerDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/loganalyzer/util/Utility.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/loganalyzer/receiver/LogEventsGenerator.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -418,17 +421,17 @@
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Version Control" order="2" weight="0.3293718" />
       <window_info anchor="bottom" id="Run" order="6" weight="0.14601019" />
-      <window_info anchor="bottom" id="Terminal" order="0" weight="0.4770798" />
+      <window_info anchor="bottom" id="Terminal" order="0" visible="true" weight="0.43463498" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="0" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.32526475" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.32526475" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.47368422" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
       <window_info id="UI Designer" order="1" />
       <window_info anchor="right" id="Theme Preview" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Debug" order="7" visible="true" weight="0.5993209" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.5993209" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="5" type="SLIDING" weight="0.4" />
@@ -592,13 +595,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2073">
           <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="7" selection-start-column="7" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -861,6 +857,13 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
