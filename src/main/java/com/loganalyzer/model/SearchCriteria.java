@@ -1,7 +1,13 @@
 package com.loganalyzer.model;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.loganalyzer.util.JsonDateDeSerializer;
+
 import java.sql.Timestamp;
 
+@JsonAutoDetect
 public class SearchCriteria {
 
     private Timestamp starting;
@@ -20,6 +26,7 @@ public class SearchCriteria {
         return starting;
     }
 
+    @JsonDeserialize(using=JsonDateDeSerializer.class)
     public void setStarting(Timestamp starting) {
         this.starting = starting;
     }
@@ -28,6 +35,7 @@ public class SearchCriteria {
         return ending;
     }
 
+    @JsonDeserialize(using=JsonDateDeSerializer.class)
     public void setEnding(Timestamp ending) {
         this.ending = ending;
     }
