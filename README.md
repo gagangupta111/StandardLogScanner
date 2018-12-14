@@ -23,4 +23,5 @@ With below JSON in post:
             "message": "aa"
 }
 
-Above will display all logs filtered by timestamp in between starting and ending, level and stack trace which contains json message.
+Above request will render logs where timestamp lies between starting and mentioned timastamps,
+where level matches INFO and message contains text "aa".
