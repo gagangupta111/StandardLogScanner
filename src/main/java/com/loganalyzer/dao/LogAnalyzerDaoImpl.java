@@ -147,7 +147,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
         return newMap;
     }
 
-    public Map<String, List<Log>> getLogsFilteredByTimeStamp(Map<String, List<Log>> map, Timestamp starting, Timestamp ending){
+    public Map<String, List<Log>> getLogsFilteredByTimeStamp(Map<String, List<Log>> map, Long starting, Long ending){
 
         Map<String, List<Log>> newMap = new HashMap<>();
 
@@ -155,7 +155,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
             List<Log> list = map.get(key)
                     .stream()
-                    .filter((log) -> starting.compareTo(new Timestamp(log.getLogTimeStamp())) <= 0 && ending.compareTo(new Timestamp(log.getLogTimeStamp())) >= 0).collect(Collectors.toList());
+                    .filter((log) -> starting.compareTo((log.getLogTimeStamp())) <= 0 && ending.compareTo((log.getLogTimeStamp())) >= 0).collect(Collectors.toList());
             newMap.put(key, list);
         }
         return newMap;

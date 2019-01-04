@@ -10,8 +10,8 @@ import java.sql.Timestamp;
 @JsonAutoDetect
 public class SearchCriteria {
 
-    private Timestamp starting;
-    private Timestamp ending;
+    private Long starting;
+    private Long ending;
     private String level;
     private String className;
     private String methodName;
@@ -22,21 +22,21 @@ public class SearchCriteria {
     public SearchCriteria() {
     }
 
-    public Timestamp getStarting() {
+    public Long getStarting() {
         return starting;
     }
 
     @JsonDeserialize(using=JsonDateDeSerializer.class)
-    public void setStarting(Timestamp starting) {
+    public void setStarting(Long starting) {
         this.starting = starting;
     }
 
-    public Timestamp getEnding() {
+    public Long getEnding() {
         return ending;
     }
 
     @JsonDeserialize(using=JsonDateDeSerializer.class)
-    public void setEnding(Timestamp ending) {
+    public void setEnding(Long ending) {
         this.ending = ending;
     }
 
