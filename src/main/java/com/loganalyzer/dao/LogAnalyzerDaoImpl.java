@@ -22,6 +22,7 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -107,7 +108,6 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
                 }
             }
         }
-
     }
 
     private void generator(String format, File file){
@@ -121,6 +121,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     @Override
     public List<Log> getAllLogs() {
+        Collections.sort(logs);
         return logs;
     }
 
@@ -132,7 +133,33 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
             newLogs = getLogsFilteredByLogLevel(newLogs, searchCriteria.getLevel());
         }
 
+        if (searchCriteria.getStarting() != null) {
+            newLogs  = getLogsFilteredByStartingDate(newLogs, searchCriteria.getStarting());
+        }
+
+        if (searchCriteria.getEnding() != null) {
+            newLogs  = getLogsFilteredByEndingDate(newLogs, searchCriteria.getEnding());
+        }
+
         return newLogs;
+    }
+
+    public List<Log> getLogsFilteredByStartingDate(List<Log> list, Long staringDate){
+
+        return list
+                .stream()
+                .filter((log) -> log.getLogTimeStamp()>=staringDate)
+                .collect(Collectors.toList());
+
+    }
+
+    public List<Log> getLogsFilteredByEndingDate(List<Log> list, Long endingDate){
+
+        return list
+                .stream()
+                .filter((log) -> log.getLogTimeStamp()<=endingDate)
+                .collect(Collectors.toList());
+
     }
 
     public Map<String, List<Log>> getLogsFilteredByTimeStamp(Map<String, List<Log>> map, Long starting, Long ending){

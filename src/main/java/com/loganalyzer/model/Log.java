@@ -13,7 +13,7 @@ import java.util.Map;
 
 @JsonAutoDetect
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class Log {
+public class Log implements Comparable<Log>{
 
     private String id;
     @JsonFormat(pattern="yyyy-MMM-dd EEE HH:mm:ss.SSS")
@@ -158,5 +158,18 @@ public class Log {
                 ", logFile='" + logFile + '\'' +
                 ", message='" + message + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Log o) {
+
+        Long time1 = this.getLogTimeStamp();
+        Long time2 = o.getLogTimeStamp();
+        if (time1 > time2) {
+            return 1;
+        }else if (time1 < time2){
+            return -1;
+        }else return 0;
+
     }
 }

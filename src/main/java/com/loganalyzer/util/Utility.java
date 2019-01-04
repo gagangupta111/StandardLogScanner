@@ -8,9 +8,14 @@ import java.util.regex.Pattern;
 @Component
 public class Utility {
 
+    public static String getPathSeparator(){
+        return System.getProperty("os.name").toLowerCase().contains("windows") ? "\\" : "/";
+    }
+
     public static String getFileName(String fullPath){
 
-        return fullPath.substring(fullPath.lastIndexOf("\\") + 1, fullPath.lastIndexOf("."));
+        String pathSeparator = "/";
+        return fullPath.substring(fullPath.lastIndexOf(pathSeparator) + 1, fullPath.lastIndexOf("."));
 
     }
 
