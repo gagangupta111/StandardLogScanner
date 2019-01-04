@@ -21,12 +21,15 @@ import java.io.IOException;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -129,9 +132,6 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
     public List<Log> getLogsWithCriteria(SearchCriteria searchCriteria){
 
         List<Log> newLogs = logs;
-        if (searchCriteria.getLevel()!= null){
-            newLogs = getLogsFilteredByLogLevel(newLogs, searchCriteria.getLevel());
-        }
 
         if (searchCriteria.getStarting() != null) {
             newLogs  = getLogsFilteredByStartingDate(newLogs, searchCriteria.getStarting());
@@ -139,6 +139,14 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
         if (searchCriteria.getEnding() != null) {
             newLogs  = getLogsFilteredByEndingDate(newLogs, searchCriteria.getEnding());
+        }
+
+        if (searchCriteria.getLevel()!= null){
+            newLogs = getLogsFilteredByLogLevel(newLogs, searchCriteria.getLevel());
+        }
+
+        if (searchCriteria.getMessage()!= null){
+            newLogs = getLogsFilteredByMessage(newLogs, searchCriteria.getMessage());
         }
 
         return newLogs;
@@ -162,33 +170,6 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     }
 
-    public Map<String, List<Log>> getLogsFilteredByTimeStamp(Map<String, List<Log>> map, Long starting, Long ending){
-
-        Map<String, List<Log>> newMap = new HashMap<>();
-
-        for (String key : map.keySet()){
-
-            List<Log> list = map.get(key)
-                    .stream()
-                    .filter((log) -> starting.compareTo((log.getLogTimeStamp())) <= 0 && ending.compareTo((log.getLogTimeStamp())) >= 0).collect(Collectors.toList());
-            newMap.put(key, list);
-        }
-        return newMap;
-    }
-
-    public Map<String, List<Log>> getLogsFilteredByMessage(Map<String, List<Log>> map, String message){
-
-        Map<String, List<Log>> newMap = new HashMap<>();
-
-        for (String key : map.keySet()){
-
-            List<Log> list = map.get(key)
-                    .stream()
-                    .filter((log) -> log.getMessage().contains(message)).collect(Collectors.toList());
-            newMap.put(key, list);
-        }
-        return newMap;
-    }
 
     public List<Log> getLogsFilteredByLogLevel(List<Log> list, String logLevel){
 
@@ -199,24 +180,19 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     }
 
+    public List<Log> getLogsFilteredByMessage(List<Log> list, String tokens){
 
-    public String getWhiteListedFileName(String fileName){
-
-        Optional<String> name = filesWithFormatPatternNoLocation
+        Set<String> tokenSet = new HashSet<String>(Arrays.asList(tokens.split(" ")));
+        return list
                 .stream()
-                .filter((string) -> fileName.contains(string)).findFirst();
-        if (name.isPresent()){
-            return name.get();
-        }else {
-            name = filesWithFormatPattern
-                    .stream()
-                    .filter((string) -> fileName.contains(string)).findFirst();
-            if (name.isPresent()){
-                return name.get();
-            }else {
-                return fileName.substring(0, Utility.indexOf(Pattern.compile("-"), fileName));
-            }
-        }
+                .filter((log) -> {
+                    Set<String> messageSet = new HashSet<String>(Arrays.asList(log.getMessage().split(" ")));
+                    if (messageSet.containsAll(tokenSet)){
+                        return true;
+                    }else return false;
+                })
+                .collect(Collectors.toList());
+
     }
 
     public void gunzipIt(String inputFile, String outputFile){

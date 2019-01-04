@@ -15,8 +15,9 @@ public class SearchCriteria {
     private String level;
     private String className;
     private String methodName;
-    private String fileName;
+    private String classFile;
     private String line;
+    private String logFile;
     private String message;
 
     public SearchCriteria() {
@@ -64,14 +65,6 @@ public class SearchCriteria {
         this.methodName = methodName;
     }
 
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
     public String getLine() {
         return line;
     }
@@ -86,5 +79,21 @@ public class SearchCriteria {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getClassFile() {
+        return classFile;
+    }
+
+    public void setClassFile(String classFile) {
+        this.classFile = classFile;
+    }
+
+    public String getLogFile() {
+        return logFile;
+    }
+
+    public void setLogFile(String logFile) {
+        this.logFile = logFile;
     }
 }
