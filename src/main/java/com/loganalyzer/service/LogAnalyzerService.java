@@ -17,11 +17,11 @@ public class LogAnalyzerService {
     @Qualifier("InitializedLogs")
     private LogAnalyzerDao logAnalyzerDao;
 
-    public Map<String, List<Log>> getAllLogs() {
+    public List<Log> getAllLogs() {
         return logAnalyzerDao.getAllLogs();
     }
 
-    public Map<String, List<Log>> getLogsWithCriteria(SearchCriteria searchCriteria){
+    public List<Log> getLogsWithCriteria(SearchCriteria searchCriteria){
         return logAnalyzerDao.getLogsWithCriteria(searchCriteria);
     }
 

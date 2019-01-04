@@ -91,10 +91,9 @@ public class LogEventsGenerator extends LogFilePatternReceiver {
     private final Map customLevelDefinitionMap = new HashMap();
     private int lineCount = 1;
 
-    private Map<String, List<Log>> logs;
-    private String mapKey;
+    private List<Log> logs;
 
-    public LogEventsGenerator(Map<String, List<Log>> logs) {
+    public LogEventsGenerator(List<Log> logs) {
         this.keywords.add("TIMESTAMP");
         this.keywords.add("LOGGER");
         this.keywords.add("LEVEL");
@@ -353,15 +352,6 @@ public class LogEventsGenerator extends LogFilePatternReceiver {
     }
 
     protected void initialize() {
-
-        String path = this.getFileURL();
-        mapKey = Utility.shortFileName(Utility.getFileName(path));
-
-        List<Log> list = null;
-        if ( logs.get(mapKey) == null){
-            list = new ArrayList<Log>();
-            logs.put(mapKey, list);
-        }
 
         if (this.host == null && this.path == null) {
             try {
@@ -740,8 +730,6 @@ public class LogEventsGenerator extends LogFilePatternReceiver {
 
     public void doPost(LoggingEvent event) {
 
-        List<Log> list = logs.get(mapKey);
-
         Log log = new Log();
         log.setLogTimeStamp(event.getTimeStamp());
         log.setLevel(event.getLevel().toString());
@@ -752,7 +740,7 @@ public class LogEventsGenerator extends LogFilePatternReceiver {
         log.setLogFile(Utility.shortFileName(Utility.getFileName(event.getMDC("application").toString())));
         log.setMessage(event.getMessage().toString().trim());
 
-        list.add(log);
+        this.logs.add(log);
 
         System.out.println(log);
         System.out.println("=======================================================================================");

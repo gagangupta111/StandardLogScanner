@@ -38,7 +38,7 @@ import java.util.zip.ZipInputStream;
 @PropertySource("classpath:application.properties")
 public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
-    private Map<String, List<Log>> logs = new HashMap<String, List<Log>>();
+    private List<Log> logs = new ArrayList<>();
 
     @Autowired
     ApplicationArguments appArgs;
@@ -120,31 +120,19 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
     }
 
     @Override
-    public Map<String, List<Log>> getAllLogs() {
+    public List<Log> getAllLogs() {
         return logs;
     }
 
     @Override
-    public Map<String, List<Log>> getLogsWithCriteria(SearchCriteria searchCriteria){
+    public List<Log> getLogsWithCriteria(SearchCriteria searchCriteria){
 
-        Map<String, List<Log>> newMap = logs;
-        if (searchCriteria.getFileName()!= null){
-            newMap = getLogsFilteredByFileName(newMap, searchCriteria.getFileName());
-        }
-
+        List<Log> newLogs = logs;
         if (searchCriteria.getLevel()!= null){
-            newMap =  getLogsFilteredByLogLevel(newMap, searchCriteria.getLevel());
+            newLogs = getLogsFilteredByLogLevel(newLogs, searchCriteria.getLevel());
         }
 
-        if (searchCriteria.getStarting()!= null && searchCriteria.getEnding() != null){
-            newMap = getLogsFilteredByTimeStamp(newMap, searchCriteria.getStarting(), searchCriteria.getEnding());
-        }
-
-        if (searchCriteria.getMessage() != null){
-            newMap = getLogsFilteredByMessage(newMap, searchCriteria.getMessage());
-        }
-
-        return newMap;
+        return newLogs;
     }
 
     public Map<String, List<Log>> getLogsFilteredByTimeStamp(Map<String, List<Log>> map, Long starting, Long ending){
@@ -175,27 +163,15 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
         return newMap;
     }
 
-    public Map<String, List<Log>> getLogsFilteredByLogLevel(Map<String, List<Log>> map, String logLevel){
+    public List<Log> getLogsFilteredByLogLevel(List<Log> list, String logLevel){
 
-        Map<String, List<Log>> newMap = new HashMap<>();
-
-        for (String key : map.keySet()){
-
-            List<Log> list = map.get(key)
-                            .stream()
-                            .filter((log) -> logLevel.equals(log.getLevel())).collect(Collectors.toList());
-            newMap.put(key, list);
-        }
-        return newMap;
-    }
-
-    public Map<String, List<Log>> getLogsFilteredByFileName(Map<String, List<Log>> map, String fileName){
-
-        Map<String, List<Log>> newMap = new HashMap<>();
-        newMap.put(fileName, map.get(fileName));
-        return newMap;
+         return list
+                 .stream()
+                 .filter((log) -> logLevel.equals(log.getLevel()))
+                 .collect(Collectors.toList());
 
     }
+
 
     public String getWhiteListedFileName(String fileName){
 

@@ -21,12 +21,12 @@ public class LogAnalyzerController {
     private LogAnalyzerService logAnalyzerService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public Map<String, List<Log>> getAllLogs() {
+    public List<Log> getAllLogs() {
         return logAnalyzerService.getAllLogs();
     }
 
     @RequestMapping(value = "/filter", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Map<String, List<Log>> getLogsWithCriteria(@RequestBody SearchCriteria searchCriteria){
+    public List<Log> getLogsWithCriteria(@RequestBody SearchCriteria searchCriteria){
         return logAnalyzerService.getLogsWithCriteria(searchCriteria);
     }
 

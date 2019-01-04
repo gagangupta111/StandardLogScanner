@@ -8,7 +8,7 @@ import java.util.Map;
 
 public interface LogAnalyzerDao {
 
-    public Map<String, List<Log>> getAllLogs();
-    public Map<String, List<Log>> getLogsWithCriteria(SearchCriteria searchCriteria);
+    public List<Log> getAllLogs();
+    public List<Log> getLogsWithCriteria(SearchCriteria searchCriteria);
 
     }
