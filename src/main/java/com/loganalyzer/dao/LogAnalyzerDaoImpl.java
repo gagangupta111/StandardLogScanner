@@ -145,6 +145,26 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
             newLogs = getLogsFilteredByLogLevel(newLogs, searchCriteria.getLevel());
         }
 
+        if (searchCriteria.getLogFile()!= null){
+            newLogs = getLogsFilteredByLogFile(newLogs, searchCriteria.getLogFile());
+        }
+
+        if (searchCriteria.getMethodName()!= null){
+            newLogs = getLogsFilteredByMethodName(newLogs, searchCriteria.getMethodName());
+        }
+
+        if (searchCriteria.getClassFile()!= null){
+            newLogs = getLogsFilteredByClassFile(newLogs, searchCriteria.getClassFile());
+        }
+
+        if (searchCriteria.getLine()!= null){
+            newLogs = getLogsFilteredByLine(newLogs, searchCriteria.getLine());
+        }
+
+        if (searchCriteria.getClassName()!= null){
+            newLogs = getLogsFilteredByClassName(newLogs, searchCriteria.getClassName());
+        }
+
         if (searchCriteria.getMessage()!= null){
             newLogs = getLogsFilteredByMessage(newLogs, searchCriteria.getMessage());
         }
@@ -175,8 +195,53 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
          return list
                  .stream()
-                 .filter((log) -> logLevel.equals(log.getLevel()))
+                 .filter((log) -> log.getLevel().toLowerCase().contains(logLevel.toLowerCase()))
                  .collect(Collectors.toList());
+
+    }
+
+    public List<Log> getLogsFilteredByLogFile(List<Log> list, String logFile){
+
+        return list
+                .stream()
+                .filter((log) -> log.getLogFile().toLowerCase().contains(logFile.toLowerCase()))
+                .collect(Collectors.toList());
+
+    }
+
+    public List<Log> getLogsFilteredByMethodName(List<Log> list, String methodName){
+
+        return list
+                .stream()
+                .filter((log) -> log.getMethodName().toLowerCase().contains(methodName.toLowerCase()))
+                .collect(Collectors.toList());
+
+    }
+
+    public List<Log> getLogsFilteredByClassFile(List<Log> list, String classFile){
+
+        return list
+                .stream()
+                .filter((log) -> log.getClassFile().toLowerCase().contains(classFile.toLowerCase()))
+                .collect(Collectors.toList());
+
+    }
+
+    public List<Log> getLogsFilteredByLine(List<Log> list, String line){
+
+        return list
+                .stream()
+                .filter((log) -> log.getLine().toLowerCase().contains(line.toLowerCase()))
+                .collect(Collectors.toList());
+
+    }
+
+    public List<Log> getLogsFilteredByClassName(List<Log> list, String classname){
+
+        return list
+                .stream()
+                .filter((log) -> log.getClassName().toLowerCase().contains(classname.toLowerCase()))
+                .collect(Collectors.toList());
 
     }
 
