@@ -155,7 +155,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
             List<Log> list = map.get(key)
                     .stream()
-                    .filter((log) -> starting.compareTo(log.getTimestamp()) <= 0 && ending.compareTo(log.getTimestamp()) >= 0).collect(Collectors.toList());
+                    .filter((log) -> starting.compareTo(new Timestamp(log.getLogTimeStamp())) <= 0 && ending.compareTo(new Timestamp(log.getLogTimeStamp())) >= 0).collect(Collectors.toList());
             newMap.put(key, list);
         }
         return newMap;
