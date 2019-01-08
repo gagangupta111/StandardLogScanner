@@ -1,11 +1,20 @@
 package com.loganalyzer.dao;
 
 import com.loganalyzer.model.Log;
+import com.loganalyzer.model.Rule;
 import com.loganalyzer.model.SearchCriteria;
 import com.loganalyzer.receiver.LogEventsGenerator;
 import com.loganalyzer.util.Utility;
+import org.apache.commons.collections4.ListUtils;
+import org.apache.commons.collections4.PredicateUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,22 +25,19 @@ import org.springframework.stereotype.Repository;
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.Time;
-import java.sql.Timestamp;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.Scanner;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.ZipEntry;
@@ -43,6 +49,7 @@ import java.util.zip.ZipInputStream;
 public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     private List<Log> logs = new ArrayList<>();
+    private List<Rule> rules = new ArrayList<>();
 
     @Autowired
     ApplicationArguments appArgs;
@@ -69,8 +76,45 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
         return new File(classLoader.getResource(fileName).getFile());
     }
 
-    @PostConstruct
-    public void initialize() {
+    private void populateRules() throws Exception {
+
+        File file = getFile("rules.xlsx");
+
+        FileInputStream fis = new FileInputStream(file);
+
+        // Finds the workbook instance for XLSX file
+        XSSFWorkbook myWorkBook = new XSSFWorkbook(fis);
+
+        // Return first sheet from the XLSX workbook
+        XSSFSheet mySheet = myWorkBook.getSheetAt(0);
+
+        // Get iterator to all the rows in current sheet
+        Iterator<Row> rowIterator = mySheet.iterator();
+
+        if (rowIterator.hasNext()) {
+            rowIterator.next();
+        }
+        // Traversing over each row of XLSX file
+        while (rowIterator.hasNext()) {
+            Row row = rowIterator.next();
+            Rule rule = new Rule();
+            // For each row, iterate through each columns
+            Iterator<Cell> cellIterator = row.cellIterator();
+            if (cellIterator.hasNext()){
+                rule.setRuleName(cellIterator.next().getStringCellValue());
+            }
+            if (cellIterator.hasNext()){
+                rule.setKeywords(cellIterator.next().getStringCellValue());
+            }
+            if (cellIterator.hasNext()){
+                rule.setActions(cellIterator.next().getStringCellValue());
+            }
+            rules.add(rule);
+        }
+
+    }
+
+    private void populateLogs(){
 
         logsPath = appArgs.getNonOptionArgs().get(0);
 
@@ -104,13 +148,21 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
                 generator(formatPatternNoLocation, file);
             }else {
                 found = filesWithFormatPattern
-                    .stream()
-                    .filter((string) -> fileName.contains(string)).findFirst().isPresent();
+                        .stream()
+                        .filter((string) -> fileName.contains(string)).findFirst().isPresent();
                 if (found) {
                     generator(formatPattern, file);
                 }
             }
         }
+    }
+
+    @PostConstruct
+    public void initialize() throws Exception {
+
+        ListUtils.predicatedList(logs, PredicateUtils.notNullPredicate());
+        populateLogs();
+        populateRules();
     }
 
     private void generator(String format, File file){
