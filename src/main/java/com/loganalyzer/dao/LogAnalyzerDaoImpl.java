@@ -193,7 +193,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
         for (Rule rule : rules){
             criteria.setMessage(rule.getKeywords());
             logList = getLogsWithCriteria(criteria);
-            if (logList!= null){
+            if (logList!= null && !logList.isEmpty()){
                 return rule.getActions();
             }
         }
