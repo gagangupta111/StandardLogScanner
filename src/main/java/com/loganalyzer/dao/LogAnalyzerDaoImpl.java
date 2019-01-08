@@ -1,9 +1,12 @@
 package com.loganalyzer.dao;
 
+import com.loganalyzer.constants.Constants;
 import com.loganalyzer.model.Log;
 import com.loganalyzer.model.Rule;
+import com.loganalyzer.model.RuleCriteria;
 import com.loganalyzer.model.SearchCriteria;
 import com.loganalyzer.receiver.LogEventsGenerator;
+import com.loganalyzer.util.JsonDateDeSerializer;
 import com.loganalyzer.util.Utility;
 import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.collections4.PredicateUtils;
@@ -29,6 +32,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -178,6 +182,22 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
     public List<Log> getAllLogs() {
         Collections.sort(logs);
         return logs;
+    }
+
+    public String checkAllRules(RuleCriteria ruleCriteria){
+
+        SearchCriteria criteria = new SearchCriteria();
+        criteria.setStarting(ruleCriteria.getDate() - ruleCriteria.getRange());
+        criteria.setEnding(ruleCriteria.getDate() + ruleCriteria.getRange());
+        List<Log> logList;
+        for (Rule rule : rules){
+            criteria.setMessage(rule.getKeywords());
+            logList = getLogsWithCriteria(criteria);
+            if (logList!= null){
+                return rule.getActions();
+            }
+        }
+        return Constants.NO_RULE_MATCHED;
     }
 
     @Override
