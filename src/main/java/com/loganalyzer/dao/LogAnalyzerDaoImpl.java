@@ -82,12 +82,10 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     private void populateRules() throws Exception {
 
-        File file = getFile("rules.xlsx");
-
-        FileInputStream fis = new FileInputStream(file);
+        InputStream in = getClass().getResourceAsStream("/rules.xlsx");
 
         // Finds the workbook instance for XLSX file
-        XSSFWorkbook myWorkBook = new XSSFWorkbook(fis);
+        XSSFWorkbook myWorkBook = new XSSFWorkbook(in);
 
         // Return first sheet from the XLSX workbook
         XSSFSheet mySheet = myWorkBook.getSheetAt(0);

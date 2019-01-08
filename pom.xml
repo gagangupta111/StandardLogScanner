@@ -67,8 +67,6 @@
             <groupId>com.chainsaw</groupId>
             <artifactId>chainsaw</artifactId>
             <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/resources/apache-chainsaw-2.1.0-SNAPSHOT.jar</systemPath>
         </dependency>
 
         <dependency>

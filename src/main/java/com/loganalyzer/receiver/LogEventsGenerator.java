@@ -741,9 +741,6 @@ public class LogEventsGenerator extends LogFilePatternReceiver {
         log.setMessage(event.getMessage().toString().trim());
 
         this.logs.add(log);
-
-        System.out.println(log);
-        System.out.println("=======================================================================================");
     }
 }
 
