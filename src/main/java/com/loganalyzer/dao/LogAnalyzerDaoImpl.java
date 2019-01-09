@@ -6,7 +6,6 @@ import com.loganalyzer.model.Rule;
 import com.loganalyzer.model.RuleCriteria;
 import com.loganalyzer.model.SearchCriteria;
 import com.loganalyzer.receiver.LogEventsGenerator;
-import com.loganalyzer.util.JsonDateDeSerializer;
 import com.loganalyzer.util.Utility;
 import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.collections4.PredicateUtils;

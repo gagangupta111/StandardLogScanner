@@ -738,7 +738,11 @@ public class LogEventsGenerator extends LogFilePatternReceiver {
         log.setClassFile(event.getLocationInformation().getFileName().trim());
         log.setLine(event.getLocationInformation().getLineNumber().trim());
         log.setLogFile(Utility.shortFileName(Utility.getFileName(event.getMDC("application").toString())));
-        log.setMessage(event.getMessage().toString().trim());
+        String message = event.getMessage().toString().trim();
+        for(String string: event.getThrowableInformation().getThrowableStrRep()){
+            message += string;
+        }
+        log.setMessage(message);
 
         this.logs.add(log);
     }
