@@ -81,10 +81,16 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     private void populateRules() throws Exception {
 
-        InputStream in = getClass().getResourceAsStream("/rules.xlsx");
-
         // Finds the workbook instance for XLSX file
-        XSSFWorkbook myWorkBook = new XSSFWorkbook(in);
+        XSSFWorkbook myWorkBook;
+        FileInputStream fileInputStream;
+        try {
+            fileInputStream = new FileInputStream("./rules.xlsx");
+            myWorkBook = new XSSFWorkbook(fileInputStream);
+        }catch (Exception e){
+                myWorkBook = new XSSFWorkbook(getClass().getResourceAsStream("/rules.xlsx"));
+        }
+
 
         // Return first sheet from the XLSX workbook
         XSSFSheet mySheet = myWorkBook.getSheetAt(0);
@@ -117,7 +123,11 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     private void populateLogs(){
 
-        logsPath = appArgs.getNonOptionArgs().get(0);
+        try {
+            logsPath = appArgs.getNonOptionArgs().get(0);
+        }catch (Exception e){
+            logsPath = ".";
+        }
 
         List<File> list = new ArrayList<File>();
         String[] compressedList = new String[] {"zip", "gz"};
