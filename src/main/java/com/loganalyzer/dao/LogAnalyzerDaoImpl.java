@@ -316,11 +316,11 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     public List<Log> getLogsFilteredByMessage(List<Log> list, String tokens){
 
-        Set<String> tokenSet = new HashSet<String>(Arrays.asList(tokens.split(" ")));
+        Set<String> tokenSet = new HashSet<String>(Arrays.asList(tokens.split("[^a-z^A-Z^0-9]")));
         return list
                 .stream()
                 .filter((log) -> {
-                    Set<String> messageSet = new HashSet<String>(Arrays.asList(log.getMessage().split(" ")));
+                    Set<String> messageSet = new HashSet<String>(Arrays.asList(log.getMessage().split("[^a-z^A-Z^0-9]")));
                     if (messageSet.containsAll(tokenSet)){
                         return true;
                     }else return false;
