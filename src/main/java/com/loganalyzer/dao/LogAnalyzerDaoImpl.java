@@ -53,6 +53,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     private List<Log> logs = new ArrayList<>();
     private List<Rule> rules = new ArrayList<>();
+    private List<Rule> newRules = new ArrayList<>();
 
     @Autowired
     ApplicationArguments appArgs;
@@ -91,6 +92,41 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
                 myWorkBook = new XSSFWorkbook(getClass().getResourceAsStream("/rules.xlsx"));
         }
 
+
+        // Return first sheet from the XLSX workbook
+        XSSFSheet mySheet = myWorkBook.getSheetAt(0);
+
+        // Get iterator to all the rows in current sheet
+        Iterator<Row> rowIterator = mySheet.iterator();
+
+        if (rowIterator.hasNext()) {
+            rowIterator.next();
+        }
+        // Traversing over each row of XLSX file
+        while (rowIterator.hasNext()) {
+            Row row = rowIterator.next();
+            Rule rule = new Rule();
+            // For each row, iterate through each columns
+            Iterator<Cell> cellIterator = row.cellIterator();
+            if (cellIterator.hasNext()){
+                rule.setRuleName(cellIterator.next().getStringCellValue());
+            }
+            if (cellIterator.hasNext()){
+                rule.setKeywords(cellIterator.next().getStringCellValue());
+            }
+            if (cellIterator.hasNext()){
+                rule.setActions(cellIterator.next().getStringCellValue());
+            }
+            rules.add(rule);
+        }
+
+    }
+
+    private void populateNewRules() throws Exception {
+
+        // Finds the workbook instance for XLSX file
+        XSSFWorkbook myWorkBook;
+        myWorkBook = new XSSFWorkbook(getClass().getResourceAsStream("/rules2.xlsx"));
 
         // Return first sheet from the XLSX workbook
         XSSFSheet mySheet = myWorkBook.getSheetAt(0);
@@ -193,13 +229,21 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     public String checkAllRules(RuleCriteria ruleCriteria){
 
-        SearchCriteria criteria = new SearchCriteria();
-        criteria.setStarting(ruleCriteria.getDate() - ruleCriteria.getRange());
-        criteria.setEnding(ruleCriteria.getDate() + ruleCriteria.getRange());
-        List<Log> logList;
+        SearchCriteria searchCriteria = new SearchCriteria();
+        if (ruleCriteria.getRange() != null) {
+            searchCriteria.setStarting(ruleCriteria.getDate() - ruleCriteria.getRange());
+            searchCriteria.setEnding(ruleCriteria.getDate() + ruleCriteria.getRange());
+        }else {
+            searchCriteria.setStarting(ruleCriteria.getDate() - 100);
+            searchCriteria.setEnding(ruleCriteria.getDate() + 100);
+        }
+
+        List<Log> logList = getLogsWithCriteria(searchCriteria);
+
+
         for (Rule rule : rules){
-            criteria.setMessage(rule.getKeywords());
-            logList = getLogsWithCriteria(criteria);
+            searchCriteria.setMessage(rule.getKeywords());
+            logList = getLogsWithCriteria(searchCriteria);
             if (logList!= null && !logList.isEmpty()){
                 return rule.getActions();
             }
@@ -325,6 +369,21 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
     }
 
     public List<Log> getLogsFilteredByMessage(List<Log> list, String tokens){
+
+        Set<String> tokenSet = new HashSet<String>(Arrays.asList(tokens.split("[^a-z^A-Z^0-9]")));
+        return list
+                .stream()
+                .filter((log) -> {
+                    Set<String> messageSet = new HashSet<String>(Arrays.asList(log.getMessage().split("[^a-z^A-Z^0-9]")));
+                    if (messageSet.containsAll(tokenSet)){
+                        return true;
+                    }else return false;
+                })
+                .collect(Collectors.toList());
+
+    }
+
+    public List<Log> getPercentageMatchesOfMessage(List<Log> list, String tokens){
 
         Set<String> tokenSet = new HashSet<String>(Arrays.asList(tokens.split("[^a-z^A-Z^0-9]")));
         return list
