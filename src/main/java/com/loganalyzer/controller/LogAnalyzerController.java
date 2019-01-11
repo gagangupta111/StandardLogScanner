@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/logs")
@@ -26,7 +28,7 @@ public class LogAnalyzerController {
     }
 
     @RequestMapping(value = "/rules", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public String checkAllRules(@RequestBody RuleCriteria ruleCriteria){
+    public Map<String, String> checkAllRules(@RequestBody RuleCriteria ruleCriteria) throws IOException {
         return logAnalyzerService.checkAllRules(ruleCriteria);
     }
 

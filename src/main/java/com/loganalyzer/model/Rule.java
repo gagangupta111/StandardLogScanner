@@ -3,15 +3,15 @@ package com.loganalyzer.model;
 public class Rule {
 
     private String ruleName;
-    private String keywords;
+    private String conditions;
     private String actions;
 
     public Rule() {
     }
 
-    public Rule(String ruleName, String keywords, String actions) {
+    public Rule(String ruleName, String conditions, String actions) {
         this.ruleName = ruleName;
-        this.keywords = keywords;
+        this.conditions = conditions;
         this.actions = actions;
     }
 
@@ -23,12 +23,12 @@ public class Rule {
         this.ruleName = ruleName;
     }
 
-    public String getKeywords() {
-        return keywords;
+    public String getConditions() {
+        return conditions;
     }
 
-    public void setKeywords(String keywords) {
-        this.keywords = keywords;
+    public void setConditions(String conditions) {
+        this.conditions = conditions;
     }
 
     public String getActions() {

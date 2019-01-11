@@ -1,6 +1,7 @@
 package com.loganalyzer.dao;
 
-import com.loganalyzer.constants.Constants;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.loganalyzer.model.Log;
 import com.loganalyzer.model.Rule;
 import com.loganalyzer.model.RuleCriteria;
@@ -13,8 +14,6 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,19 +26,17 @@ import org.springframework.stereotype.Repository;
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.zip.GZIPInputStream;
@@ -80,48 +77,6 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
         return new File(classLoader.getResource(fileName).getFile());
     }
 
-    private void populateRules() throws Exception {
-
-        // Finds the workbook instance for XLSX file
-        XSSFWorkbook myWorkBook;
-        FileInputStream fileInputStream;
-        try {
-            fileInputStream = new FileInputStream("./rules.xlsx");
-            myWorkBook = new XSSFWorkbook(fileInputStream);
-        }catch (Exception e){
-                myWorkBook = new XSSFWorkbook(getClass().getResourceAsStream("/rules.xlsx"));
-        }
-
-
-        // Return first sheet from the XLSX workbook
-        XSSFSheet mySheet = myWorkBook.getSheetAt(0);
-
-        // Get iterator to all the rows in current sheet
-        Iterator<Row> rowIterator = mySheet.iterator();
-
-        if (rowIterator.hasNext()) {
-            rowIterator.next();
-        }
-        // Traversing over each row of XLSX file
-        while (rowIterator.hasNext()) {
-            Row row = rowIterator.next();
-            Rule rule = new Rule();
-            // For each row, iterate through each columns
-            Iterator<Cell> cellIterator = row.cellIterator();
-            if (cellIterator.hasNext()){
-                rule.setRuleName(cellIterator.next().getStringCellValue());
-            }
-            if (cellIterator.hasNext()){
-                rule.setKeywords(cellIterator.next().getStringCellValue());
-            }
-            if (cellIterator.hasNext()){
-                rule.setActions(cellIterator.next().getStringCellValue());
-            }
-            rules.add(rule);
-        }
-
-    }
-
     private void populateNewRules() throws Exception {
 
         // Finds the workbook instance for XLSX file
@@ -147,7 +102,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
                 rule.setRuleName(cellIterator.next().getStringCellValue());
             }
             if (cellIterator.hasNext()){
-                rule.setKeywords(cellIterator.next().getStringCellValue());
+                rule.setConditions(cellIterator.next().getStringCellValue());
             }
             if (cellIterator.hasNext()){
                 rule.setActions(cellIterator.next().getStringCellValue());
@@ -209,7 +164,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
         ListUtils.predicatedList(logs, PredicateUtils.notNullPredicate());
         populateLogs();
-        populateRules();
+        populateNewRules();
     }
 
     private void generator(String format, File file){
@@ -227,8 +182,9 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
         return logs;
     }
 
-    public String checkAllRules(RuleCriteria ruleCriteria){
+    public Map<String, String> checkAllRules(RuleCriteria ruleCriteria) throws IOException {
 
+        Map<String, String> rulesResponse = new HashMap<>();
         SearchCriteria searchCriteria = new SearchCriteria();
         if (ruleCriteria.getRange() != null) {
             searchCriteria.setStarting(ruleCriteria.getDate() - ruleCriteria.getRange());
@@ -240,15 +196,25 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
         List<Log> logList = getLogsWithCriteria(searchCriteria);
 
-
+        ObjectMapper mapper = new ObjectMapper();
         for (Rule rule : rules){
-            searchCriteria.setMessage(rule.getKeywords());
-            logList = getLogsWithCriteria(searchCriteria);
-            if (logList!= null && !logList.isEmpty()){
-                return rule.getActions();
+            List<Log> newLogList = logList;
+            String Conditions = rule.getConditions();
+            List<SearchCriteria> list;
+                list = mapper.readValue(Conditions, new TypeReference<List<SearchCriteria>>(){});
+
+            for (SearchCriteria criteria : list){
+                newLogList = getLogsWithCriteria(criteria);
+                if (newLogList != null && !newLogList.isEmpty()){
+                    continue;
+                }else break;
+            }
+            if (newLogList != null && !newLogList.isEmpty()) {
+                rulesResponse.put(rule.getRuleName(), rule.getActions());
             }
         }
-        return Constants.NO_RULE_MATCHED;
+
+        return rulesResponse;
     }
 
     @Override

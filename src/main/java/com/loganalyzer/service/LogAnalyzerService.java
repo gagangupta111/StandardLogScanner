@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +23,7 @@ public class LogAnalyzerService {
         return logAnalyzerDao.getAllLogs();
     }
 
-    public String checkAllRules(RuleCriteria ruleCriteria) {
+    public  Map<String, String> checkAllRules(RuleCriteria ruleCriteria) throws IOException {
         return logAnalyzerDao.checkAllRules(ruleCriteria);
     }
 
