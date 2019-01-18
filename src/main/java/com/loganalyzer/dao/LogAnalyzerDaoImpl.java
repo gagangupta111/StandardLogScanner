@@ -94,6 +94,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
         }
 
         String ruleName;
+        String desc;
         String conditions;
         String actions;
 
@@ -109,6 +110,13 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
                     continue;
                 }
                 rule.setRuleName(ruleName);
+            }
+            if (cellIterator.hasNext()){
+                desc = cellIterator.next().getStringCellValue();
+                if (desc == null){
+                    continue;
+                }
+                rule.setDesc(desc);
             }
             if (cellIterator.hasNext()){
                 conditions = cellIterator.next().getStringCellValue();
