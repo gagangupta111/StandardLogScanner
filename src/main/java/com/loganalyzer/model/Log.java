@@ -162,7 +162,10 @@ public class Log implements Comparable<Log>{
 
     @Override
     public int compareTo(Log o) {
-
+        if (o == null){
+            System.out.println("Null Found" + 0);
+            return 1;
+        }
         Long time1 = this.getLogTimeStamp();
         Long time2 = o.getLogTimeStamp();
         if (time1 > time2) {

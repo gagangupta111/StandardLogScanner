@@ -50,7 +50,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     private List<Log> logs = new ArrayList<>();
     private List<Rule> rules = new ArrayList<>();
-    private List<Rule> newRules = new ArrayList<>();
+    boolean sortedFlag = false;
 
     @Autowired
     ApplicationArguments appArgs;
@@ -203,17 +203,28 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     @Override
     public List<Log> getAllLogs() {
-        Collections.sort(logs);
+        if (!sortedFlag){
+            logs.removeAll(Collections.singleton(null));
+            Collections.sort(logs);
+        }
         return logs;
     }
 
     @Override
     public List<Rule> getAllRules(){
+        if (!sortedFlag){
+            logs.removeAll(Collections.singleton(null));
+            Collections.sort(logs);
+        }
         return rules;
     }
 
     public Map<String, String> checkAllRules(RuleCriteria ruleCriteria) throws IOException {
 
+        if (!sortedFlag){
+            logs.removeAll(Collections.singleton(null));
+            Collections.sort(logs);
+        }
         Map<String, String> rulesResponse = new HashMap<>();
         SearchCriteria searchCriteria = new SearchCriteria();
         if (ruleCriteria.getRange() != null) {
@@ -250,6 +261,10 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
     @Override
     public List<Log> getLogsWithCriteria(SearchCriteria searchCriteria){
 
+        if (!sortedFlag){
+            logs.removeAll(Collections.singleton(null));
+            Collections.sort(logs);
+        }
         List<Log> newLogs = logs;
 
         if (searchCriteria.getStarting() != null) {
@@ -336,19 +351,37 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     public List<Log> getLogsFilteredByStartingDate(List<Log> list, Long staringDate){
 
-        return list
-                .stream()
-                .filter((log) -> log.getLogTimeStamp()>=staringDate)
-                .collect(Collectors.toList());
+        Log searchLog = new Log();
+        searchLog.setLogTimeStamp(staringDate);
+
+        int x = Collections.binarySearch(list, searchLog);
+
+        if (x > 0){
+            list = list.subList(x, list.size());
+        }else if (x < 0){
+            x = Math.abs(x) - 1;
+            list = list.subList(x, list.size());
+        }
+
+        return list;
 
     }
 
     public List<Log> getLogsFilteredByEndingDate(List<Log> list, Long endingDate){
 
-        return list
-                .stream()
-                .filter((log) -> log.getLogTimeStamp()<=endingDate)
-                .collect(Collectors.toList());
+        Log searchLog = new Log();
+        searchLog.setLogTimeStamp(endingDate);
+
+        int x = Collections.binarySearch(list, searchLog);
+
+        if (x > 0){
+            list = list.subList(0, x);
+        }else if (x < 0){
+            x = Math.abs(x) - 1;
+            list = list.subList(0, x);
+        }
+
+        return list;
 
     }
 

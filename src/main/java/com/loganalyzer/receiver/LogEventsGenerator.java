@@ -744,7 +744,9 @@ public class LogEventsGenerator extends LogFilePatternReceiver {
         }
         log.setMessage(message);
 
-        this.logs.add(log);
+        if (log!= null || log.getLogTimeStamp() == null){
+            this.logs.add(log);
+        }
     }
 }
 
