@@ -92,6 +92,11 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
         if (rowIterator.hasNext()) {
             rowIterator.next();
         }
+
+        String ruleName;
+        String conditions;
+        String actions;
+
         // Traversing over each row of XLSX file
         while (rowIterator.hasNext()) {
             Row row = rowIterator.next();
@@ -99,13 +104,25 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
             // For each row, iterate through each columns
             Iterator<Cell> cellIterator = row.cellIterator();
             if (cellIterator.hasNext()){
-                rule.setRuleName(cellIterator.next().getStringCellValue());
+                ruleName = cellIterator.next().getStringCellValue();
+                if ("".equals(ruleName)){
+                    continue;
+                }
+                rule.setRuleName(ruleName);
             }
             if (cellIterator.hasNext()){
-                rule.setConditions(cellIterator.next().getStringCellValue());
+                conditions = cellIterator.next().getStringCellValue();
+                if (conditions == null){
+                    continue;
+                }
+                rule.setConditions(conditions);
             }
             if (cellIterator.hasNext()){
-                rule.setActions(cellIterator.next().getStringCellValue());
+                actions = cellIterator.next().getStringCellValue();
+                if (actions == null){
+                    continue;
+                }
+                rule.setActions(actions);
             }
             rules.add(rule);
         }
@@ -182,6 +199,11 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
         return logs;
     }
 
+    @Override
+    public List<Rule> getAllRules(){
+        return rules;
+    }
+
     public Map<String, String> checkAllRules(RuleCriteria ruleCriteria) throws IOException {
 
         Map<String, String> rulesResponse = new HashMap<>();
@@ -204,7 +226,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
                 list = mapper.readValue(Conditions, new TypeReference<List<SearchCriteria>>(){});
 
             for (SearchCriteria criteria : list){
-                newLogList = getLogsWithCriteria(criteria);
+                newLogList = getLogsWithCriteria(newLogList, criteria);
                 if (newLogList != null && !newLogList.isEmpty()){
                     continue;
                 }else break;
@@ -219,6 +241,49 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     @Override
     public List<Log> getLogsWithCriteria(SearchCriteria searchCriteria){
+
+        List<Log> newLogs = logs;
+
+        if (searchCriteria.getStarting() != null) {
+            newLogs  = getLogsFilteredByStartingDate(newLogs, searchCriteria.getStarting());
+        }
+
+        if (searchCriteria.getEnding() != null) {
+            newLogs  = getLogsFilteredByEndingDate(newLogs, searchCriteria.getEnding());
+        }
+
+        if (searchCriteria.getLevel()!= null){
+            newLogs = getLogsFilteredByLogLevel(newLogs, searchCriteria.getLevel());
+        }
+
+        if (searchCriteria.getLogFile()!= null){
+            newLogs = getLogsFilteredByLogFile(newLogs, searchCriteria.getLogFile());
+        }
+
+        if (searchCriteria.getMethodName()!= null){
+            newLogs = getLogsFilteredByMethodName(newLogs, searchCriteria.getMethodName());
+        }
+
+        if (searchCriteria.getClassFile()!= null){
+            newLogs = getLogsFilteredByClassFile(newLogs, searchCriteria.getClassFile());
+        }
+
+        if (searchCriteria.getLine()!= null){
+            newLogs = getLogsFilteredByLine(newLogs, searchCriteria.getLine());
+        }
+
+        if (searchCriteria.getClassName()!= null){
+            newLogs = getLogsFilteredByClassName(newLogs, searchCriteria.getClassName());
+        }
+
+        if (searchCriteria.getMessage()!= null){
+            newLogs = getLogsFilteredByMessage(newLogs, searchCriteria.getMessage());
+        }
+
+        return newLogs;
+    }
+
+    public List<Log> getLogsWithCriteria(List<Log> logs, SearchCriteria searchCriteria){
 
         List<Log> newLogs = logs;
 

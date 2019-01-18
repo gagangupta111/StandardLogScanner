@@ -1,6 +1,7 @@
 package com.loganalyzer.controller;
 
 import com.loganalyzer.model.Log;
+import com.loganalyzer.model.Rule;
 import com.loganalyzer.model.RuleCriteria;
 import com.loganalyzer.model.SearchCriteria;
 import com.loganalyzer.service.LogAnalyzerService;
@@ -27,9 +28,14 @@ public class LogAnalyzerController {
         return logAnalyzerService.getAllLogs();
     }
 
-    @RequestMapping(value = "/rules", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/execute", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, String> checkAllRules(@RequestBody RuleCriteria ruleCriteria) throws IOException {
         return logAnalyzerService.checkAllRules(ruleCriteria);
+    }
+
+    @RequestMapping(value = "/rules", method = RequestMethod.GET)
+    public List<Rule> getAllRules() throws IOException {
+        return logAnalyzerService.getAllRules();
     }
 
     @RequestMapping(value = "/filter", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)

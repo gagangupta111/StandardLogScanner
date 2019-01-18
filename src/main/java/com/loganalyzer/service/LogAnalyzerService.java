@@ -2,6 +2,7 @@ package com.loganalyzer.service;
 
 import com.loganalyzer.dao.LogAnalyzerDao;
 import com.loganalyzer.model.Log;
+import com.loganalyzer.model.Rule;
 import com.loganalyzer.model.RuleCriteria;
 import com.loganalyzer.model.SearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,10 @@ public class LogAnalyzerService {
 
     public List<Log> getAllLogs() {
         return logAnalyzerDao.getAllLogs();
+    }
+
+    public List<Rule> getAllRules() {
+        return logAnalyzerDao.getAllRules();
     }
 
     public  Map<String, String> checkAllRules(RuleCriteria ruleCriteria) throws IOException {
