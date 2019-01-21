@@ -166,16 +166,16 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
             throw new Exception("Please mentioned date in this format yyyy-MMM-dd DAY HH:mm:ss.SSS");
         }
 
-        Long minutes = null;
+        Long millisecs = null;
         if (appArgs.getNonOptionArgs().size() > 3){
-            minutes = Long.parseLong(appArgs.getNonOptionArgs().get(3));
+            millisecs = Long.parseLong(appArgs.getNonOptionArgs().get(3));
         }else {
-            minutes = 120L;
+            millisecs = 120L;
         }
 
         SearchCriteria criteria = new SearchCriteria();
-        criteria.setStarting(parsedDate.getTime() - (minutes));
-        criteria.setEnding(parsedDate.getTime() + (minutes));
+        criteria.setStarting(parsedDate.getTime() - (millisecs));
+        criteria.setEnding(parsedDate.getTime() + (millisecs));
 
         List<File> list = new ArrayList<File>();
         String[] compressedList = new String[] {"zip", "gz"};
