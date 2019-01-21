@@ -25,6 +25,7 @@ import java.util.regex.PatternSyntaxException;
 
 import com.loganalyzer.dao.LogAnalyzerDaoImpl;
 import com.loganalyzer.model.Log;
+import com.loganalyzer.model.SearchCriteria;
 import com.loganalyzer.util.Utility;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -92,6 +93,7 @@ public class LogEventsGenerator extends LogFilePatternReceiver {
     private int lineCount = 1;
 
     private List<Log> logs;
+    private SearchCriteria criteria = null;
 
     public LogEventsGenerator(List<Log> logs) {
         this.keywords.add("TIMESTAMP");
@@ -106,6 +108,29 @@ public class LogEventsGenerator extends LogFilePatternReceiver {
         this.keywords.add("NDC");
 
         this.logs = logs;
+
+        try {
+            this.exceptionPattern = Pattern.compile("^\\s+at.*");
+        } catch (PatternSyntaxException var2) {
+            ;
+        }
+
+    }
+
+    public LogEventsGenerator(List<Log> logs, SearchCriteria criteria) {
+        this.keywords.add("TIMESTAMP");
+        this.keywords.add("LOGGER");
+        this.keywords.add("LEVEL");
+        this.keywords.add("THREAD");
+        this.keywords.add("CLASS");
+        this.keywords.add("FILE");
+        this.keywords.add("LINE");
+        this.keywords.add("METHOD");
+        this.keywords.add("MESSAGE");
+        this.keywords.add("NDC");
+
+        this.logs = logs;
+        this.criteria = criteria;
 
         try {
             this.exceptionPattern = Pattern.compile("^\\s+at.*");
@@ -744,8 +769,14 @@ public class LogEventsGenerator extends LogFilePatternReceiver {
         }
         log.setMessage(message);
 
-        if (log!= null || log.getLogTimeStamp() == null){
-            this.logs.add(log);
+        if (log!= null && log.getLogTimeStamp() != null){
+            if (criteria != null){
+                if (criteria.getStarting() < log.getLogTimeStamp() && criteria.getEnding() > log.getLogTimeStamp()){
+                    this.logs.add(log);
+                }
+            }else {
+                this.logs.add(log);
+            }
         }
     }
 }

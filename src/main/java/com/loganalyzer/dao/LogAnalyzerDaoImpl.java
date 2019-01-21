@@ -7,6 +7,7 @@ import com.loganalyzer.model.Rule;
 import com.loganalyzer.model.RuleCriteria;
 import com.loganalyzer.model.SearchCriteria;
 import com.loganalyzer.receiver.LogEventsGenerator;
+import com.loganalyzer.util.JsonDateDeSerializer;
 import com.loganalyzer.util.Utility;
 import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.collections4.PredicateUtils;
@@ -26,8 +27,12 @@ import org.springframework.stereotype.Repository;
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -36,6 +41,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -55,7 +61,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
     @Autowired
     ApplicationArguments appArgs;
 
-    private String logsPath;
+    private String aroundDate;
 
     @Value("${formatPattern}")
     private String formatPattern;
@@ -72,16 +78,22 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
     @Value("#{'${filesWithFormatPatternNoLocation}'.split(',')}")
     private List<String> filesWithFormatPatternNoLocation;
 
-    private File getFile(String fileName) {
-        ClassLoader classLoader = getClass().getClassLoader();
-        return new File(classLoader.getResource(fileName).getFile());
-    }
+    private void populateNewRules() throws Exception{
 
-    private void populateNewRules() throws Exception {
+        String path = "./rules2.xlsx";
+        FileInputStream fis;
+        try {
+            fis = new FileInputStream(path);
+        } catch (FileNotFoundException e) {
+            throw new Exception("rules2.xlsx not found");
+        }
 
-        // Finds the workbook instance for XLSX file
         XSSFWorkbook myWorkBook;
-        myWorkBook = new XSSFWorkbook(getClass().getResourceAsStream("/rules2.xlsx"));
+        try {
+            myWorkBook = new XSSFWorkbook(fis);
+        } catch (IOException e) {
+            throw new Exception("format of rules.xlsx is not correct");
+        }
 
         // Return first sheet from the XLSX workbook
         XSSFSheet mySheet = myWorkBook.getSheetAt(0);
@@ -137,17 +149,37 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     }
 
-    private void populateLogs(){
+    // This will populate logs only around the time stamp given in the input. By default it is 4 hours around that time stamp, otherwise the argument is mentioned in input.
+    private void populateLogs() throws Exception {
 
         try {
-            logsPath = appArgs.getNonOptionArgs().get(0);
+            aroundDate = appArgs.getNonOptionArgs().get(0) + " " +  appArgs.getNonOptionArgs().get(1) + " " + appArgs.getNonOptionArgs().get(2);
         }catch (Exception e){
-            logsPath = ".";
+            throw new Exception("Please mentioned a date as an argument to the application");
         }
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MMM-dd EEE HH:mm:ss.SSS",Locale.ENGLISH);
+        java.util.Date parsedDate = null;
+        try {
+            parsedDate = dateFormat.parse(aroundDate);
+        } catch (ParseException e) {
+            throw new Exception("Please mentioned date in this format yyyy-MMM-dd DAY HH:mm:ss.SSS");
+        }
+
+        Long minutes = null;
+        if (appArgs.getNonOptionArgs().size() > 3){
+            minutes = Long.parseLong(appArgs.getNonOptionArgs().get(3));
+        }else {
+            minutes = 120L;
+        }
+
+        SearchCriteria criteria = new SearchCriteria();
+        criteria.setStarting(parsedDate.getTime() - (minutes));
+        criteria.setEnding(parsedDate.getTime() + (minutes));
 
         List<File> list = new ArrayList<File>();
         String[] compressedList = new String[] {"zip", "gz"};
-        Collection<File> compressedFiles = FileUtils.listFiles(new File(logsPath), compressedList, true);
+        Collection<File> compressedFiles = FileUtils.listFiles(new File("."), compressedList, true);
         for (File file1 : compressedFiles){
             String ext = FilenameUtils.getExtension(file1.getPath());
             if (compressedList[0].equals(ext)){
@@ -162,7 +194,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
         }
 
         String[] extensions = new String[] { "log" };
-        Collection<File> array = FileUtils.listFiles(new File(logsPath), extensions, true);
+        Collection<File> array = FileUtils.listFiles(new File("."), extensions, true);
 
         String format;
         for (File file : array){
@@ -172,13 +204,13 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
                     .stream()
                     .filter((string) -> fileName.contains(string)).findFirst().isPresent();
             if (found){
-                generator(formatPatternNoLocation, file);
+                generator(formatPatternNoLocation, file, criteria);
             }else {
                 found = filesWithFormatPattern
                         .stream()
                         .filter((string) -> fileName.contains(string)).findFirst().isPresent();
                 if (found) {
-                    generator(formatPattern, file);
+                    generator(formatPattern, file, criteria);
                 }
             }
         }
@@ -192,8 +224,8 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
         populateNewRules();
     }
 
-    private void generator(String format, File file){
-        LogEventsGenerator receiver = new LogEventsGenerator(logs);
+    private void generator(String format, File file, SearchCriteria criteria){
+        LogEventsGenerator receiver = new LogEventsGenerator(logs, criteria);
         receiver.setTimestampFormat(timestamp);
         receiver.setLogFormat(format);
         receiver.setFileURL("file:///" + file.getAbsolutePath());
@@ -219,23 +251,11 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
         return rules;
     }
 
-    public Map<String, String> checkAllRules(RuleCriteria ruleCriteria) throws IOException {
+    public Map<String, String> checkAllRules() throws IOException {
 
-        if (!sortedFlag){
-            logs.removeAll(Collections.singleton(null));
-            Collections.sort(logs);
-        }
         Map<String, String> rulesResponse = new HashMap<>();
-        SearchCriteria searchCriteria = new SearchCriteria();
-        if (ruleCriteria.getRange() != null) {
-            searchCriteria.setStarting(ruleCriteria.getDate() - ruleCriteria.getRange());
-            searchCriteria.setEnding(ruleCriteria.getDate() + ruleCriteria.getRange());
-        }else {
-            searchCriteria.setStarting(ruleCriteria.getDate() - 100);
-            searchCriteria.setEnding(ruleCriteria.getDate() + 100);
-        }
 
-        List<Log> logList = getLogsWithCriteria(searchCriteria);
+        List<Log> logList = logs;
 
         ObjectMapper mapper = new ObjectMapper();
         for (Rule rule : rules){

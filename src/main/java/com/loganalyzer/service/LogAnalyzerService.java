@@ -28,8 +28,8 @@ public class LogAnalyzerService {
         return logAnalyzerDao.getAllRules();
     }
 
-    public  Map<String, String> checkAllRules(RuleCriteria ruleCriteria) throws IOException {
-        return logAnalyzerDao.checkAllRules(ruleCriteria);
+    public  Map<String, String> checkAllRules() throws IOException {
+        return logAnalyzerDao.checkAllRules();
     }
 
     public List<Log> getLogsWithCriteria(SearchCriteria searchCriteria){

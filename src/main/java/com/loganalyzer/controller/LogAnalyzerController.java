@@ -28,9 +28,9 @@ public class LogAnalyzerController {
         return logAnalyzerService.getAllLogs();
     }
 
-    @RequestMapping(value = "/execute", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Map<String, String> checkAllRules(@RequestBody RuleCriteria ruleCriteria) throws IOException {
-        return logAnalyzerService.checkAllRules(ruleCriteria);
+    @RequestMapping(value = "/execute", method = RequestMethod.GET)
+    public Map<String, String> checkAllRules() throws IOException {
+        return logAnalyzerService.checkAllRules();
     }
 
     @RequestMapping(value = "/rules", method = RequestMethod.GET)
