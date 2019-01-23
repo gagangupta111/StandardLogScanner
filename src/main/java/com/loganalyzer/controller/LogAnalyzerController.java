@@ -29,7 +29,7 @@ public class LogAnalyzerController {
     }
 
     @RequestMapping(value = "/execute", method = RequestMethod.GET)
-    public Map<String, String> checkAllRules() throws IOException {
+    public Map<String, String> checkAllRules() throws Exception {
         return logAnalyzerService.checkAllRules();
     }
 

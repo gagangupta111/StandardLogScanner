@@ -25,11 +25,13 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
+import javax.rmi.CORBA.Util;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -44,6 +46,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.Stack;
 import java.util.stream.Collectors;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.ZipEntry;
@@ -80,21 +83,26 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     private void populateNewRules() throws Exception{
 
-        String path = "./rules2.xlsx";
-        FileInputStream fis;
-        try {
-            fis = new FileInputStream(path);
-        } catch (FileNotFoundException e) {
-            throw new Exception("rules2.xlsx not found");
-        }
-
         XSSFWorkbook myWorkBook;
-        try {
-            myWorkBook = new XSSFWorkbook(fis);
-        } catch (IOException e) {
-            throw new Exception("format of rules.xlsx is not correct");
-        }
+        InputStream in = getClass().getResourceAsStream("/rules2.xlsx");
+        if (in != null){
+            myWorkBook = new XSSFWorkbook(in);
+        }else {
+            String path = "./rules2.xlsx";
+            FileInputStream fis;
+            try {
+                fis = new FileInputStream(path);
+            } catch (FileNotFoundException e) {
+                throw new Exception("rules2.xlsx not found");
+            }
 
+
+            try {
+                myWorkBook = new XSSFWorkbook(fis);
+            } catch (IOException e) {
+                throw new Exception("format of rules.xlsx is not correct");
+            }
+        }
         // Return first sheet from the XLSX workbook
         XSSFSheet mySheet = myWorkBook.getSheetAt(0);
 
@@ -251,26 +259,48 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
         return rules;
     }
 
-    public Map<String, String> checkAllRules() throws IOException {
+    public Map<String, String> checkAllRules() throws Exception {
 
         Map<String, String> rulesResponse = new HashMap<>();
+        Map<String, SearchCriteria> map;
+        List<Log> originalLogs = logs;
+        List<Log> filteredLogs;
+        List<Log> tempFilteredLogs;
+        String postfix = "";
 
-        List<Log> logList = logs;
-
-        ObjectMapper mapper = new ObjectMapper();
+        Stack<List<Log>> stack = new Stack<>();
         for (Rule rule : rules){
-            List<Log> newLogList = logList;
-            String Conditions = rule.getConditions();
-            List<SearchCriteria> list;
-                list = mapper.readValue(Conditions, new TypeReference<List<SearchCriteria>>(){});
 
-            for (SearchCriteria criteria : list){
-                newLogList = getLogsWithCriteria(newLogList, criteria);
-                if (newLogList != null && !newLogList.isEmpty()){
-                    continue;
-                }else break;
+            stack = new Stack<>();
+            map = new HashMap<>();
+            filteredLogs = new ArrayList<>();
+            tempFilteredLogs = new ArrayList<>();
+
+            try {
+                postfix = Utility.infixToPostfix(rule.getConditions(), map);
+            } catch (Exception e) {
+                throw e;
             }
-            if (newLogList != null && !newLogList.isEmpty()) {
+
+            for (char c: postfix.toCharArray()){
+                if (c == '&'){
+                    filteredLogs = stack.pop();
+                    filteredLogs.retainAll(stack.pop());
+                    stack.add(filteredLogs);
+                }else if (c == '|'){
+                    filteredLogs = stack.pop();
+                    tempFilteredLogs = stack.pop();
+                    List<Log> copy = new ArrayList<>(tempFilteredLogs);
+                    copy.removeAll(filteredLogs);
+                    filteredLogs.addAll(copy);
+                    stack.add(filteredLogs);
+                }else {
+                    filteredLogs = getLogsWithCriteria(originalLogs, map.get(String.valueOf(c)));
+                    stack.add(filteredLogs);
+                }
+            }
+
+            if (!stack.pop().isEmpty()){
                 rulesResponse.put(rule.getRuleName(), rule.getActions());
             }
         }
@@ -371,6 +401,10 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     public List<Log> getLogsFilteredByStartingDate(List<Log> list, Long staringDate){
 
+        if (list == null || list.isEmpty()){
+            return list;
+        }
+
         Log searchLog = new Log();
         searchLog.setLogTimeStamp(staringDate);
 
@@ -389,6 +423,9 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     public List<Log> getLogsFilteredByEndingDate(List<Log> list, Long endingDate){
 
+        if (list == null || list.isEmpty()){
+            return list;
+        }
         Log searchLog = new Log();
         searchLog.setLogTimeStamp(endingDate);
 
@@ -408,6 +445,9 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     public List<Log> getLogsFilteredByLogLevel(List<Log> list, String logLevel){
 
+        if (list == null || list.isEmpty()){
+            return list;
+        }
          return list
                  .stream()
                  .filter((log) -> log.getLevel().toLowerCase().contains(logLevel.toLowerCase()))
@@ -417,6 +457,9 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     public List<Log> getLogsFilteredByLogFile(List<Log> list, String logFile){
 
+        if (list == null || list.isEmpty()){
+            return list;
+        }
         return list
                 .stream()
                 .filter((log) -> log.getLogFile().toLowerCase().contains(logFile.toLowerCase()))
@@ -426,6 +469,9 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     public List<Log> getLogsFilteredByMethodName(List<Log> list, String methodName){
 
+        if (list == null || list.isEmpty()){
+            return list;
+        }
         return list
                 .stream()
                 .filter((log) -> log.getMethodName().toLowerCase().contains(methodName.toLowerCase()))
@@ -435,6 +481,9 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     public List<Log> getLogsFilteredByClassFile(List<Log> list, String classFile){
 
+        if (list == null || list.isEmpty()){
+            return list;
+        }
         return list
                 .stream()
                 .filter((log) -> log.getClassFile().toLowerCase().contains(classFile.toLowerCase()))
@@ -444,6 +493,9 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     public List<Log> getLogsFilteredByLine(List<Log> list, String line){
 
+        if (list == null || list.isEmpty()){
+            return list;
+        }
         return list
                 .stream()
                 .filter((log) -> log.getLine().toLowerCase().contains(line.toLowerCase()))
@@ -453,6 +505,9 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     public List<Log> getLogsFilteredByClassName(List<Log> list, String classname){
 
+        if (list == null || list.isEmpty()){
+            return list;
+        }
         return list
                 .stream()
                 .filter((log) -> log.getClassName().toLowerCase().contains(classname.toLowerCase()))
@@ -462,21 +517,9 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     public List<Log> getLogsFilteredByMessage(List<Log> list, String tokens){
 
-        Set<String> tokenSet = new HashSet<String>(Arrays.asList(tokens.split("[^a-z^A-Z^0-9]")));
-        return list
-                .stream()
-                .filter((log) -> {
-                    Set<String> messageSet = new HashSet<String>(Arrays.asList(log.getMessage().split("[^a-z^A-Z^0-9]")));
-                    if (messageSet.containsAll(tokenSet)){
-                        return true;
-                    }else return false;
-                })
-                .collect(Collectors.toList());
-
-    }
-
-    public List<Log> getPercentageMatchesOfMessage(List<Log> list, String tokens){
-
+        if (list == null || list.isEmpty()){
+            return list;
+        }
         Set<String> tokenSet = new HashSet<String>(Arrays.asList(tokens.split("[^a-z^A-Z^0-9]")));
         return list
                 .stream()

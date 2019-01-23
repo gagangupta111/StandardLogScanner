@@ -28,7 +28,7 @@ public class LogAnalyzerService {
         return logAnalyzerDao.getAllRules();
     }
 
-    public  Map<String, String> checkAllRules() throws IOException {
+    public  Map<String, String> checkAllRules() throws Exception {
         return logAnalyzerDao.checkAllRules();
     }
 
