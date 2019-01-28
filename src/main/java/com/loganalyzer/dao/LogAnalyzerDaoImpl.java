@@ -39,6 +39,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -523,6 +524,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     public List<Log> getLogsFilteredByMessage(List<Log> list, String tokens){
 
+        Long start = new Date().getTime();
         if (list == null || list.isEmpty()){
             return list;
         }
@@ -535,13 +537,18 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
             String s = splitted[i];
             System.out.println(s);
             if (s.charAt(0) == 'T') {
-                regex = regex + ".*" + s.substring(s.indexOf(':') + 1, s.length());
+                regex = regex + ".*" + s.substring(s.indexOf(':') + 1, s.length()).trim();
             }else if (s.charAt(0) == 'R'){
-                regex = regex + ".*(" + s.substring(s.indexOf(':')+1, s.length()) + ")";
+                regex = regex + ".*(" + s.substring(s.indexOf(':')+1, s.length()).trim() + ")";
             }else if (s.charAt(0) == 'V'){
                 String varName = s.substring(s.indexOf(':')+1, s.length()).trim();
                 if (varName.contains("{")){
-                    regex = regex + ".*" + varValueMap.get(varName.replaceAll("[{}]", ""));
+                    String varValue = varValueMap.get(varName.replaceAll("[{}]", ""));
+                    if (varValue == null){
+                        return new ArrayList<>();
+                    }else {
+                        regex = regex + ".*" + varValueMap.get(varName.replaceAll("[{}]", "")).trim();
+                    }
                 }else {
                     String tempVarName = s.substring(s.indexOf(':')+1, s.length()).trim();
                     if (varIndexMap.values().contains(tempVarName)){
@@ -553,18 +560,22 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
             }else throw new RuntimeException("Rule is not in expected format!");
         }
 
+        if (regex.charAt(0) == '.'){
+            regex = regex.substring(2, regex.length());
+        }
         String finalRegex = regex;
         Pattern pattern = Pattern.compile(finalRegex);
 
-        return list
+        List<Log> returnedList = list
                 .stream()
                 .filter((log) -> {
 
                     Matcher matcher = pattern.matcher(log.getMessage());
                     if (matcher.find()) {
-                        System.out.println("Capturing Group Whole String: "+matcher.group(0));
                         for (Integer integer : varIndexMap.keySet()){
-                            varValueMap.put(varIndexMap.get(integer), matcher.group(integer));
+                            try{
+                                varValueMap.put(varIndexMap.get(integer), matcher.group(integer));
+                            }catch (Exception e){}
                         }
                         return true;
                     }else {
@@ -573,6 +584,10 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
                 })
                 .collect(Collectors.toList());
+        Long end = new Date().getTime();
+        System.out.println(" REGEX: " + finalRegex);
+        System.out.println(" Time Taken: " + (end - start));
+        return returnedList;
 
     }
 
