@@ -80,11 +80,10 @@ public class Utility {
                                 addToMap(infix.substring(starting, i+1), count, map);
                                 list.add(String.valueOf(count));
                                 count++;
+                                break;
                             }
-                            break;
-                        } else {
-                            i++;
                         }
+                        i++;
                     }
                     break;
             }

@@ -47,6 +47,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.ZipEntry;
@@ -59,6 +61,8 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     private List<Log> logs = new ArrayList<>();
     private List<Rule> rules = new ArrayList<>();
+    private Map<Integer, String> varIndexMap = new HashMap<>();
+    private Map<String, String> varValueMap = new HashMap<>();
     boolean sortedFlag = false;
 
     @Autowired
@@ -262,7 +266,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
     public Map<String, String> checkAllRules() throws Exception {
 
         Map<String, String> rulesResponse = new HashMap<>();
-        Map<String, SearchCriteria> map;
+        Map<String, SearchCriteria> mapSearchCriteria;
         List<Log> originalLogs = logs;
         List<Log> filteredLogs;
         List<Log> tempFilteredLogs;
@@ -271,13 +275,15 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
         Stack<List<Log>> stack = new Stack<>();
         for (Rule rule : rules){
 
+            varIndexMap = new HashMap<>();
+            varValueMap = new HashMap<>();
             stack = new Stack<>();
-            map = new HashMap<>();
+            mapSearchCriteria = new HashMap<>();
             filteredLogs = new ArrayList<>();
             tempFilteredLogs = new ArrayList<>();
 
             try {
-                postfix = Utility.infixToPostfix(rule.getConditions(), map);
+                postfix = Utility.infixToPostfix(rule.getConditions(), mapSearchCriteria);
             } catch (Exception e) {
                 throw e;
             }
@@ -295,7 +301,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
                     filteredLogs.addAll(copy);
                     stack.add(filteredLogs);
                 }else {
-                    filteredLogs = getLogsWithCriteria(originalLogs, map.get(String.valueOf(c)));
+                    filteredLogs = getLogsWithCriteria(originalLogs, mapSearchCriteria.get(String.valueOf(c)));
                     stack.add(filteredLogs);
                 }
             }
@@ -520,14 +526,51 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
         if (list == null || list.isEmpty()){
             return list;
         }
-        Set<String> tokenSet = new HashSet<String>(Arrays.asList(tokens.split("[^a-z^A-Z^0-9]")));
+
+        String regex  = "";
+        int count = 0;
+        String[] splitted = tokens.split(", ");
+        for (int i = 0; i < splitted.length; i++){
+
+            String s = splitted[i];
+            System.out.println(s);
+            if (s.charAt(0) == 'T') {
+                regex = regex + ".*" + s.substring(s.indexOf(':') + 1, s.length());
+            }else if (s.charAt(0) == 'R'){
+                regex = regex + ".*(" + s.substring(s.indexOf(':')+1, s.length()) + ")";
+            }else if (s.charAt(0) == 'V'){
+                String varName = s.substring(s.indexOf(':')+1, s.length()).trim();
+                if (varName.contains("{")){
+                    regex = regex + ".*" + varValueMap.get(varName.replaceAll("[{}]", ""));
+                }else {
+                    String tempVarName = s.substring(s.indexOf(':')+1, s.length()).trim();
+                    if (varIndexMap.values().contains(tempVarName)){
+                        throw new RuntimeException("Sorry! " + tempVarName + "Variable name is used already!");
+                    }
+                    varIndexMap.put(++count, tempVarName);
+                }
+
+            }else throw new RuntimeException("Rule is not in expected format!");
+        }
+
+        String finalRegex = regex;
+        Pattern pattern = Pattern.compile(finalRegex);
+
         return list
                 .stream()
                 .filter((log) -> {
-                    Set<String> messageSet = new HashSet<String>(Arrays.asList(log.getMessage().split("[^a-z^A-Z^0-9]")));
-                    if (messageSet.containsAll(tokenSet)){
+
+                    Matcher matcher = pattern.matcher(log.getMessage());
+                    if (matcher.find()) {
+                        System.out.println("Capturing Group Whole String: "+matcher.group(0));
+                        for (Integer integer : varIndexMap.keySet()){
+                            varValueMap.put(varIndexMap.get(integer), matcher.group(integer));
+                        }
                         return true;
-                    }else return false;
+                    }else {
+                        return false;
+                    }
+
                 })
                 .collect(Collectors.toList());
 
