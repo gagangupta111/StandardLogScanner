@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="291878ab-300c-4ed3-beab-86695b24fbbb" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/loganalyzer/dao/LogAnalyzerDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/loganalyzer/dao/LogAnalyzerDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/rules2.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/rules2.xlsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -20,7 +19,7 @@
       <file leaf-file-name="LogAnalyzerDaoImpl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/dao/LogAnalyzerDaoImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
+            <state relative-caret-position="59">
               <caret line="547" column="49" selection-start-line="547" selection-start-column="49" selection-end-line="547" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -397,7 +396,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="bottom" id="TODO" order="10" weight="0.3293718" />
@@ -406,20 +404,20 @@
       <window_info id="Image Layers" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
-      <window_info anchor="right" id="Maven Projects" order="3" weight="0.12859304" />
+      <window_info anchor="right" id="Maven Projects" order="3" visible="true" weight="0.12859304" />
       <window_info anchor="bottom" id="Version Control" order="2" weight="0.62988114" />
       <window_info anchor="bottom" id="Run" order="6" weight="0.4312394" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.5670628" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="0" />
-      <window_info content_ui="combo" id="Project" order="5" weight="0.2602118" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.2602118" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.47368422" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
       <window_info id="UI Designer" order="1" />
       <window_info anchor="right" id="Theme Preview" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="7" weight="0.6095076" />
+      <window_info anchor="bottom" id="Debug" order="7" visible="true" weight="0.56876063" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info id="Designer" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="7" weight="0.25" />
@@ -446,34 +444,6 @@
       <window_info anchor="right" id="Maven Projects" order="3" visible="true" weight="0.24357034" />
       <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.28744328" />
     </layout>
-    <layout-to-restore>
-      <window_info anchor="right" id="Palette" order="4" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="7" weight="0.25" />
-      <window_info anchor="right" id="Capture Analysis" order="0" />
-      <window_info anchor="bottom" id="Run" order="6" weight="0.23429541" />
-      <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
-      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.28744328" />
-      <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Theme Preview" order="2" />
-      <window_info anchor="bottom" id="TODO" order="10" weight="0.3293718" />
-      <window_info anchor="bottom" id="Message" order="4" />
-      <window_info id="Image Layers" order="4" />
-      <window_info id="Designer" order="0" />
-      <window_info id="UI Designer" order="1" />
-      <window_info anchor="bottom" id="Find" order="5" weight="0.47368422" />
-      <window_info active="true" anchor="bottom" id="Debug" order="7" visible="true" weight="0.41086587" />
-      <window_info anchor="right" id="Palette&#9;" order="1" />
-      <window_info anchor="bottom" id="Terminal" order="0" weight="0.516129" />
-      <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
-      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
-      <window_info anchor="bottom" id="Version Control" order="2" weight="0.3293718" />
-      <window_info id="Capture Tool" order="2" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="5" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Messages" order="3" weight="0.44821733" />
-      <window_info anchor="right" id="Maven Projects" order="3" visible="true" weight="0.24357034" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-    </layout-to-restore>
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -962,7 +932,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/dao/LogAnalyzerDaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
+        <state relative-caret-position="59">
           <caret line="547" column="49" selection-start-line="547" selection-start-column="49" selection-end-line="547" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
