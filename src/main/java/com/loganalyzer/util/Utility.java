@@ -8,6 +8,7 @@ import com.loganalyzer.model.SearchCriteria;
 import org.springframework.stereotype.Component;
 
 import javax.swing.text.html.parser.Parser;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -42,6 +43,7 @@ public class Utility {
 
     public static String infixToPostfix(String infix, Map<String, SearchCriteria> map) throws Exception{
 
+        Long interval = 1000L;
         List<String> list = new ArrayList<>();
         char count = 'A';
 
@@ -60,6 +62,31 @@ public class Utility {
                     if ("AND".equals(infix.substring(i, i+3))){
                         list.add("&");
                         i += 3;
+                    }else if ("AFTER".equals(infix.substring(i, i+5))){
+                        String whole = getStringTillCondition(infix.substring(i, infix.length()));
+                        String[] splitted = whole.split(" ");
+                        if (splitted.length > 1){
+                            splitted = splitted[1].split(":");
+                            Long milliseconds = 0L;
+                            milliseconds = Long.parseLong(splitted[0])*60*60*1000 + Long.parseLong(splitted[1])*60*1000 + Long.parseLong(splitted[2])*1000 + Long.parseLong(splitted[3]);
+                            list.add(String.valueOf(milliseconds));
+                        }
+                        i += whole.length() - 1;
+                    }else {
+                        throw new Exception(Constants.INVALID_RULE);
+                    }
+                    break;
+                case 'B':
+                    if ("BEFORE".equals(infix.substring(i, i+6))){
+                        String whole = getStringTillCondition(infix.substring(i, infix.length()));
+                        String[] splitted = whole.split(" ");
+                        if (splitted.length > 1){
+                            splitted = splitted[1].split(":");
+                            Long milliseconds = 0L;
+                            milliseconds = Long.parseLong(splitted[0])*60*60*1000 + Long.parseLong(splitted[1])*60*1000 + Long.parseLong(splitted[2])*1000 + Long.parseLong(splitted[3]);
+                            list.add(String.valueOf(-milliseconds));
+                        }
+                        i += whole.length() - 1;
                     }else {
                         throw new Exception(Constants.INVALID_RULE);
                     }
@@ -90,6 +117,19 @@ public class Utility {
         }
 
        return toPostfix(list);
+    }
+
+    public static String getStringTillCondition(String whole){
+
+        int index = 0;
+        String output = "";
+        while (whole.charAt(index) != '{'){
+            output += whole.charAt(index);
+            index++;
+        }
+
+        return output;
+
     }
 
     public static boolean isJSONValid(String json) {
