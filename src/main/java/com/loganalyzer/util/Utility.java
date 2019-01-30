@@ -41,7 +41,7 @@ public class Utility {
         return matcher.find() ? matcher.start() : s.length();
     }
 
-    public static String infixToPostfix(String infix, Map<String, SearchCriteria> map) throws Exception{
+    public static List<String> infixToPostfix(String infix, Map<String, SearchCriteria> map) throws Exception{
 
         Long interval = 1000L;
         List<String> list = new ArrayList<>();
@@ -69,7 +69,8 @@ public class Utility {
                             splitted = splitted[1].split(":");
                             Long milliseconds = 0L;
                             milliseconds = Long.parseLong(splitted[0])*60*60*1000 + Long.parseLong(splitted[1])*60*1000 + Long.parseLong(splitted[2])*1000 + Long.parseLong(splitted[3]);
-                            list.add(String.valueOf(milliseconds));
+                            list.remove(list.size() - 1);
+                            list.add( "&" + String.valueOf(milliseconds));
                         }
                         i += whole.length() - 1;
                     }else {
@@ -84,7 +85,8 @@ public class Utility {
                             splitted = splitted[1].split(":");
                             Long milliseconds = 0L;
                             milliseconds = Long.parseLong(splitted[0])*60*60*1000 + Long.parseLong(splitted[1])*60*1000 + Long.parseLong(splitted[2])*1000 + Long.parseLong(splitted[3]);
-                            list.add(String.valueOf(-milliseconds));
+                            list.remove(list.size() - 1);
+                            list.add( "&" + String.valueOf(-milliseconds));
                         }
                         i += whole.length() - 1;
                     }else {
@@ -150,12 +152,12 @@ public class Utility {
         }
     }
 
-    private static String toPostfix(List<String> infix)
+    private static List<String> toPostfix(List<String> infix)
     //converts an infix expression to postfix
     {
         Stack operators = new Stack();
         String symbol;
-        String postfix = "";
+        List<String> postfix = new ArrayList<>();
 
         for(int i=0;i<infix.size();++i)
         //while there is input to be read
@@ -165,15 +167,15 @@ public class Utility {
                 continue;
             }
 
-            if ("&".equals(symbol) || "|".equals(symbol)){
+            if (symbol.contains("&") || symbol.contains("|")){
                 while (!operators.isEmpty() && !(operators.peek().equals("(")))
-                    postfix = postfix + operators.pop();
+                    postfix.add(operators.pop());
 
                 operators.push(symbol);
             }
             //if it's an operand, add it to the string
             else if (Pattern.matches("^[a-zA-Z]+$", symbol))
-                postfix = postfix + symbol;
+                postfix.add(symbol);
             else if ("(".equals(symbol))
             //push (
             {
@@ -185,13 +187,13 @@ public class Utility {
             {
                 while (!operators.peek().equals("("))
                 {
-                    postfix = postfix + operators.pop();
+                    postfix.add(operators.pop());
                 }
                 operators.pop();		//remove '('
             }
         }
         while (!operators.isEmpty())
-            postfix = postfix + operators.pop();
+            postfix.add(operators.pop());
         return postfix;
     }
 

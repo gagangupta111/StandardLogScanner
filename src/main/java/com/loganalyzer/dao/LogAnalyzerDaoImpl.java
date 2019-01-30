@@ -271,7 +271,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
         List<Log> originalLogs = logs;
         List<Log> filteredLogs;
         List<Log> tempFilteredLogs;
-        String postfix = "";
+        List<String> postfix = new ArrayList<>();
 
         Stack<List<Log>> stack = new Stack<>();
         for (Rule rule : rules){
@@ -289,20 +289,22 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
                 throw e;
             }
 
-            for (char c: postfix.toCharArray()){
-                if (c == '&'){
+            for (String s: postfix){
+                if ("&".equals(s)){
                     filteredLogs = stack.pop();
                     filteredLogs.retainAll(stack.pop());
                     stack.add(filteredLogs);
-                }else if (c == '|'){
+                }else if ("|".equals(s)){
                     filteredLogs = stack.pop();
                     tempFilteredLogs = stack.pop();
                     List<Log> copy = new ArrayList<>(tempFilteredLogs);
                     copy.removeAll(filteredLogs);
                     filteredLogs.addAll(copy);
                     stack.add(filteredLogs);
-                }else {
-                    filteredLogs = getLogsWithCriteria(originalLogs, mapSearchCriteria.get(String.valueOf(c)));
+                }else if (s.contains("&")){
+
+                } else {
+                    filteredLogs = getLogsWithCriteria(originalLogs, mapSearchCriteria.get(s));
                     stack.add(filteredLogs);
                 }
             }
