@@ -175,4 +175,8 @@ public class Log implements Comparable<Log>{
         }else return 0;
 
     }
+
+    public Log clone(){
+        return new Log(this.id, this.logTimeStamp, this.level, this.className, this.methodName, this.classFile, this.line, this.logFile, this.message);
+    }
 }

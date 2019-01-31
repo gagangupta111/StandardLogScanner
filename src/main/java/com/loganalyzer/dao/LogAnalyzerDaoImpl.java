@@ -269,8 +269,8 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
         Map<String, String> rulesResponse = new HashMap<>();
         Map<String, SearchCriteria> mapSearchCriteria;
         List<Log> originalLogs = logs;
-        List<Log> filteredLogs;
-        List<Log> tempFilteredLogs;
+        List<Log> logsA;
+        List<Log> logsB;
         List<String> postfix = new ArrayList<>();
 
         Stack<List<Log>> stack = new Stack<>();
@@ -280,8 +280,8 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
             varValueMap = new HashMap<>();
             stack = new Stack<>();
             mapSearchCriteria = new HashMap<>();
-            filteredLogs = new ArrayList<>();
-            tempFilteredLogs = new ArrayList<>();
+            logsA = new ArrayList<>();
+            logsB = new ArrayList<>();
 
             try {
                 postfix = Utility.infixToPostfix(rule.getConditions(), mapSearchCriteria);
@@ -291,21 +291,76 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
             for (String s: postfix){
                 if ("&".equals(s)){
-                    filteredLogs = stack.pop();
-                    filteredLogs.retainAll(stack.pop());
-                    stack.add(filteredLogs);
+                    logsA = stack.pop();
+                    logsA.retainAll(stack.pop());
+                    stack.add(logsA);
                 }else if ("|".equals(s)){
-                    filteredLogs = stack.pop();
-                    tempFilteredLogs = stack.pop();
-                    List<Log> copy = new ArrayList<>(tempFilteredLogs);
-                    copy.removeAll(filteredLogs);
-                    filteredLogs.addAll(copy);
-                    stack.add(filteredLogs);
+                    logsA = stack.pop();
+                    logsB = stack.pop();
+                    List<Log> copy = new ArrayList<>(logsB);
+                    copy.removeAll(logsA);
+                    logsA.addAll(copy);
+                    stack.add(logsA);
                 }else if (s.contains("&")){
+                    Long interval = Long.parseLong(s.substring(1, s.length()));
+                    if (interval > 0){
+                        logsB = stack.pop();
+                        logsA = stack.pop();
+                    }else if (interval < 0){
+                        logsA = stack.pop();
+                        logsB = stack.pop();
+                        interval = Math.abs(interval);
+                    }else {
+                        logsA = stack.pop();
+                        logsA.retainAll(stack.pop());
+                        stack.add(logsA);
+                        continue;
+                    }
+                    // till now it looks like : logsA AND AFTER 7890L logsB
+                    if (logsA.isEmpty() || logsB.isEmpty()
+                            || ( logsA.get(logsA.size() - 1).getLogTimeStamp() > logsB.get(0).getLogTimeStamp()
+                                && logsA.get(logsA.size() - 1).getLogTimeStamp() - logsB.get(0).getLogTimeStamp() > interval)){
+                        stack.add(new ArrayList<>());
+                    }else if (logsB.get(0).getLogTimeStamp() - logsA.get(logsA.size() - 1).getLogTimeStamp() <= interval){
+                        List<Log> newList = new ArrayList<>();
+                        newList.add(logsA.get(logsA.size() - 1));
+                        newList.add(logsB.get(0));
+                        stack.add(newList);
+                    }else {
 
+                        Log searchFor = logsB.get(0).clone();
+                        searchFor.setLogTimeStamp(searchFor.getLogTimeStamp() - interval);
+                        int x = Collections.binarySearch(logsA, searchFor);
+
+                        if (x > 0){
+                            logsA = logsA.subList(x, logsA.size() - 1);
+                        }else if (x < 0 && (Math.abs(x) > 0 && Math.abs(x) < logsA.size() - 1)){
+                            logsA = logsA.subList(Math.abs(x) - 1, logsA.size() - 1);
+                        }
+
+                        searchFor = logsA.get(logsA.size() - 1).clone();
+                        searchFor.setLogTimeStamp(searchFor.getLogTimeStamp() + interval);
+                        x = Collections.binarySearch(logsB, searchFor);
+                        if (x > 0){
+                            logsB = logsB.subList(0, x);
+                        }else if (x < 0 && (Math.abs(x) > 0 && Math.abs(x) < logsB.size())){
+                            logsB = logsB.subList(0, Math.abs(x));
+                        }
+
+                        List<Log> newList = new ArrayList<>();
+                        for (Log a : logsA){
+                            for (Log b: logsB){
+                                if (a.getLogTimeStamp() > b.getLogTimeStamp() && a.getLogTimeStamp() - b.getLogTimeStamp() <= interval){
+                                    newList.add(a);
+                                    newList.add(b);
+                                }
+                            }
+                        }
+                        stack.add(newList);
+                    }
                 } else {
-                    filteredLogs = getLogsWithCriteria(originalLogs, mapSearchCriteria.get(s));
-                    stack.add(filteredLogs);
+                    logsA = getLogsWithCriteria(originalLogs, mapSearchCriteria.get(s));
+                    stack.add(logsA);
                 }
             }
 

@@ -18,6 +18,7 @@ import java.util.regex.Pattern;
 @Component
 public class Utility {
 
+
     static ObjectMapper mapper = new ObjectMapper();
 
     public static String getPathSeparator(){
