@@ -4,12 +4,14 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.loganalyzer.constants.Constants;
+import com.loganalyzer.model.Condition;
 import com.loganalyzer.model.SearchCriteria;
 import org.springframework.stereotype.Component;
 
 import javax.swing.text.html.parser.Parser;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -17,7 +19,6 @@ import java.util.regex.Pattern;
 
 @Component
 public class Utility {
-
 
     static ObjectMapper mapper = new ObjectMapper();
 
@@ -42,11 +43,24 @@ public class Utility {
         return matcher.find() ? matcher.start() : s.length();
     }
 
+    public static List<String> infixToPostfixXML(String infix) throws Exception {
+
+        String[] tokens = infix.split(" ");
+        for (String s: tokens){
+            switch (s){
+                case "(":
+
+                    break;
+            }
+        }
+        return null;
+    }
+
     public static List<String> infixToPostfix(String infix, Map<String, SearchCriteria> map) throws Exception{
 
-        Long interval = 1000L;
-        List<String> list = new ArrayList<>();
-        char count = 'A';
+    Long interval = 1000L;
+    List<String> list = new ArrayList<>();
+    char count = 'A';
 
         boolean finding = false;
         for (int i = 0; i < infix.length(); i++){

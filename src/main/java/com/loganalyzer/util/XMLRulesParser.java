@@ -7,6 +7,7 @@ import com.loganalyzer.model.Rule;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.events.Attribute;
 import javax.xml.stream.events.EndElement;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
@@ -14,6 +15,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class XMLRulesParser {
@@ -37,28 +39,26 @@ public class XMLRulesParser {
     static final String LINE = "line";
     static final String LOGFILE = "logFile";
 
-    @SuppressWarnings({ "unchecked", "null" })
     public List<Rule> readConfig(String configFile) throws Exception{
 
-        String path = configFile;
-        FileInputStream fis;
         List<Rule> rules = new ArrayList<>();
         Rule rule = null;
         List<Condition> conditions = new ArrayList<>();
         Condition condition = new Condition();
         Message message = new Message();
 
-        try {
-            fis = new FileInputStream(path);
-        } catch (FileNotFoundException e) {
-            throw new Exception("rules.xml not found");
+        InputStream in = getClass().getResourceAsStream("/rules.xml");
+        if (in == null) {
+            try {
+                in = new FileInputStream(configFile);
+            } catch (FileNotFoundException e) {
+                throw new Exception("rules.xml not found");
+            }
         }
 
         try {
             // First, create a new XMLInputFactory
             XMLInputFactory inputFactory = XMLInputFactory.newInstance();
-            // Setup a new eventReader
-            InputStream in = new FileInputStream(configFile);
             XMLEventReader eventReader = inputFactory.createXMLEventReader(in);
 
             while (eventReader.hasNext()) {
@@ -71,9 +71,11 @@ public class XMLRulesParser {
                             rule = new Rule();
                             break;
                         case NAME:
+                            event = eventReader.nextEvent();
                             rule.setRuleName(event.asCharacters().getData());
                             break;
                         case DESCRIPTION:
+                            event = eventReader.nextEvent();
                             rule.setDesc(event.asCharacters().getData());
                             break;
                         case CONDITIONS:
@@ -81,41 +83,59 @@ public class XMLRulesParser {
                             break;
                             case CONDITION:
                                 condition = new Condition();
+                                Iterator<Attribute> attributes = startElement.getAttributes();
+                                while (attributes.hasNext()) {
+                                    Attribute attribute = attributes.next();
+                                    if (attribute.getName().toString().equals(NAME)) {
+                                        condition.setName(attribute.getValue());
+                                    }
+                                }
                                 break;
                             case LEVEL:
+                                event = eventReader.nextEvent();
                                 condition.setLevel(event.asCharacters().getData());
                                 break;
                             case CLASSNAME:
+                                event = eventReader.nextEvent();
                                 condition.setClassName(event.asCharacters().getData());
                                 break;
                             case METHODNAME:
+                                event = eventReader.nextEvent();
                                 condition.setMethodName(event.asCharacters().getData());
                                 break;
                             case CLASSFILE:
+                                event = eventReader.nextEvent();
                                 condition.setClassFile(event.asCharacters().getData());
                                 break;
                             case LINE:
+                                event = eventReader.nextEvent();
                                 condition.setLine(event.asCharacters().getData());
                                 break;
                             case LOGFILE:
+                                event = eventReader.nextEvent();
                                 condition.setLogFile(event.asCharacters().getData());
                                 break;
                         case MESSAGE:
                             message = new Message();
                             break;
                             case TOKEN:
+                                event = eventReader.nextEvent();
                                 message.addMessage(TOKEN, event.asCharacters().getData());
                                 break;
                             case REGEX:
+                                event = eventReader.nextEvent();
                                 message.addMessage(REGEX, event.asCharacters().getData());
                                 break;
                             case VAR:
+                                event = eventReader.nextEvent();
                                 message.addMessage(VAR, event.asCharacters().getData());
                                 break;
                         case QUERY:
+                            event = eventReader.nextEvent();
                             rule.setQuery(event.asCharacters().getData());
                             break;
                         case ACTIONS:
+                            event = eventReader.nextEvent();
                             rule.setActions(event.asCharacters().getData());
                             break;
                     }
@@ -136,8 +156,6 @@ public class XMLRulesParser {
                 }
 
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (XMLStreamException e) {
             e.printStackTrace();
         }

@@ -21,6 +21,15 @@ public class Rule {
         this.query = query;
     }
 
+    public Condition getConditionbyName(String name){
+        for (Condition condition : conditions){
+            if (condition.getName().equals(name)){
+                return condition;
+            }
+        }
+        return null;
+    }
+
     public String getDesc() {
         return desc;
     }

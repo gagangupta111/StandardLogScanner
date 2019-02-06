@@ -78,4 +78,21 @@ public class Condition {
     public void setMessage(Message message) {
         this.message = message;
     }
+
+    public SearchCriteria mapToSearchCriteria(){
+        SearchCriteria criteria = new SearchCriteria();
+        criteria.setClassFile(this.classFile);
+        criteria.setClassName(this.className);
+        criteria.setLevel(this.level);
+        criteria.setLine(this.line);
+        criteria.setLogFile(this.logFile);
+        criteria.setMethodName(this.methodName);
+        String message = "";
+        for (MessageKeyValuePair pair : this.message.getMessage()){
+            message += pair.getKey() + ":" + pair.getValue();
+        }
+        criteria.setMessage(message);
+        return criteria;
+    }
+
 }

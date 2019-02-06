@@ -94,7 +94,8 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     }
 
-/*    private void populateNewRules() throws Exception{
+    /*
+    private void populateNewRules() throws Exception{
 
         XSSFWorkbook myWorkBook;
         InputStream in = getClass().getResourceAsStream("/rules2.xlsx");
@@ -168,7 +169,8 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
             rules.add(rule);
         }
 
-    }*/
+    }
+*/
 
     // This will populate logs only around the time stamp given in the input. By default it is 4 hours around that time stamp, otherwise the argument is mentioned in input.
     private void populateLogs() throws Exception {
@@ -292,8 +294,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
             logsB = new ArrayList<>();
 
             try {
-                // todo: sending the conditions here.
-                postfix = Utility.infixToPostfix("", mapSearchCriteria);
+                postfix = Utility.infixToPostfixXML(rule.getQuery());
             } catch (Exception e) {
                 throw e;
             }
@@ -368,7 +369,8 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
                         stack.add(newList);
                     }
                 } else {
-                    logsA = getLogsWithCriteria(originalLogs, mapSearchCriteria.get(s));
+
+                    logsA = getLogsWithCriteria(originalLogs, rule.getConditionbyName(s).mapToSearchCriteria());
                     stack.add(logsA);
                 }
             }

@@ -1,23 +1,20 @@
 package com.loganalyzer.model;
 
-import java.util.LinkedHashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Message {
 
-    private LinkedHashMap<String, String> message = new LinkedHashMap<>();
+    private List<MessageKeyValuePair> message = new ArrayList<>();
 
     public Message() {
     }
 
-    public LinkedHashMap<String, String> getMessage() {
+    public List<MessageKeyValuePair> getMessage() {
         return message;
     }
 
-    public String getMessage(String key) {
-        return message.get(key);
-    }
-
     public void addMessage(String key, String value) {
-        this.message.put(key, value);
+        this.message.add(new MessageKeyValuePair(key, value));
     }
 }
