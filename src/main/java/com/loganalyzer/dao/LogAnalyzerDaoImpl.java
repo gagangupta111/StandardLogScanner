@@ -9,6 +9,7 @@ import com.loganalyzer.model.SearchCriteria;
 import com.loganalyzer.receiver.LogEventsGenerator;
 import com.loganalyzer.util.JsonDateDeSerializer;
 import com.loganalyzer.util.Utility;
+import com.loganalyzer.util.XMLRulesParser;
 import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.collections4.PredicateUtils;
 import org.apache.commons.io.FileUtils;
@@ -86,7 +87,14 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
     @Value("#{'${filesWithFormatPatternNoLocation}'.split(',')}")
     private List<String> filesWithFormatPatternNoLocation;
 
-    private void populateNewRules() throws Exception{
+    private void populateXMLRules() throws Exception{
+
+        XMLRulesParser xmlRulesParser = new XMLRulesParser();
+        rules = xmlRulesParser.readConfig("/rules.xml");
+
+    }
+
+/*    private void populateNewRules() throws Exception{
 
         XSSFWorkbook myWorkBook;
         InputStream in = getClass().getResourceAsStream("/rules2.xlsx");
@@ -160,7 +168,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
             rules.add(rule);
         }
 
-    }
+    }*/
 
     // This will populate logs only around the time stamp given in the input. By default it is 4 hours around that time stamp, otherwise the argument is mentioned in input.
     private void populateLogs() throws Exception {
@@ -234,7 +242,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
         ListUtils.predicatedList(logs, PredicateUtils.notNullPredicate());
         populateLogs();
-        populateNewRules();
+        populateXMLRules();
     }
 
     private void generator(String format, File file, SearchCriteria criteria){
@@ -284,7 +292,8 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
             logsB = new ArrayList<>();
 
             try {
-                postfix = Utility.infixToPostfix(rule.getConditions(), mapSearchCriteria);
+                // todo: sending the conditions here.
+                postfix = Utility.infixToPostfix("", mapSearchCriteria);
             } catch (Exception e) {
                 throw e;
             }
