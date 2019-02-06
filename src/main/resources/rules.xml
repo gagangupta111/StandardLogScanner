@@ -23,7 +23,7 @@
 			</message>
 		</condition>
 	</conditions>
-	<query>( ( ( ( condition1 AND AFTER 00:00:00:100 condition2 ) OR ( condition3 AND BEFORE 00:00:00:876 condition4) ) ) AND condition5 ) OR condition6
+	<query>( ( ( ( condition1 AND AFTER 00:00:00:100 condition2 ) OR ( condition3 AND BEFORE 00:00:00:876 condition4 ) ) ) AND condition5 ) OR condition6
 	</query>
     <actions>Solution1: R1:		1. DistributedMessaging Errror. Check if ignite is working fine.</actions>
 </rule>

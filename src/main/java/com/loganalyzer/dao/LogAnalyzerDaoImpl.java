@@ -277,7 +277,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
     public Map<String, String> checkAllRules() throws Exception {
 
         Map<String, String> rulesResponse = new HashMap<>();
-        Map<String, SearchCriteria> mapSearchCriteria;
+        Map<String, String> map;
         List<Log> originalLogs = logs;
         List<Log> logsA;
         List<Log> logsB;
@@ -289,12 +289,12 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
             varIndexMap = new HashMap<>();
             varValueMap = new HashMap<>();
             stack = new Stack<>();
-            mapSearchCriteria = new HashMap<>();
+            map = new HashMap<>();
             logsA = new ArrayList<>();
             logsB = new ArrayList<>();
 
             try {
-                postfix = Utility.infixToPostfixXML(rule.getQuery());
+                postfix = Utility.infixToPostfixXML(rule.getQuery(), map);
             } catch (Exception e) {
                 throw e;
             }
@@ -369,8 +369,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
                         stack.add(newList);
                     }
                 } else {
-
-                    logsA = getLogsWithCriteria(originalLogs, rule.getConditionbyName(s).mapToSearchCriteria());
+                    logsA = getLogsWithCriteria(originalLogs, rule.getConditionbyName(map.get(s)).mapToSearchCriteria());
                     stack.add(logsA);
                 }
             }

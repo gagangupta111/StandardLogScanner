@@ -89,8 +89,9 @@ public class Condition {
         criteria.setMethodName(this.methodName);
         String message = "";
         for (MessageKeyValuePair pair : this.message.getMessage()){
-            message += pair.getKey() + ":" + pair.getValue();
+            message += pair.getKey() + ":" + pair.getValue() + ", ";
         }
+        message = message.substring(0, message.length() - 2);
         criteria.setMessage(message);
         return criteria;
     }

@@ -120,15 +120,15 @@ public class XMLRulesParser {
                             break;
                             case TOKEN:
                                 event = eventReader.nextEvent();
-                                message.addMessage(TOKEN, event.asCharacters().getData());
+                                message.addMessage(TOKEN.toUpperCase(), event.asCharacters().getData());
                                 break;
                             case REGEX:
                                 event = eventReader.nextEvent();
-                                message.addMessage(REGEX, event.asCharacters().getData());
+                                message.addMessage(REGEX.toUpperCase(), event.asCharacters().getData());
                                 break;
                             case VAR:
                                 event = eventReader.nextEvent();
-                                message.addMessage(VAR, event.asCharacters().getData());
+                                message.addMessage(VAR.toUpperCase(), event.asCharacters().getData());
                                 break;
                         case QUERY:
                             event = eventReader.nextEvent();

@@ -43,22 +43,38 @@ public class Utility {
         return matcher.find() ? matcher.start() : s.length();
     }
 
-    public static List<String> infixToPostfixXML(String infix) throws Exception {
+    public static List<String> infixToPostfixXML(String infix, Map<String, String> map) throws Exception {
 
+        char key = 'A';
+        List<String> list = new ArrayList<>();
         String[] tokens = infix.split(" ");
-        for (String s: tokens){
-            switch (s){
-                case "(":
-
-                    break;
+        for (int i = 0; i < tokens.length; i++){
+            if ("(".equals(tokens[i]) || ")".equals(tokens[i])){
+                list.add(tokens[i]);
+            }else if ("OR".equals(tokens[i])){
+                list.add("|");
+            }else if ("AND".equals(tokens[i])){
+                if ("AFTER".equals(tokens[i+1]) || "BEFORE".equals(tokens[i+1])){
+                    String time = tokens[i+2];
+                    String[] splitted = time.split(":");
+                    Long milliseconds = 0L;
+                    milliseconds = Long.parseLong(splitted[0])*60*60*1000 + Long.parseLong(splitted[1])*60*1000 + Long.parseLong(splitted[2])*1000 + Long.parseLong(splitted[3]);
+                    list.add("&" + ( "AFTER".equals(tokens[i+1]) ? milliseconds : -milliseconds ));
+                    i = i + 2;
+                }else {
+                    list.add("&");
+                }
+            }else {
+                list.add(String.valueOf(key));
+                map.put(String.valueOf(key), tokens[i].trim());
+                key++;
             }
         }
-        return null;
+        return toPostfix(list);
     }
 
     public static List<String> infixToPostfix(String infix, Map<String, SearchCriteria> map) throws Exception{
 
-    Long interval = 1000L;
     List<String> list = new ArrayList<>();
     char count = 'A';
 
