@@ -6,7 +6,6 @@ import com.loganalyzer.model.Rule;
 
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.events.Attribute;
 import javax.xml.stream.events.EndElement;
 import javax.xml.stream.events.StartElement;
@@ -53,10 +52,14 @@ public class XMLRulesParser {
                 in = new FileInputStream(configFile);
             } catch (FileNotFoundException e) {
                 throw new Exception("rules.xml not found");
+            } catch (Exception e){
+                throw e;
             }
         }
 
         try {
+
+            Utility.validateXMLSchema("/rules.xml");
             // First, create a new XMLInputFactory
             XMLInputFactory inputFactory = XMLInputFactory.newInstance();
             XMLEventReader eventReader = inputFactory.createXMLEventReader(in);
@@ -156,7 +159,7 @@ public class XMLRulesParser {
                 }
 
             }
-        } catch (XMLStreamException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return rules;

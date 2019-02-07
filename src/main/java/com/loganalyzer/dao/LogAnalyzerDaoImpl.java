@@ -1,5 +1,6 @@
 package com.loganalyzer.dao;
 
+import com.loganalyzer.constants.Constants;
 import com.loganalyzer.model.Log;
 import com.loganalyzer.model.Rule;
 import com.loganalyzer.model.SearchCriteria;
@@ -117,11 +118,11 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
             if (compressedList[0].equals(ext)){
                 String inputFile = file1.getAbsolutePath();
                 String outputFolder = inputFile.substring(0, inputFile.lastIndexOf("\\"));
-                unZipIt(inputFile, outputFolder);
+                Utility.unZipIt(inputFile, outputFolder);
             }else if (compressedList[1].equals(ext)){
                 String inputFile = file1.getAbsolutePath();
                 String outputFile = inputFile.substring(0, inputFile.lastIndexOf("."));
-                gunzipIt(inputFile, outputFile);
+                Utility.gunzipIt(inputFile, outputFile);
             }
         }
 
@@ -288,6 +289,9 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
             }
         }
 
+        if (rulesResponse.isEmpty()){
+            rulesResponse.put("NO_RULE_MATCHED", Constants.NO_RULE_MATCHED);
+        }
         return rulesResponse;
     }
 
@@ -565,80 +569,6 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
         System.out.println(" Time Taken: " + (end - start));
         return returnedList;
 
-    }
-
-    public void gunzipIt(String inputFile, String outputFile){
-
-        byte[] buffer = new byte[1024];
-
-        try{
-
-            GZIPInputStream gzis = new GZIPInputStream(new FileInputStream(inputFile));
-            FileOutputStream out = new FileOutputStream(outputFile);
-
-            int len;
-            while ((len = gzis.read(buffer)) > 0) {
-                out.write(buffer, 0, len);
-            }
-
-            gzis.close();
-            out.close();
-
-            System.out.println("Done");
-
-        }catch(IOException ex){
-            ex.printStackTrace();
-        }
-    }
-
-    public void unZipIt(String zipFile, String outputFolder){
-
-        byte[] buffer = new byte[1024];
-
-        try{
-
-            //create output directory is not exists
-            File folder = new File(outputFolder);
-            if(!folder.exists()){
-                folder.mkdir();
-            }
-
-            //get the zip file content
-            ZipInputStream zis =
-                    new ZipInputStream(new FileInputStream(zipFile));
-            //get the zipped file list entry
-            ZipEntry ze = zis.getNextEntry();
-
-            while(ze!=null){
-
-                String fileName = ze.getName();
-                File newFile = new File(outputFolder + File.separator + fileName);
-
-                System.out.println("file unzip : "+ newFile.getAbsoluteFile());
-
-                //create all non exists folders
-                //else you will hit FileNotFoundException for compressed folder
-                new File(newFile.getParent()).mkdirs();
-
-                FileOutputStream fos = new FileOutputStream(newFile);
-
-                int len;
-                while ((len = zis.read(buffer)) > 0) {
-                    fos.write(buffer, 0, len);
-                }
-
-                fos.close();
-                ze = zis.getNextEntry();
-            }
-
-            zis.closeEntry();
-            zis.close();
-
-            System.out.println("Done");
-
-        }catch(IOException ex){
-            ex.printStackTrace();
-        }
     }
 
 }

@@ -7,8 +7,18 @@ import com.loganalyzer.constants.Constants;
 import com.loganalyzer.model.Condition;
 import com.loganalyzer.model.SearchCriteria;
 import org.springframework.stereotype.Component;
+import org.xml.sax.SAXException;
 
 import javax.swing.text.html.parser.Parser;
+import javax.xml.XMLConstants;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,6 +26,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 @Component
 public class Utility {
@@ -229,5 +242,92 @@ public class Utility {
         return postfix;
     }
 
+
+    public static void gunzipIt(String inputFile, String outputFile){
+
+        byte[] buffer = new byte[1024];
+
+        try{
+
+            GZIPInputStream gzis = new GZIPInputStream(new FileInputStream(inputFile));
+            FileOutputStream out = new FileOutputStream(outputFile);
+
+            int len;
+            while ((len = gzis.read(buffer)) > 0) {
+                out.write(buffer, 0, len);
+            }
+
+            gzis.close();
+            out.close();
+
+            System.out.println("Done");
+
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public static void unZipIt(String zipFile, String outputFolder){
+
+        byte[] buffer = new byte[1024];
+
+        try{
+
+            //create output directory is not exists
+            File folder = new File(outputFolder);
+            if(!folder.exists()){
+                folder.mkdir();
+            }
+
+            //get the zip file content
+            ZipInputStream zis =
+                    new ZipInputStream(new FileInputStream(zipFile));
+            //get the zipped file list entry
+            ZipEntry ze = zis.getNextEntry();
+
+            while(ze!=null){
+
+                String fileName = ze.getName();
+                File newFile = new File(outputFolder + File.separator + fileName);
+
+                System.out.println("file unzip : "+ newFile.getAbsoluteFile());
+
+                //create all non exists folders
+                //else you will hit FileNotFoundException for compressed folder
+                new File(newFile.getParent()).mkdirs();
+
+                FileOutputStream fos = new FileOutputStream(newFile);
+
+                int len;
+                while ((len = zis.read(buffer)) > 0) {
+                    fos.write(buffer, 0, len);
+                }
+
+                fos.close();
+                ze = zis.getNextEntry();
+            }
+
+            zis.closeEntry();
+            zis.close();
+
+            System.out.println("Done");
+
+        }catch(IOException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public static boolean validateXMLSchema(String xmlPath) throws Exception{
+            SchemaFactory factory =
+                    SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            File file = new File(Utility.class.getResource("/rules.xsd").getFile());
+            Schema schema = factory.newSchema(file);
+            Validator validator = schema.newValidator();
+            file = new File(Utility.class.getClass().getResource(xmlPath).getFile());
+            validator.validate(new StreamSource(file));
+
+        return true;
+
+    }
 
 }
