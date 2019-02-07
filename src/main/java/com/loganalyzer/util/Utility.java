@@ -323,8 +323,9 @@ public class Utility {
             File file = new File(Utility.class.getResource("/rules.xsd").getFile());
             Schema schema = factory.newSchema(file);
             Validator validator = schema.newValidator();
-            file = new File(Utility.class.getClass().getResource(xmlPath).getFile());
-            validator.validate(new StreamSource(file));
+            StreamSource streamSource = new StreamSource();
+            streamSource.setInputStream(new FileInputStream(xmlPath));
+            validator.validate(streamSource);
 
         return true;
 
