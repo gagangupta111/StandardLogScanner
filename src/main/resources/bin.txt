@@ -1,0 +1,145 @@
+(
+{
+	"message": "[LDAP: error code 49 - 80090308: LdapErr: DSID-0C09042F, comment: AcceptSecurityContext error, data 531, v2580 ]"
+}
+AND
+{
+	"message": "[LDAP: error code 49 - 80090308: LdapErr: DSID-0C09042F, comment: AcceptSecurityContext error, data 531, v2580 ]"
+}
+)
+OR 
+{
+	"message": "[LDAP: error code 49 - 80090308: LdapErr: DSID-0C09042F, comment: AcceptSecurityContext error, data 531, v2580 ]"
+}
+
+
+( ( operand1 operator1  operand2  operator2 operand3 ) operator3 ( operand4 operator4 operand5 ) )
+( ( A * B + F * G ) + ( C / D ) )
+( ( hh AND jj AND kk ) OR ( C AND D ) )
+( ( hh AND jj AND kk ) OR ( C AND D ) ) OR ( hgjhg OR jhgjhgj )
+
+( ( {
+	"message": "[LDAP: error code 49 - 80090308: LdapErr: DSID-0C09042F, comment: AcceptSecurityContext error, data 531, v2580 ]"
+} AND {
+	"message": "[LDAP: error code 49 - 80090308: LdapErr: DSID-0C09042F, comment: AcceptSecurityContext error, data 531, v2580 ]"
+} ) OR ( {
+	"message": "[LDAP: error code 49 - 80090308: LdapErr: DSID-0C09042F, comment: AcceptSecurityContext error, data 531, v2580 ]"
+} AND {
+	"message": "[LDAP: error code 49 - 80090308: LdapErr: DSID-0C09042F, comment: AcceptSecurityContext error, data 531, v2580 ]"
+}) )
+
+( ( {
+	"message": "[LDAP: error code 49 - 80090308: LdapErr: DSID-0C09042F, comment: AcceptSecurityContext error, data 531, v2580 ]"
+} AND {
+	"message": "[LDAP: error code 49 - 80090308: LdapErr: DSID-0C09042F, comment: AcceptSecurityContext error, data 531, v2580 ]"
+} AND {
+	"message": "[LDAP: error code 49 - 80090308: LdapErr: DSID-0C09042F, comment: AcceptSecurityContext error, data 531, v2580 ]"
+} OR {
+	"message": "[LDAP: error code 49 - 80090308: LdapErr: DSID-0C09042F, comment: AcceptSecurityContext error, data 531, v2580 ]"
+} ) OR ( {
+	"message": "[LDAP: error code 49 - 80090308: LdapErr: DSID-0C09042F, comment: AcceptSecurityContext error, data 531, v2580 ]"
+} OR {
+	"message": "[LDAP: error code 49 - 80090308: LdapErr: DSID-0C09042F, comment: AcceptSecurityContext error, data 531, v2580 ]"
+} ) )
+
+
+(
+(
+( ( {
+	"message": "DistributedMessaging1"
+} AND {
+	"message": "Watchdog"
+} ) OR ( {
+	"message": "subscriber"
+} AND {
+	"message": "updates1"
+}) )
+) AND
+{
+	"message": "DistributedMessaging"
+}
+)
+OR
+{
+	"message": "11DistributedMessaging Watchdog - subscriber watchdog looking for updates"
+}
+
+
+
+    /*
+    private void populateNewRules() throws Exception{
+
+        XSSFWorkbook myWorkBook;
+        InputStream in = getClass().getResourceAsStream("/rules2.xlsx");
+        if (in != null){
+            myWorkBook = new XSSFWorkbook(in);
+        }else {
+            String path = "./rules2.xlsx";
+            FileInputStream fis;
+            try {
+                fis = new FileInputStream(path);
+            } catch (FileNotFoundException e) {
+                throw new Exception("rules2.xlsx not found");
+            }
+
+
+            try {
+                myWorkBook = new XSSFWorkbook(fis);
+            } catch (IOException e) {
+                throw new Exception("format of rules.xlsx is not correct");
+            }
+        }
+        // Return first sheet from the XLSX workbook
+        XSSFSheet mySheet = myWorkBook.getSheetAt(0);
+
+        // Get iterator to all the rows in current sheet
+        Iterator<Row> rowIterator = mySheet.iterator();
+
+        if (rowIterator.hasNext()) {
+            rowIterator.next();
+        }
+
+        String ruleName;
+        String desc;
+        String conditions;
+        String actions;
+
+        // Traversing over each row of XLSX file
+        while (rowIterator.hasNext()) {
+            Row row = rowIterator.next();
+            Rule rule = new Rule();
+            // For each row, iterate through each columns
+            Iterator<Cell> cellIterator = row.cellIterator();
+            if (cellIterator.hasNext()){
+                ruleName = cellIterator.next().getStringCellValue();
+                if ("".equals(ruleName)){
+                    continue;
+                }
+                rule.setRuleName(ruleName);
+            }
+            if (cellIterator.hasNext()){
+                desc = cellIterator.next().getStringCellValue();
+                if (desc == null){
+                    continue;
+                }
+                rule.setDesc(desc);
+            }
+            if (cellIterator.hasNext()){
+                conditions = cellIterator.next().getStringCellValue();
+                if (conditions == null){
+                    continue;
+                }
+                rule.setConditions(conditions);
+            }
+            if (cellIterator.hasNext()){
+                actions = cellIterator.next().getStringCellValue();
+                if (actions == null){
+                    continue;
+                }
+                rule.setActions(actions);
+            }
+            rules.add(rule);
+        }
+
+    }
+*/

@@ -2,7 +2,6 @@ package com.loganalyzer.controller;
 
 import com.loganalyzer.model.Log;
 import com.loganalyzer.model.Rule;
-import com.loganalyzer.model.RuleCriteria;
 import com.loganalyzer.model.SearchCriteria;
 import com.loganalyzer.service.LogAnalyzerService;
 import org.springframework.beans.factory.annotation.Autowired;

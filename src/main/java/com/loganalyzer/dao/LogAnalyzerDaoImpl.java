@@ -1,23 +1,15 @@
 package com.loganalyzer.dao;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.loganalyzer.model.Log;
 import com.loganalyzer.model.Rule;
-import com.loganalyzer.model.RuleCriteria;
 import com.loganalyzer.model.SearchCriteria;
 import com.loganalyzer.receiver.LogEventsGenerator;
-import com.loganalyzer.util.JsonDateDeSerializer;
 import com.loganalyzer.util.Utility;
 import com.loganalyzer.util.XMLRulesParser;
 import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.collections4.PredicateUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,28 +18,20 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
-import javax.rmi.CORBA.Util;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -72,6 +56,9 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     private String aroundDate;
 
+    @Value("${range}")
+    private Long range;
+
     @Value("${formatPattern}")
     private String formatPattern;
 
@@ -94,84 +81,6 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
     }
 
-    /*
-    private void populateNewRules() throws Exception{
-
-        XSSFWorkbook myWorkBook;
-        InputStream in = getClass().getResourceAsStream("/rules2.xlsx");
-        if (in != null){
-            myWorkBook = new XSSFWorkbook(in);
-        }else {
-            String path = "./rules2.xlsx";
-            FileInputStream fis;
-            try {
-                fis = new FileInputStream(path);
-            } catch (FileNotFoundException e) {
-                throw new Exception("rules2.xlsx not found");
-            }
-
-
-            try {
-                myWorkBook = new XSSFWorkbook(fis);
-            } catch (IOException e) {
-                throw new Exception("format of rules.xlsx is not correct");
-            }
-        }
-        // Return first sheet from the XLSX workbook
-        XSSFSheet mySheet = myWorkBook.getSheetAt(0);
-
-        // Get iterator to all the rows in current sheet
-        Iterator<Row> rowIterator = mySheet.iterator();
-
-        if (rowIterator.hasNext()) {
-            rowIterator.next();
-        }
-
-        String ruleName;
-        String desc;
-        String conditions;
-        String actions;
-
-        // Traversing over each row of XLSX file
-        while (rowIterator.hasNext()) {
-            Row row = rowIterator.next();
-            Rule rule = new Rule();
-            // For each row, iterate through each columns
-            Iterator<Cell> cellIterator = row.cellIterator();
-            if (cellIterator.hasNext()){
-                ruleName = cellIterator.next().getStringCellValue();
-                if ("".equals(ruleName)){
-                    continue;
-                }
-                rule.setRuleName(ruleName);
-            }
-            if (cellIterator.hasNext()){
-                desc = cellIterator.next().getStringCellValue();
-                if (desc == null){
-                    continue;
-                }
-                rule.setDesc(desc);
-            }
-            if (cellIterator.hasNext()){
-                conditions = cellIterator.next().getStringCellValue();
-                if (conditions == null){
-                    continue;
-                }
-                rule.setConditions(conditions);
-            }
-            if (cellIterator.hasNext()){
-                actions = cellIterator.next().getStringCellValue();
-                if (actions == null){
-                    continue;
-                }
-                rule.setActions(actions);
-            }
-            rules.add(rule);
-        }
-
-    }
-*/
-
     // This will populate logs only around the time stamp given in the input. By default it is 4 hours around that time stamp, otherwise the argument is mentioned in input.
     private void populateLogs() throws Exception {
 
@@ -193,7 +102,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
         if (appArgs.getNonOptionArgs().size() > 3){
             millisecs = Long.parseLong(appArgs.getNonOptionArgs().get(3));
         }else {
-            millisecs = 120L;
+            millisecs = range;
         }
 
         SearchCriteria criteria = new SearchCriteria();

@@ -1,11 +1,8 @@
 package com.loganalyzer.model;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.loganalyzer.util.JsonDateDeSerializer;
-
-import java.sql.Timestamp;
 
 @JsonAutoDetect
 public class SearchCriteria {
