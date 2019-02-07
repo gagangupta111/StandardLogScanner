@@ -49,11 +49,12 @@ public class Utility {
         List<String> list = new ArrayList<>();
         String[] tokens = infix.split(" ");
         for (int i = 0; i < tokens.length; i++){
-            if ("(".equals(tokens[i]) || ")".equals(tokens[i])){
-                list.add(tokens[i]);
-            }else if ("OR".equals(tokens[i])){
+            String token = tokens[i].replaceAll("[^a-z0-9A-Z():]", "");
+            if ("(".equals(token) || ")".equals(token)){
+                list.add(token);
+            }else if ("OR".equals(token)){
                 list.add("|");
-            }else if ("AND".equals(tokens[i])){
+            }else if ("AND".equals(token)){
                 if ("AFTER".equals(tokens[i+1]) || "BEFORE".equals(tokens[i+1])){
                     String time = tokens[i+2];
                     String[] splitted = time.split(":");

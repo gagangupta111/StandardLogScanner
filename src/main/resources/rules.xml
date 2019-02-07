@@ -23,24 +23,8 @@
 			</message>
 		</condition>
 	</conditions>
-	<query>( ( ( ( condition1 AND AFTER 00:00:00:100 condition2 ) OR ( condition3 AND BEFORE 00:00:00:876 condition4 ) ) ) AND condition5 ) OR condition6
+	<query>( condition1 AND AFTER 00:00:00:100 condition2 )
 	</query>
     <actions>Solution1: R1:		1. DistributedMessaging Errror. Check if ignite is working fine.</actions>
-</rule>
-<rule>
-    <name>R1</name>
-	<description>DistributedMessaging Errror</description>
-    <conditions>
-		<condition name="condition1">
-			<message>
-				<token>abc</token>
-				<token>def</token>
-				<token>ghi</token>
-				<regex>[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}</regex>
-			</message>
-		</condition>
-	</conditions>
-	<query>	condition1 </query>
-    <actions>DistributedMessaging Errror</actions>
 </rule>
 </rules>
