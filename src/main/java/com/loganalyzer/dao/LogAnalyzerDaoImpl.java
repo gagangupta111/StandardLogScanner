@@ -78,7 +78,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
     private void populateXMLRules() throws Exception{
 
         XMLRulesParser xmlRulesParser = new XMLRulesParser();
-        rules = xmlRulesParser.readConfig("/rules.xml");
+        rules = xmlRulesParser.readConfig(Constants.RULES_XML);
 
     }
 

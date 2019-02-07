@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.loganalyzer.constants.Constants;
 import com.loganalyzer.model.Condition;
 import com.loganalyzer.model.SearchCriteria;
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Component;
 import org.xml.sax.SAXException;
 
@@ -320,7 +321,8 @@ public class Utility {
     public static boolean validateXMLSchema(String xmlPath) throws Exception{
             SchemaFactory factory =
                     SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-            File file = new File(Utility.class.getResource("/rules.xsd").getFile());
+            File file = new File("rulesFormat.xsd");
+            FileUtils.copyInputStreamToFile(Utility.class.getResourceAsStream("/rules.xsd"), file);
             Schema schema = factory.newSchema(file);
             Validator validator = schema.newValidator();
             StreamSource streamSource = new StreamSource();

@@ -1,5 +1,6 @@
 package com.loganalyzer.util;
 
+import com.loganalyzer.constants.Constants;
 import com.loganalyzer.model.Condition;
 import com.loganalyzer.model.Message;
 import com.loganalyzer.model.Rule;
@@ -46,7 +47,7 @@ public class XMLRulesParser {
         Condition condition = new Condition();
         Message message = new Message();
 
-        InputStream in = getClass().getResourceAsStream("/rules.xml");
+        InputStream in = new FileInputStream(Constants.RULES_XML);
         if (in == null) {
             try {
                 in = new FileInputStream(configFile);
@@ -59,7 +60,7 @@ public class XMLRulesParser {
 
         try {
 
-            Utility.validateXMLSchema("/rules.xml");
+            Utility.validateXMLSchema(Constants.RULES_XML);
             // First, create a new XMLInputFactory
             XMLInputFactory inputFactory = XMLInputFactory.newInstance();
             XMLEventReader eventReader = inputFactory.createXMLEventReader(in);
@@ -72,10 +73,13 @@ public class XMLRulesParser {
                     switch (startElement.getName().getLocalPart()){
                         case RULE:
                             rule = new Rule();
-                            break;
-                        case NAME:
-                            event = eventReader.nextEvent();
-                            rule.setRuleName(event.asCharacters().getData());
+                            Iterator<Attribute> attributesRule = startElement.getAttributes();
+                            while (attributesRule.hasNext()) {
+                                Attribute attribute = attributesRule.next();
+                                if (attribute.getName().toString().equals(NAME)) {
+                                    rule.setRuleName(attribute.getValue());
+                                }
+                            }
                             break;
                         case DESCRIPTION:
                             event = eventReader.nextEvent();
