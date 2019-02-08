@@ -1,0 +1,286 @@
+2019-02-08 13:51:50.734  INFO 28048 --- [main] com.loganalyzer.LogAnalyzerMain          : Starting LogAnalyzerMain on AABRD0310 with PID 28048 (D:\gagan.gupta\IntellijIdeaProjects\LogAnalyzer\target\classes started by gagan.gupta in D:\gagan.gupta\IntellijIdeaProjects\LogAnalyzer)
+2019-02-08 13:51:50.741  INFO 28048 --- [main] com.loganalyzer.LogAnalyzerMain          : No active profile set, falling back to default profiles: default
+2019-02-08 13:51:50.925  INFO 28048 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@37d4349f: startup date [Fri Feb 08 13:51:50 IST 2019]; root of context hierarchy
+2019-02-08 13:51:53.565  INFO 28048 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8759 (http)
+2019-02-08 13:51:53.584  INFO 28048 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-02-08 13:51:53.586  INFO 28048 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.20
+2019-02-08 13:51:53.800  INFO 28048 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-02-08 13:51:53.800  INFO 28048 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2879 ms
+2019-02-08 13:51:54.002  INFO 28048 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2019-02-08 13:51:54.009  INFO 28048 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-02-08 13:51:54.010  INFO 28048 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-02-08 13:51:54.010  INFO 28048 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-02-08 13:51:54.010  INFO 28048 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-02-08 13:51:54.844  INFO 28048 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@37d4349f: startup date [Fri Feb 08 13:51:50 IST 2019]; root of context hierarchy
+2019-02-08 13:51:54.944  INFO 28048 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/execute],methods=[GET]}" onto public java.util.Map<java.lang.String, java.lang.String> com.loganalyzer.controller.LogAnalyzerController.checkAllRules() throws java.lang.Exception
+2019-02-08 13:51:54.945  INFO 28048 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/rules],methods=[GET]}" onto public java.util.List<com.loganalyzer.model.Rule> com.loganalyzer.controller.LogAnalyzerController.getAllRules() throws java.io.IOException
+2019-02-08 13:51:54.946  INFO 28048 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs],methods=[GET]}" onto public java.util.List<com.loganalyzer.model.Log> com.loganalyzer.controller.LogAnalyzerController.getAllLogs()
+2019-02-08 13:51:54.947  INFO 28048 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/filter],methods=[POST],consumes=[application/json]}" onto public java.util.List<com.loganalyzer.model.Log> com.loganalyzer.controller.LogAnalyzerController.getLogsWithCriteria(com.loganalyzer.model.SearchCriteria)
+2019-02-08 13:51:54.950  INFO 28048 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-02-08 13:51:54.950  INFO 28048 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-02-08 13:51:54.994  INFO 28048 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-08 13:51:54.995  INFO 28048 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-08 13:51:55.057  INFO 28048 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-08 13:51:55.331  INFO 28048 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-02-08 13:51:55.442  INFO 28048 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8759 (http)
+2019-02-08 13:51:55.448  INFO 28048 --- [main] com.loganalyzer.LogAnalyzerMain          : Started LogAnalyzerMain in 5.411 seconds (JVM running for 6.141)
+2019-02-08 13:53:15.137  INFO 980 --- [main] com.loganalyzer.LogAnalyzerMain          : Starting LogAnalyzerMain on AABRD0310 with PID 980 (D:\gagan.gupta\IntellijIdeaProjects\LogAnalyzer\target\classes started by gagan.gupta in D:\gagan.gupta\IntellijIdeaProjects\LogAnalyzer)
+2019-02-08 13:53:15.141  INFO 980 --- [main] com.loganalyzer.LogAnalyzerMain          : No active profile set, falling back to default profiles: default
+2019-02-08 13:53:15.226  INFO 980 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@37d4349f: startup date [Fri Feb 08 13:53:15 IST 2019]; root of context hierarchy
+2019-02-08 13:53:17.465  INFO 980 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8759 (http)
+2019-02-08 13:53:17.483  INFO 980 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-02-08 13:53:17.485  INFO 980 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.20
+2019-02-08 13:53:17.667  INFO 980 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-02-08 13:53:17.667  INFO 980 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2445 ms
+2019-02-08 13:53:17.853  INFO 980 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2019-02-08 13:53:17.859  INFO 980 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-02-08 13:53:17.859  INFO 980 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-02-08 13:53:17.859  INFO 980 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-02-08 13:53:17.859  INFO 980 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-02-08 13:53:18.566  INFO 980 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@37d4349f: startup date [Fri Feb 08 13:53:15 IST 2019]; root of context hierarchy
+2019-02-08 13:53:18.714  INFO 980 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/filter],methods=[POST],consumes=[application/json]}" onto public java.util.List<com.loganalyzer.model.Log> com.loganalyzer.controller.LogAnalyzerController.getLogsWithCriteria(com.loganalyzer.model.SearchCriteria)
+2019-02-08 13:53:18.716  INFO 980 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/rules],methods=[GET]}" onto public java.util.List<com.loganalyzer.model.Rule> com.loganalyzer.controller.LogAnalyzerController.getAllRules() throws java.io.IOException
+2019-02-08 13:53:18.716  INFO 980 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/execute],methods=[GET]}" onto public java.util.Map<java.lang.String, java.lang.String> com.loganalyzer.controller.LogAnalyzerController.checkAllRules() throws java.lang.Exception
+2019-02-08 13:53:18.717  INFO 980 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs],methods=[GET]}" onto public java.util.List<com.loganalyzer.model.Log> com.loganalyzer.controller.LogAnalyzerController.getAllLogs()
+2019-02-08 13:53:18.720  INFO 980 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-02-08 13:53:18.721  INFO 980 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-02-08 13:53:18.765  INFO 980 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-08 13:53:18.765  INFO 980 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-08 13:53:18.820  INFO 980 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-08 13:53:19.175  INFO 980 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-02-08 13:53:19.269  INFO 980 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8759 (http)
+2019-02-08 13:53:19.274  INFO 980 --- [main] com.loganalyzer.LogAnalyzerMain          : Started LogAnalyzerMain in 14.784 seconds (JVM running for 15.488)
+2019-02-08 13:54:02.841  INFO 1608 --- [main] com.loganalyzer.LogAnalyzerMain          : Starting LogAnalyzerMain on AABRD0310 with PID 1608 (D:\gagan.gupta\IntellijIdeaProjects\LogAnalyzer\target\classes started by gagan.gupta in D:\gagan.gupta\IntellijIdeaProjects\LogAnalyzer)
+2019-02-08 13:54:02.850  INFO 1608 --- [main] com.loganalyzer.LogAnalyzerMain          : No active profile set, falling back to default profiles: default
+2019-02-08 13:54:03.004  INFO 1608 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@37d4349f: startup date [Fri Feb 08 13:54:03 IST 2019]; root of context hierarchy
+2019-02-08 13:54:05.636  INFO 1608 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8759 (http)
+2019-02-08 13:54:05.662  INFO 1608 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-02-08 13:54:05.663  INFO 1608 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.20
+2019-02-08 13:54:05.861  INFO 1608 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-02-08 13:54:05.861  INFO 1608 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2860 ms
+2019-02-08 13:54:06.048  INFO 1608 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2019-02-08 13:54:06.052  INFO 1608 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-02-08 13:54:06.053  INFO 1608 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-02-08 13:54:06.053  INFO 1608 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-02-08 13:54:06.053  INFO 1608 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-02-08 13:54:06.695  INFO 1608 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@37d4349f: startup date [Fri Feb 08 13:54:03 IST 2019]; root of context hierarchy
+2019-02-08 13:54:06.790  INFO 1608 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs],methods=[GET]}" onto public java.util.List<com.loganalyzer.model.Log> com.loganalyzer.controller.LogAnalyzerController.getAllLogs()
+2019-02-08 13:54:06.792  INFO 1608 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/rules],methods=[GET]}" onto public java.util.List<com.loganalyzer.model.Rule> com.loganalyzer.controller.LogAnalyzerController.getAllRules() throws java.io.IOException
+2019-02-08 13:54:06.792  INFO 1608 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/execute],methods=[GET]}" onto public java.util.Map<java.lang.String, java.lang.String> com.loganalyzer.controller.LogAnalyzerController.checkAllRules() throws java.lang.Exception
+2019-02-08 13:54:06.793  INFO 1608 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/filter],methods=[POST],consumes=[application/json]}" onto public java.util.List<com.loganalyzer.model.Log> com.loganalyzer.controller.LogAnalyzerController.getLogsWithCriteria(com.loganalyzer.model.SearchCriteria)
+2019-02-08 13:54:06.796  INFO 1608 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-02-08 13:54:06.797  INFO 1608 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-02-08 13:54:06.836  INFO 1608 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-08 13:54:06.837  INFO 1608 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-08 13:54:06.886  INFO 1608 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-08 13:54:07.142  INFO 1608 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-02-08 13:54:07.228  INFO 1608 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8759 (http)
+2019-02-08 13:54:07.233  INFO 1608 --- [main] com.loganalyzer.LogAnalyzerMain          : Started LogAnalyzerMain in 5.096 seconds (JVM running for 5.791)
+2019-02-08 13:54:38.005  INFO 27604 --- [main] com.loganalyzer.LogAnalyzerMain          : Starting LogAnalyzerMain on AABRD0310 with PID 27604 (D:\gagan.gupta\IntellijIdeaProjects\LogAnalyzer\target\classes started by gagan.gupta in D:\gagan.gupta\IntellijIdeaProjects\LogAnalyzer)
+2019-02-08 13:54:38.012  INFO 27604 --- [main] com.loganalyzer.LogAnalyzerMain          : No active profile set, falling back to default profiles: default
+2019-02-08 13:54:38.166  INFO 27604 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@37d4349f: startup date [Fri Feb 08 13:54:38 IST 2019]; root of context hierarchy
+2019-02-08 13:54:40.751  INFO 27604 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8759 (http)
+2019-02-08 13:54:40.769  INFO 27604 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-02-08 13:54:40.770  INFO 27604 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.20
+2019-02-08 13:54:40.942  INFO 27604 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-02-08 13:54:40.942  INFO 27604 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2781 ms
+2019-02-08 13:54:41.126  INFO 27604 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2019-02-08 13:54:41.131  INFO 27604 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-02-08 13:54:41.132  INFO 27604 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-02-08 13:54:41.132  INFO 27604 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-02-08 13:54:41.132  INFO 27604 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-02-08 13:54:42.717  INFO 27604 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@37d4349f: startup date [Fri Feb 08 13:54:38 IST 2019]; root of context hierarchy
+2019-02-08 13:54:42.993  INFO 27604 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/rules],methods=[GET]}" onto public java.util.List<com.loganalyzer.model.Rule> com.loganalyzer.controller.LogAnalyzerController.getAllRules() throws java.io.IOException
+2019-02-08 13:54:42.994  INFO 27604 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs],methods=[GET]}" onto public java.util.List<com.loganalyzer.model.Log> com.loganalyzer.controller.LogAnalyzerController.getAllLogs()
+2019-02-08 13:54:42.995  INFO 27604 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/execute],methods=[GET]}" onto public java.util.Map<java.lang.String, java.lang.String> com.loganalyzer.controller.LogAnalyzerController.checkAllRules() throws java.lang.Exception
+2019-02-08 13:54:42.997  INFO 27604 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/filter],methods=[POST],consumes=[application/json]}" onto public java.util.List<com.loganalyzer.model.Log> com.loganalyzer.controller.LogAnalyzerController.getLogsWithCriteria(com.loganalyzer.model.SearchCriteria)
+2019-02-08 13:54:43.001  INFO 27604 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-02-08 13:54:43.001  INFO 27604 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-02-08 13:54:43.062  INFO 27604 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-08 13:54:43.062  INFO 27604 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-08 13:54:43.175  INFO 27604 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-08 13:54:43.711  INFO 27604 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-02-08 13:54:43.870  INFO 27604 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8759 (http)
+2019-02-08 13:54:43.877  INFO 27604 --- [main] com.loganalyzer.LogAnalyzerMain          : Started LogAnalyzerMain in 6.548 seconds (JVM running for 7.28)
+2019-02-08 13:54:55.687  INFO 27604 --- [http-nio-8759-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-02-08 13:54:55.688  INFO 27604 --- [http-nio-8759-exec-2] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2019-02-08 13:54:55.712  INFO 27604 --- [http-nio-8759-exec-2] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 24 ms
+2019-02-08 13:54:59.727 ERROR 27604 --- [http-nio-8759-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.RuntimeException: Rule is not in expected format!] with root cause
+
+java.lang.RuntimeException: Rule is not in expected format!
+	at com.loganalyzer.dao.LogAnalyzerDaoImpl.getLogsFilteredByMessage(LogAnalyzerDaoImpl.java:535) ~[classes/:na]
+	at com.loganalyzer.dao.LogAnalyzerDaoImpl.getLogsWithCriteria(LogAnalyzerDaoImpl.java:336) ~[classes/:na]
+	at com.loganalyzer.service.LogAnalyzerService.getLogsWithCriteria(LogAnalyzerService.java:34) ~[classes/:na]
+	at com.loganalyzer.controller.LogAnalyzerController.getLogsWithCriteria(LogAnalyzerController.java:42) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_171]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_171]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_171]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_171]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:133) ~[spring-web-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:97) ~[spring-webmvc-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827) ~[spring-webmvc-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738) ~[spring-webmvc-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85) ~[spring-webmvc-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967) ~[spring-webmvc-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901) ~[spring-webmvc-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970) ~[spring-webmvc-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872) ~[spring-webmvc-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:661) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846) ~[spring-webmvc-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) ~[tomcat-embed-websocket-8.5.20.jar:8.5.20]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:108) ~[spring-web-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81) ~[spring-web-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197) ~[spring-web-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:478) [tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140) [tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:80) [tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) [tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:799) [tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) [tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1457) [tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-8.5.20.jar:8.5.20]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_171]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_171]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.5.20.jar:8.5.20]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_171]
+
+2019-02-08 13:56:08.217  INFO 16824 --- [main] com.loganalyzer.LogAnalyzerMain          : Starting LogAnalyzerMain on AABRD0310 with PID 16824 (D:\gagan.gupta\IntellijIdeaProjects\LogAnalyzer\target\classes started by gagan.gupta in D:\gagan.gupta\IntellijIdeaProjects\LogAnalyzer)
+2019-02-08 13:56:08.222  INFO 16824 --- [main] com.loganalyzer.LogAnalyzerMain          : No active profile set, falling back to default profiles: default
+2019-02-08 13:56:08.310  INFO 16824 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@37d4349f: startup date [Fri Feb 08 13:56:08 IST 2019]; root of context hierarchy
+2019-02-08 13:56:11.027  INFO 16824 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8759 (http)
+2019-02-08 13:56:11.045  INFO 16824 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-02-08 13:56:11.047  INFO 16824 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.20
+2019-02-08 13:56:11.246  INFO 16824 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-02-08 13:56:11.246  INFO 16824 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2940 ms
+2019-02-08 13:56:11.460  INFO 16824 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2019-02-08 13:56:11.466  INFO 16824 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-02-08 13:56:11.467  INFO 16824 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-02-08 13:56:11.467  INFO 16824 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-02-08 13:56:11.467  INFO 16824 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-02-08 13:56:13.188  INFO 16824 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@37d4349f: startup date [Fri Feb 08 13:56:08 IST 2019]; root of context hierarchy
+2019-02-08 13:56:13.387  INFO 16824 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/filter],methods=[POST],consumes=[application/json]}" onto public java.util.List<com.loganalyzer.model.Log> com.loganalyzer.controller.LogAnalyzerController.getLogsWithCriteria(com.loganalyzer.model.SearchCriteria)
+2019-02-08 13:56:13.389  INFO 16824 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/rules],methods=[GET]}" onto public java.util.List<com.loganalyzer.model.Rule> com.loganalyzer.controller.LogAnalyzerController.getAllRules() throws java.io.IOException
+2019-02-08 13:56:13.390  INFO 16824 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/execute],methods=[GET]}" onto public java.util.Map<java.lang.String, java.lang.String> com.loganalyzer.controller.LogAnalyzerController.checkAllRules() throws java.lang.Exception
+2019-02-08 13:56:13.390  INFO 16824 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs],methods=[GET]}" onto public java.util.List<com.loganalyzer.model.Log> com.loganalyzer.controller.LogAnalyzerController.getAllLogs()
+2019-02-08 13:56:13.395  INFO 16824 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-02-08 13:56:13.396  INFO 16824 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-02-08 13:56:13.464  INFO 16824 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-08 13:56:13.464  INFO 16824 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-08 13:56:13.594  INFO 16824 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-08 13:56:13.947  INFO 16824 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-02-08 13:56:14.042  INFO 16824 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8759 (http)
+2019-02-08 13:56:14.047  INFO 16824 --- [main] com.loganalyzer.LogAnalyzerMain          : Started LogAnalyzerMain in 6.591 seconds (JVM running for 7.316)
+2019-02-08 13:57:14.948  INFO 12588 --- [main] com.loganalyzer.LogAnalyzerMain          : Starting LogAnalyzerMain on AABRD0310 with PID 12588 (D:\gagan.gupta\IntellijIdeaProjects\LogAnalyzer\target\classes started by gagan.gupta in D:\gagan.gupta\IntellijIdeaProjects\LogAnalyzer)
+2019-02-08 13:57:14.953  INFO 12588 --- [main] com.loganalyzer.LogAnalyzerMain          : No active profile set, falling back to default profiles: default
+2019-02-08 13:57:15.119  INFO 12588 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@37d4349f: startup date [Fri Feb 08 13:57:15 IST 2019]; root of context hierarchy
+2019-02-08 13:57:27.762  INFO 12588 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8759 (http)
+2019-02-08 13:57:27.786  INFO 12588 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-02-08 13:57:27.787  INFO 12588 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.20
+2019-02-08 13:57:28.039  INFO 12588 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-02-08 13:57:28.040  INFO 12588 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 12927 ms
+2019-02-08 13:57:28.324  INFO 12588 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2019-02-08 13:57:28.331  INFO 12588 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-02-08 13:57:28.332  INFO 12588 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-02-08 13:57:28.333  INFO 12588 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-02-08 13:57:28.333  INFO 12588 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-02-08 13:57:30.059  INFO 12588 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@37d4349f: startup date [Fri Feb 08 13:57:15 IST 2019]; root of context hierarchy
+2019-02-08 13:57:30.307  INFO 12588 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs],methods=[GET]}" onto public java.util.List<com.loganalyzer.model.Log> com.loganalyzer.controller.LogAnalyzerController.getAllLogs()
+2019-02-08 13:57:30.308  INFO 12588 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/execute],methods=[GET]}" onto public java.util.Map<java.lang.String, java.lang.String> com.loganalyzer.controller.LogAnalyzerController.checkAllRules() throws java.lang.Exception
+2019-02-08 13:57:30.309  INFO 12588 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/rules],methods=[GET]}" onto public java.util.List<com.loganalyzer.model.Rule> com.loganalyzer.controller.LogAnalyzerController.getAllRules() throws java.io.IOException
+2019-02-08 13:57:30.310  INFO 12588 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/filter],methods=[POST],consumes=[application/json]}" onto public java.util.List<com.loganalyzer.model.Log> com.loganalyzer.controller.LogAnalyzerController.getLogsWithCriteria(com.loganalyzer.model.SearchCriteria)
+2019-02-08 13:57:30.313  INFO 12588 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-02-08 13:57:30.314  INFO 12588 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-02-08 13:57:30.426  INFO 12588 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-08 13:57:30.426  INFO 12588 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-08 13:57:30.594  INFO 12588 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-08 13:57:31.183  INFO 12588 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-02-08 13:57:31.293  INFO 12588 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8759 (http)
+2019-02-08 13:57:31.299  INFO 12588 --- [main] com.loganalyzer.LogAnalyzerMain          : Started LogAnalyzerMain in 17.069 seconds (JVM running for 17.799)
+2019-02-08 13:57:42.865  INFO 12588 --- [http-nio-8759-exec-9] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-02-08 13:57:42.865  INFO 12588 --- [http-nio-8759-exec-9] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2019-02-08 13:57:42.906  INFO 12588 --- [http-nio-8759-exec-9] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 41 ms
+2019-02-08 13:57:48.243 ERROR 12588 --- [http-nio-8759-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.RuntimeException: Please mention message text in this format ! TOKEN: tokenstring, REGEX: regex, VAR:var1] with root cause
+
+java.lang.RuntimeException: Please mention message text in this format ! TOKEN: tokenstring, REGEX: regex, VAR:var1
+	at com.loganalyzer.dao.LogAnalyzerDaoImpl.getLogsFilteredByMessage(LogAnalyzerDaoImpl.java:535) ~[classes/:na]
+	at com.loganalyzer.dao.LogAnalyzerDaoImpl.getLogsWithCriteria(LogAnalyzerDaoImpl.java:336) ~[classes/:na]
+	at com.loganalyzer.service.LogAnalyzerService.getLogsWithCriteria(LogAnalyzerService.java:34) ~[classes/:na]
+	at com.loganalyzer.controller.LogAnalyzerController.getLogsWithCriteria(LogAnalyzerController.java:42) ~[classes/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_171]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_171]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_171]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_171]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:133) ~[spring-web-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:97) ~[spring-webmvc-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827) ~[spring-webmvc-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738) ~[spring-webmvc-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85) ~[spring-webmvc-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967) ~[spring-webmvc-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901) ~[spring-webmvc-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970) ~[spring-webmvc-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872) ~[spring-webmvc-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:661) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846) ~[spring-webmvc-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) ~[tomcat-embed-websocket-8.5.20.jar:8.5.20]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99) ~[spring-web-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:108) ~[spring-web-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81) ~[spring-web-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197) ~[spring-web-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.3.11.RELEASE.jar:4.3.11.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198) ~[tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:478) [tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140) [tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:80) [tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) [tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:799) [tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66) [tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868) [tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1457) [tomcat-embed-core-8.5.20.jar:8.5.20]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-embed-core-8.5.20.jar:8.5.20]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_171]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_171]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-8.5.20.jar:8.5.20]
+	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_171]
+

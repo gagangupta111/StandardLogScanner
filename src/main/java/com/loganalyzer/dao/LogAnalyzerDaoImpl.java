@@ -532,7 +532,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
                     varIndexMap.put(++count, tempVarName);
                 }
 
-            }else throw new RuntimeException("Rule is not in expected format!");
+            }else throw new RuntimeException("Please mention message text in this format ! TOKEN: tokenstring, REGEX: regex, VAR:var1");
         }
 
         if (regex.charAt(0) == '.'){
