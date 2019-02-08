@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="291878ab-300c-4ed3-beab-86695b24fbbb" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/logback-spring.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/loganalyzer/dao/LogAnalyzerDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/loganalyzer/dao/LogAnalyzerDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application.txt" beforeDir="false" afterPath="$PROJECT_DIR$/application.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/loganalyzer/util/XMLRulesParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/loganalyzer/util/XMLRulesParser.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -18,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="LogAnalyzerDaoImpl.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LogAnalyzerDaoImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/dao/LogAnalyzerDaoImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="534" column="129" lean-forward="true" selection-start-line="534" selection-start-column="129" selection-end-line="534" selection-end-column="129" />
+            <state relative-caret-position="2007">
+              <caret line="541" selection-start-line="541" selection-end-line="541" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -30,11 +29,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Constants.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/constants/Constants.java">
+      <file leaf-file-name="XMLRulesParser.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/util/XMLRulesParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
+            <state relative-caret-position="443">
+              <caret line="206" column="48" selection-start-line="206" selection-start-column="48" selection-end-line="206" selection-end-column="48" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -55,7 +57,7 @@
       <find>LoggingEvent</find>
       <find>regexp</find>
       <find>createPattern</find>
-      <find>unable to load file</find>
+      <find />
       <find>LogFilePatternReceiver</find>
       <find>lineCount</find>
       <find>newLine</find>
@@ -127,7 +129,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/loganalyzer/model/SearchCriteria.java" />
         <option value="$PROJECT_DIR$/src/main/resources/rules.xsd" />
         <option value="$PROJECT_DIR$/src/main/resources/rules.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/loganalyzer/util/XMLRulesParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/loganalyzer/constants/Constants.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/loganalyzer/receiver/LogEventsGenerator.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/loganalyzer/util/Utility.java" />
@@ -137,6 +138,7 @@
         <option value="$PROJECT_DIR$/application.txt" />
         <option value="$PROJECT_DIR$/logback-spring.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/loganalyzer/dao/LogAnalyzerDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/loganalyzer/util/XMLRulesParser.java" />
       </list>
     </option>
   </component>
@@ -161,7 +163,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1382" />
@@ -285,7 +287,7 @@
     <configuration name="LogAnalyzerMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.loganalyzer.LogAnalyzerMain" />
       <module name="StandardLogScanner" />
-      <option name="PROGRAM_PARAMETERS" value=". 2018-Sep-06 Thu 01:41:18.900 30000" />
+      <option name="PROGRAM_PARAMETERS" value=". 2019-Jan-19 Sat 02:30:37.549 30000" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
@@ -395,7 +397,7 @@
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" weight="0.22768533" />
       <window_info anchor="bottom" id="Version Control" order="2" weight="0.6162988" />
-      <window_info anchor="bottom" id="Run" order="6" weight="0.3073005" />
+      <window_info anchor="bottom" id="Run" order="6" weight="0.48387095" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.4074703" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="0" />
@@ -406,7 +408,7 @@
       <window_info id="UI Designer" order="1" />
       <window_info anchor="right" id="Theme Preview" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="7" weight="0.40237692" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.56196946" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info id="Designer" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="7" weight="0.25" />
@@ -515,7 +517,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="251" />
+      <option name="time" value="258" />
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
@@ -536,7 +538,7 @@
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>FileUtils.copyInputStreamToFile(Utility.class.getResourceAsStream(&quot;/rules.xsd&quot;), file);</expression-string>
+        <expression-string />
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
@@ -546,7 +548,7 @@
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>FileUtils.copyInputStreamToFile(Utility.class.getResourceAsStream(&quot;rules.xsd&quot;), file);</expression-string>
+        <expression-string />
         <language-id>JAVA</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
@@ -568,13 +570,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.3.11.RELEASE/spring-webmvc-4.3.11.RELEASE.jar!/org/springframework/web/servlet/mvc/condition/ProducesRequestCondition.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="87">
@@ -843,27 +838,10 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/util/rules.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.11.RELEASE/spring-web-4.3.11.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="117" selection-start-line="117" selection-end-line="117" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/controller/LogAnalyzerController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="31" selection-start-line="31" selection-end-line="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/util/XMLRulesParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1060">
-          <caret line="62" column="57" selection-start-line="62" selection-start-column="57" selection-end-line="62" selection-end-column="57" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -928,6 +906,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.11.RELEASE/spring-web-4.3.11.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="123" selection-start-line="123" selection-end-line="123" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="2866" column="18" selection-start-line="2866" selection-start-column="18" selection-end-line="2866" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/constants/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -937,8 +929,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/dao/LogAnalyzerDaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="534" column="129" lean-forward="true" selection-start-line="534" selection-start-column="129" selection-end-line="534" selection-end-column="129" />
+        <state relative-caret-position="2007">
+          <caret line="541" selection-start-line="541" selection-end-line="541" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/loganalyzer/util/XMLRulesParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="443">
+          <caret line="206" column="48" selection-start-line="206" selection-start-column="48" selection-end-line="206" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

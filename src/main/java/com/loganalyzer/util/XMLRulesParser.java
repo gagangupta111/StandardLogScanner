@@ -65,6 +65,7 @@ public class XMLRulesParser {
             XMLInputFactory inputFactory = XMLInputFactory.newInstance();
             XMLEventReader eventReader = inputFactory.createXMLEventReader(in);
 
+            String data = "";
             while (eventReader.hasNext()) {
                 XMLEvent event = eventReader.nextEvent();
 
@@ -82,8 +83,13 @@ public class XMLRulesParser {
                             }
                             break;
                         case DESCRIPTION:
+                            data = "";
                             event = eventReader.nextEvent();
-                            rule.setDesc(event.asCharacters().getData());
+                            while (!event.isEndElement()) {
+                                data += event.asCharacters().getData();
+                                event = eventReader.nextEvent();
+                            }
+                            rule.setDesc(data);
                             break;
                         case CONDITIONS:
                             conditions = new ArrayList<>();
@@ -99,51 +105,106 @@ public class XMLRulesParser {
                                 }
                                 break;
                             case LEVEL:
+                                data = "";
                                 event = eventReader.nextEvent();
-                                condition.setLevel(event.asCharacters().getData());
+                                while (!event.isEndElement()) {
+                                    data += event.asCharacters().getData();
+                                    event = eventReader.nextEvent();
+                                }
+                                condition.setLevel(data);
                                 break;
                             case CLASSNAME:
+                                data = "";
                                 event = eventReader.nextEvent();
-                                condition.setClassName(event.asCharacters().getData());
+                                while (!event.isEndElement()) {
+                                    data += event.asCharacters().getData();
+                                    event = eventReader.nextEvent();
+                                }
+                                condition.setClassName(data);
                                 break;
                             case METHODNAME:
+                                data = "";
                                 event = eventReader.nextEvent();
-                                condition.setMethodName(event.asCharacters().getData());
+                                while (!event.isEndElement()) {
+                                    data += event.asCharacters().getData();
+                                    event = eventReader.nextEvent();
+                                }
+                                condition.setMethodName(data);
                                 break;
                             case CLASSFILE:
+                                data = "";
                                 event = eventReader.nextEvent();
-                                condition.setClassFile(event.asCharacters().getData());
+                                while (!event.isEndElement()) {
+                                    data += event.asCharacters().getData();
+                                    event = eventReader.nextEvent();
+                                }
+                                condition.setClassFile(data);
                                 break;
                             case LINE:
+                                data = "";
                                 event = eventReader.nextEvent();
-                                condition.setLine(event.asCharacters().getData());
+                                while (!event.isEndElement()) {
+                                    data += event.asCharacters().getData();
+                                    event = eventReader.nextEvent();
+                                }
+                                condition.setLine(data);
                                 break;
                             case LOGFILE:
+                                data = "";
                                 event = eventReader.nextEvent();
-                                condition.setLogFile(event.asCharacters().getData());
+                                while (!event.isEndElement()) {
+                                    data += event.asCharacters().getData();
+                                    event = eventReader.nextEvent();
+                                }
+                                condition.setLogFile(data);
                                 break;
                         case MESSAGE:
                             message = new Message();
                             break;
                             case TOKEN:
+                                data = "";
                                 event = eventReader.nextEvent();
-                                message.addMessage(TOKEN.toUpperCase(), event.asCharacters().getData());
+                                while (!event.isEndElement()) {
+                                    data += event.asCharacters().getData();
+                                    event = eventReader.nextEvent();
+                                }
+                                message.addMessage(TOKEN.toUpperCase(), data);
                                 break;
                             case REGEX:
+                                data = "";
                                 event = eventReader.nextEvent();
-                                message.addMessage(REGEX.toUpperCase(), event.asCharacters().getData());
+                                while (!event.isEndElement()) {
+                                    data += event.asCharacters().getData();
+                                    event = eventReader.nextEvent();
+                                }
+                                message.addMessage(REGEX.toUpperCase(), data);
                                 break;
                             case VAR:
+                                data = "";
                                 event = eventReader.nextEvent();
-                                message.addMessage(VAR.toUpperCase(), event.asCharacters().getData());
+                                while (!event.isEndElement()) {
+                                    data += event.asCharacters().getData();
+                                    event = eventReader.nextEvent();
+                                }
+                                message.addMessage(VAR.toUpperCase(), data);
                                 break;
                         case QUERY:
+                            data = "";
                             event = eventReader.nextEvent();
-                            rule.setQuery(event.asCharacters().getData());
+                            while (!event.isEndElement()) {
+                                data += event.asCharacters().getData();
+                                event = eventReader.nextEvent();
+                            }
+                            rule.setQuery(data);
                             break;
                         case ACTIONS:
+                            data = "";
                             event = eventReader.nextEvent();
-                            rule.setActions(event.asCharacters().getData());
+                            while (!event.isEndElement()) {
+                                data += event.asCharacters().getData();
+                                event = eventReader.nextEvent();
+                            }
+                            rule.setActions(data);
                             break;
                     }
 
