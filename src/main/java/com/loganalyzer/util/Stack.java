@@ -13,7 +13,6 @@ public class Stack
         }
         catch(StringIndexOutOfBoundsException e)
         {
-            System.out.println("Stack full , no room to push , size=100");
             System.exit(0);
         }
     }

@@ -20,9 +20,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -37,9 +34,6 @@ import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.zip.GZIPInputStream;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
 
 @Repository
 @Qualifier("InitializedLogs")
@@ -56,6 +50,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
     ApplicationArguments appArgs;
 
     private String aroundDate;
+    private String logFilesPath;
 
     @Value("${range}")
     private Long range;
@@ -85,8 +80,9 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
     // This will populate logs only around the time stamp given in the input. By default it is 4 hours around that time stamp, otherwise the argument is mentioned in input.
     private void populateLogs() throws Exception {
 
+        logFilesPath = appArgs.getNonOptionArgs().get(0);
         try {
-            aroundDate = appArgs.getNonOptionArgs().get(0) + " " +  appArgs.getNonOptionArgs().get(1) + " " + appArgs.getNonOptionArgs().get(2);
+            aroundDate = appArgs.getNonOptionArgs().get(1) + " " +  appArgs.getNonOptionArgs().get(2) + " " + appArgs.getNonOptionArgs().get(3);
         }catch (Exception e){
             throw new Exception("Please mentioned a date as an argument to the application");
         }
@@ -100,8 +96,8 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
         }
 
         Long millisecs = null;
-        if (appArgs.getNonOptionArgs().size() > 3){
-            millisecs = Long.parseLong(appArgs.getNonOptionArgs().get(3));
+        if (appArgs.getNonOptionArgs().size() > 4){
+            millisecs = Long.parseLong(appArgs.getNonOptionArgs().get(4));
         }else {
             millisecs = range;
         }
@@ -112,7 +108,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
 
         List<File> list = new ArrayList<File>();
         String[] compressedList = new String[] {"zip", "gz"};
-        Collection<File> compressedFiles = FileUtils.listFiles(new File("."), compressedList, true);
+        Collection<File> compressedFiles = FileUtils.listFiles(new File(logFilesPath), compressedList, true);
         for (File file1 : compressedFiles){
             String ext = FilenameUtils.getExtension(file1.getPath());
             if (compressedList[0].equals(ext)){
@@ -127,7 +123,7 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
         }
 
         String[] extensions = new String[] { "log" };
-        Collection<File> array = FileUtils.listFiles(new File("."), extensions, true);
+        Collection<File> array = FileUtils.listFiles(new File(logFilesPath), extensions, true);
 
         String format;
         for (File file : array){
@@ -515,7 +511,6 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
         for (int i = 0; i < splitted.length; i++){
 
             String s = splitted[i];
-            System.out.println(s);
             if (s.charAt(0) == 'T') {
                 regex = regex + ".*" + s.substring(s.indexOf(':') + 1, s.length()).trim();
             }else if (s.charAt(0) == 'R'){
@@ -565,8 +560,6 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
                 })
                 .collect(Collectors.toList());
         Long end = new Date().getTime();
-        System.out.println(" REGEX: " + finalRegex);
-        System.out.println(" Time Taken: " + (end - start));
         return returnedList;
 
     }

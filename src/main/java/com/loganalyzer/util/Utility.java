@@ -261,8 +261,6 @@ public class Utility {
             gzis.close();
             out.close();
 
-            System.out.println("Done");
-
         }catch(IOException ex){
             ex.printStackTrace();
         }
@@ -290,9 +288,6 @@ public class Utility {
 
                 String fileName = ze.getName();
                 File newFile = new File(outputFolder + File.separator + fileName);
-
-                System.out.println("file unzip : "+ newFile.getAbsoluteFile());
-
                 //create all non exists folders
                 //else you will hit FileNotFoundException for compressed folder
                 new File(newFile.getParent()).mkdirs();
@@ -310,8 +305,6 @@ public class Utility {
 
             zis.closeEntry();
             zis.close();
-
-            System.out.println("Done");
 
         }catch(IOException ex){
             ex.printStackTrace();
