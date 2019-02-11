@@ -10,6 +10,7 @@ import com.loganalyzer.util.JsonDateSerializer;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 @JsonAutoDetect
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -158,6 +159,28 @@ public class Log implements Comparable<Log>{
                 ", logFile='" + logFile + '\'' +
                 ", message='" + message + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Log log = (Log) o;
+        return  (getId() == log.getId() ? true : getId().equals(log.getId())) &&
+                (getLogTimeStamp() == log.getLogTimeStamp() ? true : getLogTimeStamp().equals(log.getLogTimeStamp())) &&
+                (getLevel() == log.getLevel() ? true : getLevel().equals(log.getLevel())) &&
+                (getClassName() == log.getClassName() ? true : getClassName().equals(log.getClassName())) &&
+                (getMethodName() == log.getMethodName() ? true : getMethodName().equals(log.getMethodName()) &&
+                (getClassFile() == log.getClassFile() ? true : getClassFile().equals(log.getClassFile()))) &&
+                (getLine() == log.getLine() ? true : getLine().equals(log.getLine())) &&
+                (getLogFile() == log.getLogFile() ? true : getLogFile().equals(log.getLogFile())) &&
+                (getMessage() == log.getMessage() ? true : getMessage().equals(log.getMessage()));
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getId(), getLogTimeStamp(), getLevel(), getClassName(), getMethodName(), getClassFile(), getLine(), getLogFile(), getMessage());
     }
 
     @Override

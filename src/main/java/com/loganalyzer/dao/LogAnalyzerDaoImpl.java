@@ -208,8 +208,10 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
             for (String s: postfix){
                 if ("&".equals(s)){
                     logsA = stack.pop();
-                    logsA.retainAll(stack.pop());
-                    stack.add(logsA);
+                    logsB = stack.pop();
+                    List<Log> copy = new ArrayList<>(logsA);
+                    copy.retainAll(logsB);
+                    stack.add(copy);
                 }else if ("|".equals(s)){
                     logsA = stack.pop();
                     logsB = stack.pop();
