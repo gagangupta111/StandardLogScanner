@@ -1,0 +1,283 @@
+2019-02-11 18:32:12.985  INFO 18120 --- [main] com.loganalyzer.LogAnalyzerMain          : Starting LogAnalyzerMain v1.0-SNAPSHOT on AABRD0310 with PID 18120 (D:\gagan.gupta\IntellijIdeaProjects\LogAnalyzer\Sample\Solution\SOLUTION.jar started by gagan.gupta in D:\gagan.gupta\IntellijIdeaProjects\LogAnalyzer\Sample\Solution)
+2019-02-11 18:32:12.988  INFO 18120 --- [main] com.loganalyzer.LogAnalyzerMain          : No active profile set, falling back to default profiles: default
+2019-02-11 18:32:13.065  INFO 18120 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1963006a: startup date [Mon Feb 11 18:32:13 IST 2019]; root of context hierarchy
+2019-02-11 18:32:14.871  INFO 18120 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8759 (http)
+2019-02-11 18:32:14.886  INFO 18120 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-02-11 18:32:14.887  INFO 18120 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.20
+2019-02-11 18:32:14.993  INFO 18120 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-02-11 18:32:14.993  INFO 18120 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1931 ms
+2019-02-11 18:32:15.175  INFO 18120 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2019-02-11 18:32:15.182  INFO 18120 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-02-11 18:32:15.182  INFO 18120 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-02-11 18:32:15.183  INFO 18120 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-02-11 18:32:15.183  INFO 18120 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-02-11 18:32:16.156  INFO 18120 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1963006a: startup date [Mon Feb 11 18:32:13 IST 2019]; root of context hierarchy
+2019-02-11 18:32:16.373  INFO 18120 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/execute],methods=[GET]}" onto public java.util.Map<java.lang.String, java.lang.String> com.loganalyzer.controller.LogAnalyzerController.checkAllRules() throws java.lang.Exception
+2019-02-11 18:32:16.396  INFO 18120 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs],methods=[GET]}" onto public java.util.List<com.loganalyzer.model.Log> com.loganalyzer.controller.LogAnalyzerController.getAllLogs()
+2019-02-11 18:32:16.398  INFO 18120 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/rules],methods=[GET]}" onto public java.util.List<com.loganalyzer.model.Rule> com.loganalyzer.controller.LogAnalyzerController.getAllRules() throws java.io.IOException
+2019-02-11 18:32:16.423  INFO 18120 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/filter],methods=[POST],consumes=[application/json]}" onto public java.util.List<com.loganalyzer.model.Log> com.loganalyzer.controller.LogAnalyzerController.getLogsWithCriteria(com.loganalyzer.model.SearchCriteria)
+2019-02-11 18:32:16.467  INFO 18120 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-02-11 18:32:16.478  INFO 18120 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-02-11 18:32:16.571  INFO 18120 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-11 18:32:16.606  INFO 18120 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-11 18:32:16.683  INFO 18120 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-11 18:32:17.123  INFO 18120 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-02-11 18:32:17.319  INFO 18120 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8759 (http)
+2019-02-11 18:32:17.324  INFO 18120 --- [main] com.loganalyzer.LogAnalyzerMain          : Started LogAnalyzerMain in 4.722 seconds (JVM running for 5.201)
+2019-02-11 18:33:06.282  INFO 18120 --- [http-nio-8759-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-02-11 18:33:06.283  INFO 18120 --- [http-nio-8759-exec-2] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2019-02-11 18:33:06.308  INFO 18120 --- [http-nio-8759-exec-2] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 24 ms
+2019-02-11 18:34:30.233  INFO 18120 --- [Thread-3] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1963006a: startup date [Mon Feb 11 18:32:13 IST 2019]; root of context hierarchy
+2019-02-11 18:34:30.235  INFO 18120 --- [Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2019-02-11 18:34:34.779  INFO 18168 --- [main] com.loganalyzer.LogAnalyzerMain          : Starting LogAnalyzerMain v1.0-SNAPSHOT on AABRD0310 with PID 18168 (D:\gagan.gupta\IntellijIdeaProjects\LogAnalyzer\Sample\Solution\SOLUTION.jar started by gagan.gupta in D:\gagan.gupta\IntellijIdeaProjects\LogAnalyzer\Sample\Solution)
+2019-02-11 18:34:34.783  INFO 18168 --- [main] com.loganalyzer.LogAnalyzerMain          : No active profile set, falling back to default profiles: default
+2019-02-11 18:34:34.862  INFO 18168 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1963006a: startup date [Mon Feb 11 18:34:34 IST 2019]; root of context hierarchy
+2019-02-11 18:34:36.754  INFO 18168 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8759 (http)
+2019-02-11 18:34:36.770  INFO 18168 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-02-11 18:34:36.772  INFO 18168 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.20
+2019-02-11 18:34:36.881  INFO 18168 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-02-11 18:34:36.881  INFO 18168 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2023 ms
+2019-02-11 18:34:37.072  INFO 18168 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2019-02-11 18:34:37.079  INFO 18168 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-02-11 18:34:37.079  INFO 18168 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-02-11 18:34:37.079  INFO 18168 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-02-11 18:34:37.080  INFO 18168 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-02-11 18:34:38.034  INFO 18168 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1963006a: startup date [Mon Feb 11 18:34:34 IST 2019]; root of context hierarchy
+2019-02-11 18:34:38.235  INFO 18168 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/filter],methods=[POST],consumes=[application/json]}" onto public java.util.List<com.loganalyzer.model.Log> com.loganalyzer.controller.LogAnalyzerController.getLogsWithCriteria(com.loganalyzer.model.SearchCriteria)
+2019-02-11 18:34:38.267  INFO 18168 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/rules],methods=[GET]}" onto public java.util.List<com.loganalyzer.model.Rule> com.loganalyzer.controller.LogAnalyzerController.getAllRules() throws java.io.IOException
+2019-02-11 18:34:38.281  INFO 18168 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs],methods=[GET]}" onto public java.util.List<com.loganalyzer.model.Log> com.loganalyzer.controller.LogAnalyzerController.getAllLogs()
+2019-02-11 18:34:38.318  INFO 18168 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/execute],methods=[GET]}" onto public java.util.Map<java.lang.String, java.lang.String> com.loganalyzer.controller.LogAnalyzerController.checkAllRules() throws java.lang.Exception
+2019-02-11 18:34:38.363  INFO 18168 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-02-11 18:34:38.413  INFO 18168 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-02-11 18:34:38.540  INFO 18168 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-11 18:34:38.568  INFO 18168 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-11 18:34:38.694  INFO 18168 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-11 18:34:39.022  INFO 18168 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-02-11 18:34:39.142  INFO 18168 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8759 (http)
+2019-02-11 18:34:39.184  INFO 18168 --- [main] com.loganalyzer.LogAnalyzerMain          : Started LogAnalyzerMain in 4.786 seconds (JVM running for 5.266)
+2019-02-11 18:37:27.195  INFO 18168 --- [http-nio-8759-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-02-11 18:37:48.583  INFO 18168 --- [http-nio-8759-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2019-02-11 18:37:48.645  INFO 18168 --- [http-nio-8759-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 42 ms
+2019-02-11 18:37:48.810  INFO 18168 --- [Thread-3] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1963006a: startup date [Mon Feb 11 18:34:34 IST 2019]; root of context hierarchy
+2019-02-11 18:37:48.817  INFO 18168 --- [Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2019-02-11 18:43:38.898  INFO 3648 --- [main] com.loganalyzer.LogAnalyzerMain          : Starting LogAnalyzerMain v1.0-SNAPSHOT on AABRD0310 with PID 3648 (D:\gagan.gupta\IntellijIdeaProjects\LogAnalyzer\Sample\Solution\SOLUTION.jar started by gagan.gupta in D:\gagan.gupta\IntellijIdeaProjects\LogAnalyzer\Sample\Solution)
+2019-02-11 18:43:38.902  INFO 3648 --- [main] com.loganalyzer.LogAnalyzerMain          : No active profile set, falling back to default profiles: default
+2019-02-11 18:43:38.999  INFO 3648 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1963006a: startup date [Mon Feb 11 18:43:38 IST 2019]; root of context hierarchy
+2019-02-11 18:43:40.850  INFO 3648 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8759 (http)
+2019-02-11 18:43:40.874  INFO 3648 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-02-11 18:43:40.877  INFO 3648 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.20
+2019-02-11 18:43:40.990  INFO 3648 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-02-11 18:43:40.991  INFO 3648 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1994 ms
+2019-02-11 18:43:41.177  INFO 3648 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2019-02-11 18:43:41.185  INFO 3648 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-02-11 18:43:41.186  INFO 3648 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-02-11 18:43:41.186  INFO 3648 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-02-11 18:43:41.187  INFO 3648 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-02-11 18:43:42.238  INFO 3648 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1963006a: startup date [Mon Feb 11 18:43:38 IST 2019]; root of context hierarchy
+2019-02-11 18:43:42.452  INFO 3648 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs],methods=[GET]}" onto public java.util.List<com.loganalyzer.model.Log> com.loganalyzer.controller.LogAnalyzerController.getAllLogs()
+2019-02-11 18:43:42.470  INFO 3648 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/rules],methods=[GET]}" onto public java.util.List<com.loganalyzer.model.Rule> com.loganalyzer.controller.LogAnalyzerController.getAllRules() throws java.io.IOException
+2019-02-11 18:43:42.490  INFO 3648 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/execute],methods=[GET]}" onto public java.util.Map<java.lang.String, java.lang.String> com.loganalyzer.controller.LogAnalyzerController.checkAllRules() throws java.lang.Exception
+2019-02-11 18:43:42.522  INFO 3648 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/filter],methods=[POST],consumes=[application/json]}" onto public java.util.List<com.loganalyzer.model.Log> com.loganalyzer.controller.LogAnalyzerController.getLogsWithCriteria(com.loganalyzer.model.SearchCriteria)
+2019-02-11 18:43:42.528  INFO 3648 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-02-11 18:43:42.546  INFO 3648 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-02-11 18:43:42.616  INFO 3648 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-11 18:43:42.643  INFO 3648 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-11 18:43:42.788  INFO 3648 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-11 18:43:43.104  INFO 3648 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-02-11 18:43:43.216  INFO 3648 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8759 (http)
+2019-02-11 18:43:43.239  INFO 3648 --- [main] com.loganalyzer.LogAnalyzerMain          : Started LogAnalyzerMain in 4.758 seconds (JVM running for 5.297)
+2019-02-11 18:44:10.021  INFO 3648 --- [http-nio-8759-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-02-11 18:44:10.022  INFO 3648 --- [http-nio-8759-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2019-02-11 18:44:10.055  INFO 3648 --- [http-nio-8759-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 31 ms
+2019-02-11 18:44:20.865  INFO 3648 --- [Thread-3] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1963006a: startup date [Mon Feb 11 18:43:38 IST 2019]; root of context hierarchy
+2019-02-11 18:44:20.872  INFO 3648 --- [Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2019-02-11 18:44:38.677  INFO 17468 --- [main] com.loganalyzer.LogAnalyzerMain          : Starting LogAnalyzerMain v1.0-SNAPSHOT on AABRD0310 with PID 17468 (D:\gagan.gupta\IntellijIdeaProjects\LogAnalyzer\Sample\Solution\SOLUTION.jar started by gagan.gupta in D:\gagan.gupta\IntellijIdeaProjects\LogAnalyzer\Sample\Solution)
+2019-02-11 18:44:38.681  INFO 17468 --- [main] com.loganalyzer.LogAnalyzerMain          : No active profile set, falling back to default profiles: default
+2019-02-11 18:44:38.772  INFO 17468 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1963006a: startup date [Mon Feb 11 18:44:38 IST 2019]; root of context hierarchy
+2019-02-11 18:44:40.621  INFO 17468 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8759 (http)
+2019-02-11 18:44:40.640  INFO 17468 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-02-11 18:44:40.643  INFO 17468 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.20
+2019-02-11 18:44:40.759  INFO 17468 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-02-11 18:44:40.760  INFO 17468 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1992 ms
+2019-02-11 18:44:40.922  INFO 17468 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2019-02-11 18:44:40.929  INFO 17468 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-02-11 18:44:40.930  INFO 17468 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-02-11 18:44:40.931  INFO 17468 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-02-11 18:44:40.932  INFO 17468 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-02-11 18:44:41.061  WARN 17468 --- [main] ationConfigEmbeddedWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'logAnalyzerController': Unsatisfied dependency expressed through field 'logAnalyzerService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'logAnalyzerService': Unsatisfied dependency expressed through field 'logAnalyzerDao'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'logAnalyzerDaoImpl': Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Parameter 'directory' is not a directory: ..\Sample\CS-12345
+2019-02-11 18:44:41.066  INFO 17468 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2019-02-11 18:44:41.084  INFO 17468 --- [main] utoConfigurationReportLoggingInitializer : 
+
+Error starting ApplicationContext. To display the auto-configuration report re-run your application with 'debug' enabled.
+2019-02-11 18:44:41.096 ERROR 17468 --- [main] o.s.boot.SpringApplication               : Application startup failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'logAnalyzerController': Unsatisfied dependency expressed through field 'logAnalyzerService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'logAnalyzerService': Unsatisfied dependency expressed through field 'logAnalyzerDao'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'logAnalyzerDaoImpl': Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Parameter 'directory' is not a directory: ..\Sample\CS-12345
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:588) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:867) ~[spring-context-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:543) ~[spring-context-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122) ~[spring-boot-1.5.7.RELEASE.jar!/:1.5.7.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:693) [spring-boot-1.5.7.RELEASE.jar!/:1.5.7.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:360) [spring-boot-1.5.7.RELEASE.jar!/:1.5.7.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303) [spring-boot-1.5.7.RELEASE.jar!/:1.5.7.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1118) [spring-boot-1.5.7.RELEASE.jar!/:1.5.7.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1107) [spring-boot-1.5.7.RELEASE.jar!/:1.5.7.RELEASE]
+	at com.loganalyzer.LogAnalyzerMain.main(LogAnalyzerMain.java:11) [classes!/:1.0-SNAPSHOT]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_201]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[na:1.8.0_201]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[na:1.8.0_201]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[na:1.8.0_201]
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48) [SOLUTION.jar:1.0-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87) [SOLUTION.jar:1.0-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50) [SOLUTION.jar:1.0-SNAPSHOT]
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:51) [SOLUTION.jar:1.0-SNAPSHOT]
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'logAnalyzerService': Unsatisfied dependency expressed through field 'logAnalyzerDao'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'logAnalyzerDaoImpl': Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Parameter 'directory' is not a directory: ..\Sample\CS-12345
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:588) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	... 27 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'logAnalyzerDaoImpl': Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Parameter 'directory' is not a directory: ..\Sample\CS-12345
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:137) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:409) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1620) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	... 40 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Parameter 'directory' is not a directory: ..\Sample\CS-12345
+	at org.apache.commons.io.FileUtils.validateListFilesParameters(FileUtils.java:536) ~[commons-io-2.5.jar!/:2.5]
+	at org.apache.commons.io.FileUtils.listFiles(FileUtils.java:512) ~[commons-io-2.5.jar!/:2.5]
+	at org.apache.commons.io.FileUtils.listFiles(FileUtils.java:684) ~[commons-io-2.5.jar!/:2.5]
+	at com.loganalyzer.dao.LogAnalyzerDaoImpl.populateLogs(LogAnalyzerDaoImpl.java:111) ~[classes!/:1.0-SNAPSHOT]
+	at com.loganalyzer.dao.LogAnalyzerDaoImpl.initialize(LogAnalyzerDaoImpl.java:152) ~[classes!/:1.0-SNAPSHOT]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_201]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[na:1.8.0_201]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[na:1.8.0_201]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[na:1.8.0_201]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:366) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:311) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:134) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	... 52 common frames omitted
+
+2019-02-11 18:45:02.055  INFO 14892 --- [main] com.loganalyzer.LogAnalyzerMain          : Starting LogAnalyzerMain v1.0-SNAPSHOT on AABRD0310 with PID 14892 (D:\gagan.gupta\IntellijIdeaProjects\LogAnalyzer\Sample\Solution\SOLUTION.jar started by gagan.gupta in D:\gagan.gupta\IntellijIdeaProjects\LogAnalyzer\Sample\Solution)
+2019-02-11 18:45:02.059  INFO 14892 --- [main] com.loganalyzer.LogAnalyzerMain          : No active profile set, falling back to default profiles: default
+2019-02-11 18:45:02.141  INFO 14892 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@1963006a: startup date [Mon Feb 11 18:45:02 IST 2019]; root of context hierarchy
+2019-02-11 18:45:03.967  INFO 14892 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8759 (http)
+2019-02-11 18:45:03.983  INFO 14892 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-02-11 18:45:03.985  INFO 14892 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.20
+2019-02-11 18:45:04.096  INFO 14892 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-02-11 18:45:04.096  INFO 14892 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1958 ms
+2019-02-11 18:45:04.263  INFO 14892 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2019-02-11 18:45:04.269  INFO 14892 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-02-11 18:45:04.270  INFO 14892 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-02-11 18:45:04.271  INFO 14892 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-02-11 18:45:04.272  INFO 14892 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-02-11 18:45:04.375  WARN 14892 --- [main] ationConfigEmbeddedWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'logAnalyzerController': Unsatisfied dependency expressed through field 'logAnalyzerService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'logAnalyzerService': Unsatisfied dependency expressed through field 'logAnalyzerDao'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'logAnalyzerDaoImpl': Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Parameter 'directory' is not a directory: ..\Sample\CS-12345
+2019-02-11 18:45:04.380  INFO 14892 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2019-02-11 18:45:04.397  INFO 14892 --- [main] utoConfigurationReportLoggingInitializer : 
+
+Error starting ApplicationContext. To display the auto-configuration report re-run your application with 'debug' enabled.
+2019-02-11 18:45:04.408 ERROR 14892 --- [main] o.s.boot.SpringApplication               : Application startup failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'logAnalyzerController': Unsatisfied dependency expressed through field 'logAnalyzerService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'logAnalyzerService': Unsatisfied dependency expressed through field 'logAnalyzerDao'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'logAnalyzerDaoImpl': Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Parameter 'directory' is not a directory: ..\Sample\CS-12345
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:588) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:761) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:867) ~[spring-context-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:543) ~[spring-context-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122) ~[spring-boot-1.5.7.RELEASE.jar!/:1.5.7.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:693) [spring-boot-1.5.7.RELEASE.jar!/:1.5.7.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:360) [spring-boot-1.5.7.RELEASE.jar!/:1.5.7.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303) [spring-boot-1.5.7.RELEASE.jar!/:1.5.7.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1118) [spring-boot-1.5.7.RELEASE.jar!/:1.5.7.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1107) [spring-boot-1.5.7.RELEASE.jar!/:1.5.7.RELEASE]
+	at com.loganalyzer.LogAnalyzerMain.main(LogAnalyzerMain.java:11) [classes!/:1.0-SNAPSHOT]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_201]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[na:1.8.0_201]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[na:1.8.0_201]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[na:1.8.0_201]
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48) [SOLUTION.jar:1.0-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87) [SOLUTION.jar:1.0-SNAPSHOT]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:50) [SOLUTION.jar:1.0-SNAPSHOT]
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:51) [SOLUTION.jar:1.0-SNAPSHOT]
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'logAnalyzerService': Unsatisfied dependency expressed through field 'logAnalyzerDao'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'logAnalyzerDaoImpl': Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Parameter 'directory' is not a directory: ..\Sample\CS-12345
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:588) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:366) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1264) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:553) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	... 27 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'logAnalyzerDaoImpl': Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Parameter 'directory' is not a directory: ..\Sample\CS-12345
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:137) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:409) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1620) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:483) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:208) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1066) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:585) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	... 40 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Parameter 'directory' is not a directory: ..\Sample\CS-12345
+	at org.apache.commons.io.FileUtils.validateListFilesParameters(FileUtils.java:536) ~[commons-io-2.5.jar!/:2.5]
+	at org.apache.commons.io.FileUtils.listFiles(FileUtils.java:512) ~[commons-io-2.5.jar!/:2.5]
+	at org.apache.commons.io.FileUtils.listFiles(FileUtils.java:684) ~[commons-io-2.5.jar!/:2.5]
+	at com.loganalyzer.dao.LogAnalyzerDaoImpl.populateLogs(LogAnalyzerDaoImpl.java:111) ~[classes!/:1.0-SNAPSHOT]
+	at com.loganalyzer.dao.LogAnalyzerDaoImpl.initialize(LogAnalyzerDaoImpl.java:152) ~[classes!/:1.0-SNAPSHOT]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_201]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[na:1.8.0_201]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[na:1.8.0_201]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[na:1.8.0_201]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:366) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:311) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:134) ~[spring-beans-4.3.11.RELEASE.jar!/:4.3.11.RELEASE]
+	... 52 common frames omitted
+

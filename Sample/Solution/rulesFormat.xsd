@@ -1,0 +1,50 @@
+<?xml version = "1.0"?>
+<xs:schema xmlns:xs = "http://www.w3.org/2001/XMLSchema">
+    <xs:element name = 'rules'>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name = 'rule' type = 'RuleType' minOccurs = '1'
+                            maxOccurs = 'unbounded' />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name = "RuleType">
+        <xs:sequence>
+            <xs:element name = "description" type = "xs:string"/>
+            <xs:element name = "conditions">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name = 'condition' type = 'ConditionType' minOccurs = '1'
+                                    maxOccurs = 'unbounded' />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name = "query" type = "xs:string"/>
+            <xs:element name = "actions" type = "xs:string"/>
+        </xs:sequence>
+        <xs:attribute name = 'name' type = 'xs:string'/>
+    </xs:complexType>
+
+    <xs:complexType name = "ConditionType">
+        <xs:all>
+            <xs:element name = "level" type = "xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name = "className" type = "xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name = "methodName" type = "xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name = "classFile" type = "xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name = "line" type = "xs:positiveInteger" minOccurs="0" maxOccurs="1"/>
+            <xs:element name = "logFile" type = "xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name = "message" type="MessageType" minOccurs="0" maxOccurs="1"/>
+        </xs:all>
+        <xs:attribute name = 'name' type = 'xs:string'/>
+    </xs:complexType>
+
+    <xs:complexType name = "MessageType">
+        <xs:choice maxOccurs="unbounded">
+            <xs:element name="token" type = "xs:string" />
+            <xs:element name="regex" type = "xs:string" />
+            <xs:element name="var" type = "xs:string" />
+        </xs:choice>
+    </xs:complexType>
+
+</xs:schema>

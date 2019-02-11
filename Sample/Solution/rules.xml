@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules>
+<rule name = "CheckIfIgniteNodeGoesDown">
+	<description>Checking conditions if exceptions and stack trace verifies if any of the Ignite node goes down.</description>
+    <conditions>
+		<condition name="NodeGetsSegmented">
+		<className>org.apache.ignite.internal.managers.discovery.GridDiscoveryManager</className>
+		<level>WARN</level>
+			<message>
+				<token>Local node SEGMENTED</token>
+				<token>TcpDiscoveryNode</token>
+				<token>id=</token>
+				<regex>[A-Za-z0-9]+([-]{1}[A-Za-z0-9]+)+</regex>
+			</message>
+		</condition>
+		<condition name="UnknownNodeFound">
+		<className>org.apache.ignite.spi.communication.tcp.TcpCommunicationSpi</className>
+		<level>WARN</level>
+			<message>
+				<token>Close incoming connection</token>
+				<token>unknown node</token>
+				<token>nodeId=</token>
+				<regex>[A-Za-z0-9]+([-]{1}[A-Za-z0-9]+)+</regex>
+			</message>
+		</condition>
+		<condition name="ConnectionClosed">
+		<className>org.apache.ignite.spi.communication.tcp.TcpCommunicationSpi</className>
+		<level>ERROR</level>
+			<message>
+				<token>Failed to process selector key</token>
+				<token>An existing connection was forcibly closed by the remote host</token>
+			</message>
+		</condition>
+		<condition name="ClosingNIOConnection">
+		<logFile>IgniteServer</logFile>
+		<className>org.apache.ignite.spi.communication.tcp.TcpCommunicationSpi</className>
+		<level>WARN</level>
+			<message>
+				<token>Closing NIO session</token>
+				<token>An existing connection was forcibly closed by the remote host</token>
+			</message>
+		</condition>
+		<condition name="MetricsLocal">
+		<className>org.apache.ignite.internal.IgniteKernal</className>
+		<level>INFO</level>
+			<message>
+				<token>hosts=</token>
+				<regex>[0-9]*</regex>
+				<token>nodes=</token>
+				<regex>[0-9]*</regex>
+				<token>CPUs=</token>
+				<regex>[0-9]*</regex>
+			</message>
+		</condition>
+		<condition name="MetricsChanged">
+		<className>org.apache.ignite.internal.IgniteKernal</className>
+		<level>INFO</level>
+			<message>
+				<token>hosts=</token>
+				<regex>[0-9]*</regex>
+				<token>nodes=</token>
+				<regex>[0-9]*</regex>
+				<token>CPUs=</token>
+				<regex>[0-9]*</regex>
+			</message>
+		</condition>
+	</conditions>
+	<query>( NodeGetsSegmented AND AFTER 00:05:00:05 UnknownNodeFound ) AND ( NodeGetsSegmented AND AFTER 00:05:00:00 ConnectionClosed ) AND ( NodeGetsSegmented AND AFTER 00:05:00:00 ClosingNIOConnection ) AND ( NodeGetsSegmented AND BEFORE 00:05:00:00 MetricsLocal ) AND ( NodeGetsSegmented AND AFTER 00:05:00:05 MetricsChanged )
+	</query>
+    <actions>Solution1: R1:	1. One of the Ignite node gets dropped and we find that none is working fine..</actions>
+</rule>
+</rules>

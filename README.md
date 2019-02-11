@@ -43,3 +43,8 @@ A condition have filter attributes on logs like classname, level etc, like:
 
 tag query will have the query composing all the conditions mentioned in conditions tag.
                                    
+Please take the sample folder in the root of this repository.
+Solution contains SOLUTION.jar and rules.xml file.
+CS-12345 contains the logs.
+run it as :
+java -jar SOLUTION.jar D:\Sample\CS-12345 2019-Jan-19 Sat 02:30:37.549 30000

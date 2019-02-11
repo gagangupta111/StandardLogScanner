@@ -2363,3 +2363,32 @@ java.lang.NullPointerException: null
 2019-02-11 15:45:10.351  INFO 2544 --- [http-nio-8759-exec-9] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
 2019-02-11 15:45:10.351  INFO 2544 --- [http-nio-8759-exec-9] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
 2019-02-11 15:45:10.373  INFO 2544 --- [http-nio-8759-exec-9] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 22 ms
+2019-02-11 16:12:41.322  INFO 1188 --- [main] com.loganalyzer.LogAnalyzerMain          : Starting LogAnalyzerMain on AABRD0310 with PID 1188 (D:\gagan.gupta\IntellijIdeaProjects\LogAnalyzer\target\classes started by gagan.gupta in D:\gagan.gupta\IntellijIdeaProjects\LogAnalyzer)
+2019-02-11 16:12:41.327  INFO 1188 --- [main] com.loganalyzer.LogAnalyzerMain          : No active profile set, falling back to default profiles: default
+2019-02-11 16:12:41.440  INFO 1188 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@37d4349f: startup date [Mon Feb 11 16:12:41 IST 2019]; root of context hierarchy
+2019-02-11 16:12:43.952  INFO 1188 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8759 (http)
+2019-02-11 16:12:43.970  INFO 1188 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-02-11 16:12:43.972  INFO 1188 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.20
+2019-02-11 16:12:44.167  INFO 1188 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-02-11 16:12:44.167  INFO 1188 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2731 ms
+2019-02-11 16:12:44.380  INFO 1188 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2019-02-11 16:12:44.387  INFO 1188 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-02-11 16:12:44.388  INFO 1188 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-02-11 16:12:44.389  INFO 1188 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2019-02-11 16:12:44.389  INFO 1188 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-02-11 16:13:00.204  INFO 1188 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@37d4349f: startup date [Mon Feb 11 16:12:41 IST 2019]; root of context hierarchy
+2019-02-11 16:13:02.300  INFO 1188 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/filter],methods=[POST],consumes=[application/json]}" onto public java.util.List<com.loganalyzer.model.Log> com.loganalyzer.controller.LogAnalyzerController.getLogsWithCriteria(com.loganalyzer.model.SearchCriteria)
+2019-02-11 16:13:02.302  INFO 1188 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs],methods=[GET]}" onto public java.util.List<com.loganalyzer.model.Log> com.loganalyzer.controller.LogAnalyzerController.getAllLogs()
+2019-02-11 16:13:02.303  INFO 1188 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/execute],methods=[GET]}" onto public java.util.Map<java.lang.String, java.lang.String> com.loganalyzer.controller.LogAnalyzerController.checkAllRules() throws java.lang.Exception
+2019-02-11 16:13:02.303  INFO 1188 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs/rules],methods=[GET]}" onto public java.util.List<com.loganalyzer.model.Rule> com.loganalyzer.controller.LogAnalyzerController.getAllRules() throws java.io.IOException
+2019-02-11 16:13:02.306  INFO 1188 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-02-11 16:13:02.307  INFO 1188 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-02-11 16:13:02.908  INFO 1188 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-11 16:13:02.917  INFO 1188 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-11 16:13:03.832  INFO 1188 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2019-02-11 16:13:08.509  INFO 1188 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-02-11 16:13:09.774  INFO 1188 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8759 (http)
+2019-02-11 16:13:09.780  INFO 1188 --- [main] com.loganalyzer.LogAnalyzerMain          : Started LogAnalyzerMain in 29.181 seconds (JVM running for 30.079)
+2019-02-11 16:13:59.591  INFO 1188 --- [http-nio-8759-exec-9] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-02-11 16:13:59.591  INFO 1188 --- [http-nio-8759-exec-9] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2019-02-11 16:13:59.612  INFO 1188 --- [http-nio-8759-exec-9] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 21 ms
