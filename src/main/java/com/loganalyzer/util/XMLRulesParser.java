@@ -22,6 +22,7 @@ public class XMLRulesParser {
     static final String RULES = "rules";
     static final String RULE = "rule";
     static final String NAME = "name";
+    static final String ENABLE = "enable";
     static final String DESCRIPTION = "description";
     static final String MESSAGE = "message";
     public static final String TOKEN = "token";
@@ -72,6 +73,7 @@ public class XMLRulesParser {
                 if (event.isStartElement()) {
                     StartElement startElement = event.asStartElement();
                     switch (startElement.getName().getLocalPart()){
+                        case RULES:
                         case RULE:
                             rule = new Rule();
                             Iterator<Attribute> attributesRule = startElement.getAttributes();
@@ -79,6 +81,8 @@ public class XMLRulesParser {
                                 Attribute attribute = attributesRule.next();
                                 if (attribute.getName().toString().equals(NAME)) {
                                     rule.setRuleName(attribute.getValue());
+                                }else if (attribute.getName().toString().equals(ENABLE)) {
+                                    rule.setEnable(Boolean.parseBoolean(attribute.getValue()));
                                 }
                             }
                             break;
@@ -206,6 +210,8 @@ public class XMLRulesParser {
                             }
                             rule.setActions(data);
                             break;
+                        default:
+                            throw new Exception(Constants.INVALID_XML);
                     }
 
                 }

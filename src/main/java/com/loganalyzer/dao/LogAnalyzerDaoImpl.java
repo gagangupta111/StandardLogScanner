@@ -192,6 +192,9 @@ public class LogAnalyzerDaoImpl implements LogAnalyzerDao{
         Stack<List<Log>> stack = new Stack<>();
         for (Rule rule : rules){
 
+            if (!rule.isEnable()){
+                continue;
+            }
             varIndexMap = new HashMap<>();
             varValueMap = new HashMap<>();
             stack = new Stack<>();

@@ -5,6 +5,7 @@ import java.util.List;
 public class Rule {
 
     private String ruleName;
+    private boolean enable;
     private String desc;
     private List<Condition> conditions;
     private String actions;
@@ -28,6 +29,14 @@ public class Rule {
             }
         }
         return null;
+    }
+
+    public boolean isEnable() {
+        return enable;
+    }
+
+    public void setEnable(boolean enable) {
+        this.enable = enable;
     }
 
     public String getDesc() {

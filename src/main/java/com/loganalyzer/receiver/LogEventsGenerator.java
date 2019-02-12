@@ -1,5 +1,17 @@
 package com.loganalyzer.receiver;
 
+import com.loganalyzer.model.Log;
+import com.loganalyzer.model.SearchCriteria;
+import com.loganalyzer.util.Utility;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+import org.apache.log4j.rule.ExpressionRule;
+import org.apache.log4j.rule.Rule;
+import org.apache.log4j.spi.LocationInfo;
+import org.apache.log4j.spi.LoggingEvent;
+import org.apache.log4j.spi.ThrowableInformation;
+import org.apache.log4j.varia.LogFilePatternReceiver;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -19,18 +31,6 @@ import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
-
-import com.loganalyzer.model.Log;
-import com.loganalyzer.model.SearchCriteria;
-import com.loganalyzer.util.Utility;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-import org.apache.log4j.rule.ExpressionRule;
-import org.apache.log4j.rule.Rule;
-import org.apache.log4j.spi.LocationInfo;
-import org.apache.log4j.spi.LoggingEvent;
-import org.apache.log4j.spi.ThrowableInformation;
-import org.apache.log4j.varia.LogFilePatternReceiver;
 
 public class LogEventsGenerator extends LogFilePatternReceiver {
 
