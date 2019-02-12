@@ -7,6 +7,6 @@ public interface Constants {
     public static final String INVALID_XML = "Invalid xml mentioned for rules";
 
     public static final String TEMP_RULES_XML = "D:\\gagan.gupta\\My Downloads\\logs\\rules.xml";
-    public static final String RULES_XML = TEMP_RULES_XML; // "./rules.xml";
+    public static final String RULES_XML = "./rules.xml";
 
 }

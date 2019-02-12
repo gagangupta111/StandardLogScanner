@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rules>
-<rule name = "CheckIfIgniteNodeGoesDown">
+<rule name = "CheckIfIgniteNodeGoesDown" enable="true">
 	<description>Checking conditions if exceptions and stack trace verifies if any of the Ignite node goes down.</description>
     <conditions>
 		<condition name="NodeGetsSegmented">

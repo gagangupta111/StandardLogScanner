@@ -24,6 +24,7 @@
             <xs:element name = "actions" type = "xs:string"/>
         </xs:sequence>
         <xs:attribute name = 'name' type = 'xs:string'/>
+        <xs:attribute name = 'enable' type = 'xs:string'/>
     </xs:complexType>
 
     <xs:complexType name = "ConditionType">
