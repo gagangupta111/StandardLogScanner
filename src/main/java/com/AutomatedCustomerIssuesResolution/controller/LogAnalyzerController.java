@@ -1,9 +1,9 @@
-package com.loganalyzer.controller;
+package com.AutomatedCustomerIssuesResolution.controller;
 
-import com.loganalyzer.model.Log;
-import com.loganalyzer.model.Rule;
-import com.loganalyzer.model.SearchCriteria;
-import com.loganalyzer.service.LogAnalyzerService;
+import com.AutomatedCustomerIssuesResolution.model.Log;
+import com.AutomatedCustomerIssuesResolution.model.Rule;
+import com.AutomatedCustomerIssuesResolution.model.SearchCriteria;
+import com.AutomatedCustomerIssuesResolution.service.LogAnalyzerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;

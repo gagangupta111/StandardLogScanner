@@ -1,8 +1,8 @@
-package com.loganalyzer.dao;
+package com.AutomatedCustomerIssuesResolution.dao;
 
-import com.loganalyzer.model.Log;
-import com.loganalyzer.model.Rule;
-import com.loganalyzer.model.SearchCriteria;
+import com.AutomatedCustomerIssuesResolution.model.Log;
+import com.AutomatedCustomerIssuesResolution.model.Rule;
+import com.AutomatedCustomerIssuesResolution.model.SearchCriteria;
 
 import java.util.List;
 import java.util.Map;

@@ -1,12 +1,12 @@
-package com.loganalyzer.dao;
+package com.AutomatedCustomerIssuesResolution.dao;
 
-import com.loganalyzer.constants.Constants;
-import com.loganalyzer.model.Log;
-import com.loganalyzer.model.Rule;
-import com.loganalyzer.model.SearchCriteria;
-import com.loganalyzer.receiver.LogEventsGenerator;
-import com.loganalyzer.util.Utility;
-import com.loganalyzer.util.XMLRulesParser;
+import com.AutomatedCustomerIssuesResolution.util.Utility;
+import com.AutomatedCustomerIssuesResolution.util.XMLRulesParser;
+import com.AutomatedCustomerIssuesResolution.constants.Constants;
+import com.AutomatedCustomerIssuesResolution.model.Log;
+import com.AutomatedCustomerIssuesResolution.model.Rule;
+import com.AutomatedCustomerIssuesResolution.model.SearchCriteria;
+import com.AutomatedCustomerIssuesResolution.receiver.LogEventsGenerator;
 import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.collections4.PredicateUtils;
 import org.apache.commons.io.FileUtils;

@@ -1,4 +1,4 @@
-package com.loganalyzer.constants;
+package com.AutomatedCustomerIssuesResolution.constants;
 
 public interface Constants {
 

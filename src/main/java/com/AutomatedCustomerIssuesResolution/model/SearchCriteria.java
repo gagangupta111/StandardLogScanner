@@ -1,8 +1,8 @@
-package com.loganalyzer.model;
+package com.AutomatedCustomerIssuesResolution.model;
 
+import com.AutomatedCustomerIssuesResolution.util.JsonDateDeSerializer;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.loganalyzer.util.JsonDateDeSerializer;
 
 @JsonAutoDetect
 public class SearchCriteria {

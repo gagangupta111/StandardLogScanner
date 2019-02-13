@@ -1,9 +1,9 @@
-package com.loganalyzer.service;
+package com.AutomatedCustomerIssuesResolution.service;
 
-import com.loganalyzer.dao.LogAnalyzerDao;
-import com.loganalyzer.model.Log;
-import com.loganalyzer.model.Rule;
-import com.loganalyzer.model.SearchCriteria;
+import com.AutomatedCustomerIssuesResolution.dao.LogAnalyzerDao;
+import com.AutomatedCustomerIssuesResolution.model.Log;
+import com.AutomatedCustomerIssuesResolution.model.Rule;
+import com.AutomatedCustomerIssuesResolution.model.SearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

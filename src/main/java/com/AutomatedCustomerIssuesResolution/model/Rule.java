@@ -1,4 +1,4 @@
-package com.loganalyzer.model;
+package com.AutomatedCustomerIssuesResolution.model;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
-package com.loganalyzer.receiver;
+package com.AutomatedCustomerIssuesResolution.receiver;
 
-import com.loganalyzer.model.Log;
-import com.loganalyzer.model.SearchCriteria;
-import com.loganalyzer.util.Utility;
+import com.AutomatedCustomerIssuesResolution.model.Log;
+import com.AutomatedCustomerIssuesResolution.model.SearchCriteria;
+import com.AutomatedCustomerIssuesResolution.util.Utility;
 import org.apache.log4j.spi.LoggingEvent;
 import org.apache.log4j.varia.LogFilePatternReceiver;
 

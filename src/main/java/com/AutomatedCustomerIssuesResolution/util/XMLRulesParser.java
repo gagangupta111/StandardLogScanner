@@ -1,9 +1,9 @@
-package com.loganalyzer.util;
+package com.AutomatedCustomerIssuesResolution.util;
 
-import com.loganalyzer.constants.Constants;
-import com.loganalyzer.model.Condition;
-import com.loganalyzer.model.Message;
-import com.loganalyzer.model.Rule;
+import com.AutomatedCustomerIssuesResolution.constants.Constants;
+import com.AutomatedCustomerIssuesResolution.model.Condition;
+import com.AutomatedCustomerIssuesResolution.model.Message;
+import com.AutomatedCustomerIssuesResolution.model.Rule;
 
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;

@@ -1,4 +1,4 @@
-package com.loganalyzer.main;
+package com.AutomatedCustomerIssuesResolution.main;
 
 public class Main {
 

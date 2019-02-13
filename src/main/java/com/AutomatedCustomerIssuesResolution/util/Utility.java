@@ -1,8 +1,8 @@
-package com.loganalyzer.util;
+package com.AutomatedCustomerIssuesResolution.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.loganalyzer.constants.Constants;
-import com.loganalyzer.model.SearchCriteria;
+import com.AutomatedCustomerIssuesResolution.constants.Constants;
+import com.AutomatedCustomerIssuesResolution.model.SearchCriteria;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Component;
 import javax.xml.XMLConstants;

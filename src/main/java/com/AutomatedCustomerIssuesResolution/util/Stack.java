@@ -1,4 +1,4 @@
-package com.loganalyzer.util;
+package com.AutomatedCustomerIssuesResolution.util;
 
 public class Stack
 {
