@@ -1,16 +1,10 @@
 package com.loganalyzer.util;
 
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.loganalyzer.constants.Constants;
-import com.loganalyzer.model.Condition;
 import com.loganalyzer.model.SearchCriteria;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Component;
-import org.xml.sax.SAXException;
-
-import javax.swing.text.html.parser.Parser;
 import javax.xml.XMLConstants;
 import javax.xml.transform.stream.StreamSource;
 import javax.xml.validation.Schema;
@@ -20,9 +14,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
